@@ -1,14 +1,13 @@
 import os
 import json
 import requests
-import unicodedata
 
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timezone
 from zoneinfo import ZoneInfo
 
 
 # ============================================================
-# CONFIGURAÇÕES
+# CONFIGURAÇÃO
 # ============================================================
 
 API_URL = "https://v3.football.api-sports.io"
@@ -22,130 +21,8 @@ headers = {
 
 
 # ============================================================
-# COMPETIÇÕES QUE QUEREMOS
+# FUNÇÃO PARA CHAMAR A API
 # ============================================================
-
-COMPETICOES_PRINCIPAIS = {
-    # Brasil - Nacional
-    "serie a",
-    "serie b",
-    "serie c",
-    "serie d",
-    "copa do brasil",
-    "supercopa do brasil",
-    "copa do nordeste",
-    "copa verde",
-
-    # América do Sul
-    "conmebol libertadores",
-    "conmebol sudamericana",
-    "conmebol recopa",
-    "recopa sudamericana",
-
-    # Mundial
-    "fifa club world cup",
-    "club world cup",
-    "fifa intercontinental cup",
-    "intercontinental cup",
-}
-
-
-# Principais estaduais
-ESTADUAIS_PRINCIPAIS = (
-    "paulista - a1",
-    "paulista a1",
-
-    "carioca - 1",
-    "carioca serie a",
-
-    "mineiro - 1",
-    "mineiro modulo i",
-
-    "gaucho - 1",
-    "gaucho 1",
-
-    "paranaense - 1",
-    "paranaense 1",
-
-    "baiano - 1",
-    "baiano 1",
-
-    "pernambucano - 1",
-    "pernambucano 1",
-
-    "cearense - 1",
-    "cearense 1",
-
-    "goiano - 1",
-    "goiano 1",
-
-    "catarinense - 1",
-    "catarinense 1",
-
-    "paraense",
-
-    "amazonense",
-)
-
-
-# Qualquer competição com essas palavras é ignorada,
-# mesmo se começar com um nome parecido com estadual.
-PALAVRAS_BLOQUEADAS = (
-    "u17",
-    "u-17",
-    "sub 17",
-    "sub-17",
-
-    "u20",
-    "u-20",
-    "sub 20",
-    "sub-20",
-
-    "u23",
-    "u-23",
-    "sub 23",
-    "sub-23",
-
-    "youth",
-    "junior",
-    "juniors",
-
-    "women",
-    "womens",
-    "women's",
-    "feminino",
-    "feminina",
-
-    "reserve",
-    "reserves",
-
-    "friendly",
-    "friendlies",
-    "amistoso",
-    "amistosos",
-)
-
-
-# ============================================================
-# FUNÇÕES
-# ============================================================
-
-def normalizar(texto):
-    if not texto:
-        return ""
-
-    texto = unicodedata.normalize(
-        "NFKD",
-        texto
-    ).encode(
-        "ASCII",
-        "ignore"
-    ).decode(
-        "ASCII"
-    )
-
-    return texto.lower().strip()
-
 
 def chamar_api(endpoint, params=None):
 
@@ -163,192 +40,52 @@ def chamar_api(endpoint, params=None):
     dados = response.json()
 
     if dados.get("errors"):
-
         raise Exception(
-            f"Erro retornado pela API-Football: "
-            f"{dados['errors']}"
+            f"Erro retornado pela API-Football: {dados['errors']}"
         )
 
     return dados.get("response", [])
 
 
-def competicao_relevante(nome):
-
-    nome_normalizado = normalizar(nome)
-
-
-    # Primeiro bloqueia base, feminino etc.
-    for palavra in PALAVRAS_BLOQUEADAS:
-
-        if normalizar(palavra) in nome_normalizado:
-            return False
-
-
-    # Competições nacionais/internacionais
-    if nome_normalizado in COMPETICOES_PRINCIPAIS:
-        return True
-
-
-    # Principais estaduais
-    for estadual in ESTADUAIS_PRINCIPAIS:
-
-        if nome_normalizado.startswith(
-            normalizar(estadual)
-        ):
-            return True
-
-
-    return False
-
-
-def categoria_competicao(nome):
-
-    nome = normalizar(nome)
-
-
-    internacionais = (
-        "libertadores",
-        "sudamericana",
-        "recopa",
-        "club world cup",
-        "intercontinental"
-    )
-
-    for termo in internacionais:
-
-        if termo in nome:
-            return "internacional"
-
-
-    nacionais = (
-        "serie a",
-        "serie b",
-        "serie c",
-        "serie d",
-        "copa do brasil",
-        "supercopa",
-        "copa do nordeste",
-        "copa verde"
-    )
-
-    if nome in nacionais:
-        return "nacional"
-
-
-    return "estadual"
-
-
 # ============================================================
-# HORÁRIO
+# DATA DE HOJE
 # ============================================================
 
-tz_referencia = ZoneInfo(
-    TIMEZONE_REFERENCIA
-)
+tz_referencia = ZoneInfo(TIMEZONE_REFERENCIA)
 
-agora = datetime.now(
-    tz_referencia
-)
+agora = datetime.now(tz_referencia)
 
-data_referencia = agora.date()
+data_hoje = agora.strftime("%Y-%m-%d")
 
-
-# ============================================================
-# BUSCAR CLUBES BRASILEIROS
-# ============================================================
 
 print(
-    "Buscando clubes brasileiros..."
+    f"Buscando todos os jogos de {data_hoje}..."
 )
 
-times = chamar_api(
-    "teams",
+
+# ============================================================
+# BUSCAR TODOS OS JOGOS DE HOJE
+# ============================================================
+
+fixtures = chamar_api(
+    "fixtures",
     {
-        "country": "Brazil"
+        "date": data_hoje,
+        "timezone": TIMEZONE_REFERENCIA
     }
 )
 
 
-ids_times_brasileiros = set()
-
-
-for item in times:
-
-    time = item.get(
-        "team",
-        {}
-    )
-
-    # Ignora seleção brasileira
-    if time.get("national", False):
-        continue
-
-    team_id = time.get("id")
-
-    if team_id:
-        ids_times_brasileiros.add(
-            team_id
-        )
-
-
 print(
-    f"{len(ids_times_brasileiros)} "
-    f"clubes brasileiros encontrados."
+    f"{len(fixtures)} jogos encontrados."
 )
 
 
 # ============================================================
-# BUSCAR ONTEM + HOJE + AMANHÃ
-#
-# Isso é proposital.
-#
-# Assim o LUBU consegue converter o timestamp para o timezone
-# escolhido no próprio app e depois decidir quais jogos
-# pertencem ao dia atual entre 00:00 e 23:59.
-# ============================================================
-
-datas_consulta = [
-    data_referencia - timedelta(days=1),
-    data_referencia,
-    data_referencia + timedelta(days=1)
-]
-
-
-fixtures = []
-
-
-for data_consulta in datas_consulta:
-
-    data_str = data_consulta.isoformat()
-
-    print(
-        f"Buscando partidas de {data_str}..."
-    )
-
-    resposta = chamar_api(
-        "fixtures",
-        {
-            "date": data_str,
-            "timezone": TIMEZONE_REFERENCIA
-        }
-    )
-
-    fixtures.extend(resposta)
-
-
-print(
-    f"{len(fixtures)} partidas recebidas "
-    f"antes dos filtros."
-)
-
-
-# ============================================================
-# FILTRAR PARTIDAS
+# MONTAR JOGOS
 # ============================================================
 
 jogos = []
-
-ids_adicionados = set()
 
 
 for item in fixtures:
@@ -357,14 +94,6 @@ for item in fixtures:
         "fixture",
         {}
     )
-
-    fixture_id = fixture.get("id")
-
-
-    # Evita partidas duplicadas
-    if fixture_id in ids_adicionados:
-        continue
-
 
     league = item.get(
         "league",
@@ -398,46 +127,6 @@ for item in fixtures:
     )
 
 
-    casa_id = casa.get("id")
-    fora_id = fora.get("id")
-
-
-    # --------------------------------------------------------
-    # PRECISA TER PELO MENOS UM CLUBE BRASILEIRO
-    # --------------------------------------------------------
-
-    if (
-        casa_id not in ids_times_brasileiros
-        and
-        fora_id not in ids_times_brasileiros
-    ):
-        continue
-
-
-    # --------------------------------------------------------
-    # FILTRO DE COMPETIÇÃO
-    # --------------------------------------------------------
-
-    nome_campeonato = league.get(
-        "name",
-        ""
-    )
-
-
-    if not competicao_relevante(
-        nome_campeonato
-    ):
-
-        print(
-            f"Ignorado: "
-            f"{nome_campeonato} - "
-            f"{casa.get('name')} x "
-            f"{fora.get('name')}"
-        )
-
-        continue
-
-
     # --------------------------------------------------------
     # HORÁRIO
     # --------------------------------------------------------
@@ -446,13 +135,11 @@ for item in fixtures:
         fixture["date"]
     )
 
-
     data_utc = data_partida.astimezone(
         timezone.utc
     )
 
-
-    data_cuiaba = data_partida.astimezone(
+    data_referencia = data_partida.astimezone(
         tz_referencia
     )
 
@@ -468,38 +155,36 @@ for item in fixtures:
 
 
     # --------------------------------------------------------
-    # MONTAR JOGO
+    # MONTAR O OBJETO DO JOGO
     # --------------------------------------------------------
 
     jogo = {
 
-        "id": fixture_id,
+        "id": fixture.get("id"),
 
 
-        # ESTE É O CAMPO PRINCIPAL DE HORÁRIO
+        # CAMPO PRINCIPAL PARA HORÁRIO.
         #
-        # O LUBU deve converter este timestamp
-        # usando o MESMO timezone/offset do EPG.
+        # O app deve converter isso usando
+        # o mesmo timezone/offset usado pelo EPG.
         "timestamp": fixture.get(
             "timestamp"
         ),
 
 
-        # Horário universal.
         "inicio_utc": inicio_utc,
 
 
-        # Apenas para conferência/debug.
-        # NÃO deve ser a referência principal no app.
+        # Somente referência/debug.
         "horario_referencia": {
 
             "timezone": TIMEZONE_REFERENCIA,
 
-            "data": data_cuiaba.strftime(
+            "data": data_referencia.strftime(
                 "%Y-%m-%d"
             ),
 
-            "horario": data_cuiaba.strftime(
+            "horario": data_referencia.strftime(
                 "%H:%M"
             )
         },
@@ -530,14 +215,26 @@ for item in fixtures:
         },
 
 
+        # ----------------------------------------------------
+        # CAMPEONATO
+        #
+        # É ISSO QUE O LUBU VAI USAR PARA SEPARAR:
+        #
+        # Serie B
+        # Copa Paulista
+        # Libertadores
+        # Premier League
+        # etc.
+        # ----------------------------------------------------
+
         "campeonato": {
 
-            "id": league.get("id"),
+            "id": league.get(
+                "id"
+            ),
 
-            "nome": nome_campeonato,
-
-            "categoria": categoria_competicao(
-                nome_campeonato
+            "nome": league.get(
+                "name"
             ),
 
             "pais": league.get(
@@ -562,6 +259,10 @@ for item in fixtures:
         },
 
 
+        # ----------------------------------------------------
+        # TIME DA CASA
+        # ----------------------------------------------------
+
         "casa": {
 
             "id": casa.get(
@@ -582,14 +283,13 @@ for item in fixtures:
 
             "gols": goals.get(
                 "home"
-            ),
-
-            "brasileiro":
-                casa_id
-                in
-                ids_times_brasileiros
+            )
         },
 
+
+        # ----------------------------------------------------
+        # TIME VISITANTE
+        # ----------------------------------------------------
 
         "fora": {
 
@@ -611,14 +311,13 @@ for item in fixtures:
 
             "gols": goals.get(
                 "away"
-            ),
-
-            "brasileiro":
-                fora_id
-                in
-                ids_times_brasileiros
+            )
         },
 
+
+        # ----------------------------------------------------
+        # PLACAR
+        # ----------------------------------------------------
 
         "placar": {
 
@@ -639,6 +338,10 @@ for item in fixtures:
             )
         },
 
+
+        # ----------------------------------------------------
+        # ESTÁDIO
+        # ----------------------------------------------------
 
         "estadio": {
 
@@ -665,8 +368,8 @@ for item in fixtures:
         },
 
 
-        # Preencheremos depois
-        # usando a fonte de canais.
+        # Futuramente preencheremos
+        # com canais de transmissão.
         "transmissao": []
 
     }
@@ -676,21 +379,80 @@ for item in fixtures:
         jogo
     )
 
-    ids_adicionados.add(
-        fixture_id
-    )
-
 
 # ============================================================
-# ORDENAR
+# ORDENAR PELO HORÁRIO
 # ============================================================
 
 jogos.sort(
     key=lambda jogo:
-        jogo.get(
-            "timestamp"
+        jogo.get("timestamp") or 0
+)
+
+
+# ============================================================
+# CRIAR LISTA DE CAMPEONATOS DISPONÍVEIS HOJE
+# ============================================================
+
+campeonatos = {}
+
+
+for jogo in jogos:
+
+    campeonato = jogo["campeonato"]
+
+    campeonato_id = campeonato.get(
+        "id"
+    )
+
+    if campeonato_id is None:
+        continue
+
+
+    if campeonato_id not in campeonatos:
+
+        campeonatos[campeonato_id] = {
+
+            "id": campeonato_id,
+
+            "nome": campeonato.get(
+                "nome"
+            ),
+
+            "pais": campeonato.get(
+                "pais"
+            ),
+
+            "logo": campeonato.get(
+                "logo"
+            ),
+
+            "bandeira": campeonato.get(
+                "bandeira"
+            ),
+
+            "quantidade_jogos": 0
+        }
+
+
+    campeonatos[
+        campeonato_id
+    ][
+        "quantidade_jogos"
+    ] += 1
+
+
+lista_campeonatos = list(
+    campeonatos.values()
+)
+
+
+lista_campeonatos.sort(
+    key=lambda campeonato:
+        (
+            campeonato.get("pais") or "",
+            campeonato.get("nome") or ""
         )
-        or 0
 )
 
 
@@ -700,11 +462,21 @@ jogos.sort(
 
 saida = {
 
-    "versao": 2,
+    "versao": 3,
+
+    "data": data_hoje,
 
     "gerado_em": agora.isoformat(),
 
     "timezone_referencia": TIMEZONE_REFERENCIA,
+
+
+    "periodo": {
+
+        "inicio": "00:00",
+
+        "fim": "23:59"
+    },
 
 
     "horario": {
@@ -715,25 +487,26 @@ saida = {
 
         "observacao":
             "O aplicativo deve converter o timestamp "
-            "usando o mesmo timezone ou ajuste do EPG."
+            "usando o mesmo timezone ou ajuste utilizado "
+            "pelo EPG."
     },
 
 
-    "janela_consultada": {
+    "quantidade_campeonatos": len(
+        lista_campeonatos
+    ),
 
-        "inicio":
-            datas_consulta[0].isoformat(),
-
-        "fim":
-            datas_consulta[-1].isoformat()
-    },
-
-
-    "quantidade": len(
+    "quantidade_jogos": len(
         jogos
     ),
 
 
+    # Lista resumida para facilitar a criação
+    # das categorias no aplicativo.
+    "campeonatos": lista_campeonatos,
+
+
+    # Lista completa de partidas.
     "jogos": jogos
 
 }
@@ -762,8 +535,11 @@ with open(
 print()
 
 print(
-    f"{len(jogos)} partidas relevantes "
-    f"com clubes brasileiros."
+    f"{len(jogos)} jogos salvos."
+)
+
+print(
+    f"{len(lista_campeonatos)} campeonatos encontrados."
 )
 
 print(
