@@ -1,7 +1,7 @@
 {
-  "versao": 8,
+  "versao": 9,
   "data": "2026-08-18",
-  "gerado_em": "2026-08-18T15:21:59.551175-04:00",
+  "gerado_em": "2026-08-18T15:36:32.614786-04:00",
   "timezone_referencia": "America/Cuiaba",
   "periodo": {
     "inicio": "00:00",
@@ -424,7 +424,7 @@
       },
       "casa": {
         "id": 24471,
-        "nome": "Atlético Mineiro",
+        "nome": "Atlético-MG",
         "logo": "https://media.api-sports.io/football/teams/117.png",
         "vencedor": null,
         "gols": null,
@@ -761,7 +761,7 @@
       "status": {
         "codigo": "2H",
         "descricao": "Second Half",
-        "minuto": 60
+        "minuto": 74
       },
       "campeonato": {
         "id": 504,
@@ -784,7 +784,7 @@
         "nome": "Al-Nassr",
         "logo": "https://media.api-sports.io/football/teams/2939.png",
         "vencedor": true,
-        "gols": 3
+        "gols": 4
       },
       "placar": {
         "intervalo": {
@@ -823,7 +823,7 @@
       "status": {
         "codigo": "2H",
         "descricao": "Second Half",
-        "minuto": 60
+        "minuto": 74
       },
       "campeonato": {
         "id": 504,
@@ -846,7 +846,7 @@
         "nome": "NEOM",
         "logo": "https://media.api-sports.io/football/teams/10513.png",
         "vencedor": true,
-        "gols": 2
+        "gols": 3
       },
       "placar": {
         "intervalo": {
@@ -885,7 +885,7 @@
       "status": {
         "codigo": "1H",
         "descricao": "First Half",
-        "minuto": 21
+        "minuto": 35
       },
       "campeonato": {
         "id": 2,
@@ -908,12 +908,12 @@
         "nome": "Viking",
         "logo": "https://media.api-sports.io/football/teams/759.png",
         "vencedor": false,
-        "gols": 0
+        "gols": 1
       },
       "placar": {
         "intervalo": {
           "home": 2,
-          "away": 0
+          "away": 1
         },
         "final": {
           "home": null,
@@ -947,7 +947,7 @@
       "status": {
         "codigo": "1H",
         "descricao": "First Half",
-        "minuto": 22
+        "minuto": 36
       },
       "campeonato": {
         "id": 2,
@@ -992,7 +992,7 @@
       },
       "estadio": {
         "id": null,
-        "nome": "Chobani Stadium Fenerbahce Sukru Saracoglu",
+        "nome": "Chobani Stadium",
         "cidade": "Istanbul"
       },
       "transmissao": []
@@ -1009,7 +1009,7 @@
       "status": {
         "codigo": "1H",
         "descricao": "First Half",
-        "minuto": 22
+        "minuto": 36
       },
       "campeonato": {
         "id": 2,
@@ -1054,7 +1054,7 @@
       },
       "estadio": {
         "id": null,
-        "nome": "National Stadium Vasil Levski",
+        "nome": "Georgi Asparuhov Stadium",
         "cidade": "Sofia"
       },
       "transmissao": []
