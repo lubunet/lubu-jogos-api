@@ -1,4 +1,4 @@
-name: Atualizar jogos brasileiros
+name: Atualizar jogos do dia
 
 on:
 
@@ -37,7 +37,7 @@ jobs:
           pip install requests
 
 
-      - name: Buscar jogos brasileiros
+      - name: Buscar jogos do dia
         env:
           API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
         run: |
@@ -58,7 +58,7 @@ jobs:
 
           else
 
-            git commit -m "Atualizar jogos brasileiros"
+            git commit -m "Atualizar jogos do dia"
             git push
 
           fi
