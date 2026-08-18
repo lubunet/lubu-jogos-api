@@ -1,6 +1,7 @@
 import os
 import json
 import requests
+import unicodedata
 
 from datetime import datetime, timezone
 from zoneinfo import ZoneInfo
@@ -21,8 +22,242 @@ headers = {
 
 
 # ============================================================
-# FUNÇÃO PARA CHAMAR A API
+# COMPETIÇÕES RELEVANTES
 # ============================================================
+
+# Competições brasileiras que queremos aceitar.
+COMPETICOES_BRASIL = (
+    # Nacionais
+    "serie a",
+    "serie b",
+    "serie c",
+    "serie d",
+    "copa do brasil",
+    "supercopa do brasil",
+    "supercopa rei",
+    "copa do nordeste",
+    "copa verde",
+
+    # São Paulo
+    "paulista - a1",
+    "paulista a1",
+    "copa paulista",
+
+    # Rio
+    "carioca - 1",
+    "carioca serie a",
+    "copa rio",
+
+    # Minas
+    "mineiro - 1",
+    "mineiro modulo i",
+
+    # RS
+    "gaucho - 1",
+    "gaucho 1",
+
+    # Paraná
+    "paranaense - 1",
+    "paranaense 1",
+
+    # Santa Catarina
+    "catarinense - 1",
+    "catarinense 1",
+
+    # Bahia
+    "baiano - 1",
+    "baiano 1",
+
+    # Ceará
+    "cearense - 1",
+    "cearense 1",
+
+    # Goiás
+    "goiano - 1",
+    "goiano 1",
+
+    # Pernambuco
+    "pernambucano - 1",
+    "pernambucano 1",
+
+    # Outros estaduais
+    "alagoano",
+    "amazonense",
+    "brasiliense",
+    "capixaba",
+    "maranhense",
+    "mato-grossense",
+    "paraense",
+    "paraibano",
+    "piauiense",
+    "potiguar",
+    "sergipano",
+    "tocantinense",
+    "acreano",
+    "amapaense",
+    "rondoniense",
+    "roraimense",
+)
+
+
+# Competições internacionais / estrangeiras relevantes.
+COMPETICOES_INTERNACIONAIS = (
+    # CONMEBOL
+    "conmebol libertadores",
+    "conmebol sudamericana",
+    "conmebol recopa",
+    "recopa sudamericana",
+
+    # UEFA
+    "uefa champions league",
+    "uefa europa league",
+    "uefa europa conference league",
+    "conference league",
+
+    # Inglaterra
+    "premier league",
+    "fa cup",
+    "league cup",
+
+    # Espanha
+    "la liga",
+    "copa del rey",
+
+    # Itália
+    "serie a",
+    "coppa italia",
+
+    # Alemanha
+    "bundesliga",
+    "dfb pokal",
+
+    # França
+    "ligue 1",
+    "coupe de france",
+
+    # Portugal
+    "primeira liga",
+
+    # Arábia Saudita
+    "pro league",
+
+    # EUA
+    "major league soccer",
+    "mls",
+
+    # Argentina
+    "liga profesional argentina",
+    "liga profesional de futbol",
+
+    # Seleções / mundial
+    "world cup",
+    "fifa world cup",
+    "club world cup",
+    "fifa club world cup",
+    "intercontinental cup",
+    "copa america",
+    "uefa euro",
+    "euro championship",
+    "world cup qualification",
+    "world cup qualifiers",
+    "uefa nations league",
+)
+
+
+# Sempre ignorar essas categorias.
+BLOQUEADOS = (
+    "u17",
+    "u-17",
+    "sub 17",
+    "sub-17",
+
+    "u18",
+    "u-18",
+    "sub 18",
+
+    "u19",
+    "u-19",
+
+    "u20",
+    "u-20",
+    "sub 20",
+    "sub-20",
+
+    "u21",
+    "u-21",
+
+    "u23",
+    "u-23",
+
+    "youth",
+    "junior",
+    "juniors",
+
+    "women",
+    "woman",
+    "feminino",
+    "feminina",
+
+    "reserve",
+    "reserves",
+
+    "friendly",
+    "friendlies",
+    "amistoso",
+    "amistosos",
+)
+
+
+# Divisões estaduais que não queremos.
+DIVISOES_INFERIORES = (
+    "paulista a2",
+    "paulista - a2",
+    "paulista a3",
+    "paulista - a3",
+    "paulista a4",
+    "paulista - a4",
+
+    "carioca a2",
+    "carioca - a2",
+
+    "mineiro modulo ii",
+    "mineiro modulo 2",
+
+    "paranaense 2",
+    "paranaense - 2",
+
+    "catarinense 2",
+    "catarinense - 2",
+
+    "goiano 2",
+
+    "pernambucano a2",
+
+    "capixaba b",
+)
+
+
+# ============================================================
+# FUNÇÕES
+# ============================================================
+
+def normalizar(texto):
+
+    if not texto:
+        return ""
+
+    texto = unicodedata.normalize(
+        "NFKD",
+        texto
+    ).encode(
+        "ASCII",
+        "ignore"
+    ).decode(
+        "ASCII"
+    )
+
+    return texto.lower().strip()
+
 
 def chamar_api(endpoint, params=None):
 
@@ -47,24 +282,88 @@ def chamar_api(endpoint, params=None):
     return dados.get("response", [])
 
 
+def contem_algum(texto, termos):
+
+    texto = normalizar(texto)
+
+    for termo in termos:
+
+        if normalizar(termo) in texto:
+            return True
+
+    return False
+
+
+def competicao_relevante(nome, pais):
+
+    nome_normalizado = normalizar(nome)
+    pais_normalizado = normalizar(pais)
+
+
+    # -----------------------------------------
+    # BLOQUEIOS GERAIS
+    # -----------------------------------------
+
+    if contem_algum(
+        nome_normalizado,
+        BLOQUEADOS
+    ):
+        return False
+
+
+    if contem_algum(
+        nome_normalizado,
+        DIVISOES_INFERIORES
+    ):
+        return False
+
+
+    # -----------------------------------------
+    # BRASIL
+    # -----------------------------------------
+
+    if pais_normalizado == "brazil":
+
+        return contem_algum(
+            nome_normalizado,
+            COMPETICOES_BRASIL
+        )
+
+
+    # -----------------------------------------
+    # INTERNACIONAL
+    # -----------------------------------------
+
+    return contem_algum(
+        nome_normalizado,
+        COMPETICOES_INTERNACIONAIS
+    )
+
+
 # ============================================================
 # DATA DE HOJE
 # ============================================================
 
-tz_referencia = ZoneInfo(TIMEZONE_REFERENCIA)
+tz_referencia = ZoneInfo(
+    TIMEZONE_REFERENCIA
+)
 
-agora = datetime.now(tz_referencia)
+agora = datetime.now(
+    tz_referencia
+)
 
-data_hoje = agora.strftime("%Y-%m-%d")
+data_hoje = agora.strftime(
+    "%Y-%m-%d"
+)
 
 
 print(
-    f"Buscando todos os jogos de {data_hoje}..."
+    f"Buscando jogos de {data_hoje}..."
 )
 
 
 # ============================================================
-# BUSCAR TODOS OS JOGOS DE HOJE
+# CONSULTAR TODOS OS JOGOS DE HOJE
 # ============================================================
 
 fixtures = chamar_api(
@@ -77,12 +376,12 @@ fixtures = chamar_api(
 
 
 print(
-    f"{len(fixtures)} jogos encontrados."
+    f"API retornou {len(fixtures)} jogos no total."
 )
 
 
 # ============================================================
-# MONTAR JOGOS
+# FILTRAR E MONTAR JOGOS
 # ============================================================
 
 jogos = []
@@ -116,6 +415,29 @@ for item in fixtures:
     )
 
 
+    nome_campeonato = league.get(
+        "name",
+        ""
+    )
+
+    pais_campeonato = league.get(
+        "country",
+        ""
+    )
+
+
+    # ========================================================
+    # FILTRO PRINCIPAL
+    # ========================================================
+
+    if not competicao_relevante(
+        nome_campeonato,
+        pais_campeonato
+    ):
+
+        continue
+
+
     casa = teams.get(
         "home",
         {}
@@ -127,17 +449,19 @@ for item in fixtures:
     )
 
 
-    # --------------------------------------------------------
+    # ========================================================
     # HORÁRIO
-    # --------------------------------------------------------
+    # ========================================================
 
     data_partida = datetime.fromisoformat(
         fixture["date"]
     )
 
+
     data_utc = data_partida.astimezone(
         timezone.utc
     )
+
 
     data_referencia = data_partida.astimezone(
         tz_referencia
@@ -154,19 +478,19 @@ for item in fixtures:
     )
 
 
-    # --------------------------------------------------------
-    # MONTAR O OBJETO DO JOGO
-    # --------------------------------------------------------
+    # ========================================================
+    # JOGO
+    # ========================================================
 
     jogo = {
 
-        "id": fixture.get("id"),
+        "id": fixture.get(
+            "id"
+        ),
 
 
-        # CAMPO PRINCIPAL PARA HORÁRIO.
-        #
-        # O app deve converter isso usando
-        # o mesmo timezone/offset usado pelo EPG.
+        # CAMPO QUE O APP DEVE USAR
+        # PARA CALCULAR O HORÁRIO.
         "timestamp": fixture.get(
             "timestamp"
         ),
@@ -175,203 +499,197 @@ for item in fixtures:
         "inicio_utc": inicio_utc,
 
 
-        # Somente referência/debug.
         "horario_referencia": {
 
-            "timezone": TIMEZONE_REFERENCIA,
+            "timezone":
+                TIMEZONE_REFERENCIA,
 
-            "data": data_referencia.strftime(
-                "%Y-%m-%d"
-            ),
+            "data":
+                data_referencia.strftime(
+                    "%Y-%m-%d"
+                ),
 
-            "horario": data_referencia.strftime(
-                "%H:%M"
-            )
+            "horario":
+                data_referencia.strftime(
+                    "%H:%M"
+                )
         },
 
 
         "status": {
 
-            "codigo": fixture.get(
-                "status",
-                {}
-            ).get(
-                "short"
-            ),
+            "codigo":
+                fixture.get(
+                    "status",
+                    {}
+                ).get(
+                    "short"
+                ),
 
-            "descricao": fixture.get(
-                "status",
-                {}
-            ).get(
-                "long"
-            ),
+            "descricao":
+                fixture.get(
+                    "status",
+                    {}
+                ).get(
+                    "long"
+                ),
 
-            "minuto": fixture.get(
-                "status",
-                {}
-            ).get(
-                "elapsed"
-            )
+            "minuto":
+                fixture.get(
+                    "status",
+                    {}
+                ).get(
+                    "elapsed"
+                )
         },
 
-
-        # ----------------------------------------------------
-        # CAMPEONATO
-        #
-        # É ISSO QUE O LUBU VAI USAR PARA SEPARAR:
-        #
-        # Serie B
-        # Copa Paulista
-        # Libertadores
-        # Premier League
-        # etc.
-        # ----------------------------------------------------
 
         "campeonato": {
 
-            "id": league.get(
-                "id"
-            ),
+            "id":
+                league.get(
+                    "id"
+                ),
 
-            "nome": league.get(
-                "name"
-            ),
+            "nome":
+                nome_campeonato,
 
-            "pais": league.get(
-                "country"
-            ),
+            "pais":
+                pais_campeonato,
 
-            "logo": league.get(
-                "logo"
-            ),
+            "logo":
+                league.get(
+                    "logo"
+                ),
 
-            "bandeira": league.get(
-                "flag"
-            ),
+            "bandeira":
+                league.get(
+                    "flag"
+                ),
 
-            "temporada": league.get(
-                "season"
-            ),
+            "temporada":
+                league.get(
+                    "season"
+                ),
 
-            "rodada": league.get(
-                "round"
-            )
+            "rodada":
+                league.get(
+                    "round"
+                )
         },
 
-
-        # ----------------------------------------------------
-        # TIME DA CASA
-        # ----------------------------------------------------
 
         "casa": {
 
-            "id": casa.get(
-                "id"
-            ),
+            "id":
+                casa.get(
+                    "id"
+                ),
 
-            "nome": casa.get(
-                "name"
-            ),
+            "nome":
+                casa.get(
+                    "name"
+                ),
 
-            "logo": casa.get(
-                "logo"
-            ),
+            "logo":
+                casa.get(
+                    "logo"
+                ),
 
-            "vencedor": casa.get(
-                "winner"
-            ),
+            "vencedor":
+                casa.get(
+                    "winner"
+                ),
 
-            "gols": goals.get(
-                "home"
-            )
+            "gols":
+                goals.get(
+                    "home"
+                )
         },
 
-
-        # ----------------------------------------------------
-        # TIME VISITANTE
-        # ----------------------------------------------------
 
         "fora": {
 
-            "id": fora.get(
-                "id"
-            ),
+            "id":
+                fora.get(
+                    "id"
+                ),
 
-            "nome": fora.get(
-                "name"
-            ),
+            "nome":
+                fora.get(
+                    "name"
+                ),
 
-            "logo": fora.get(
-                "logo"
-            ),
+            "logo":
+                fora.get(
+                    "logo"
+                ),
 
-            "vencedor": fora.get(
-                "winner"
-            ),
+            "vencedor":
+                fora.get(
+                    "winner"
+                ),
 
-            "gols": goals.get(
-                "away"
-            )
+            "gols":
+                goals.get(
+                    "away"
+                )
         },
 
-
-        # ----------------------------------------------------
-        # PLACAR
-        # ----------------------------------------------------
 
         "placar": {
 
-            "intervalo": score.get(
-                "halftime"
-            ),
+            "intervalo":
+                score.get(
+                    "halftime"
+                ),
 
-            "final": score.get(
-                "fulltime"
-            ),
+            "final":
+                score.get(
+                    "fulltime"
+                ),
 
-            "prorrogacao": score.get(
-                "extratime"
-            ),
+            "prorrogacao":
+                score.get(
+                    "extratime"
+                ),
 
-            "penaltis": score.get(
-                "penalty"
-            )
+            "penaltis":
+                score.get(
+                    "penalty"
+                )
         },
 
-
-        # ----------------------------------------------------
-        # ESTÁDIO
-        # ----------------------------------------------------
 
         "estadio": {
 
-            "id": fixture.get(
-                "venue",
-                {}
-            ).get(
-                "id"
-            ),
+            "id":
+                fixture.get(
+                    "venue",
+                    {}
+                ).get(
+                    "id"
+                ),
 
-            "nome": fixture.get(
-                "venue",
-                {}
-            ).get(
-                "name"
-            ),
+            "nome":
+                fixture.get(
+                    "venue",
+                    {}
+                ).get(
+                    "name"
+                ),
 
-            "cidade": fixture.get(
-                "venue",
-                {}
-            ).get(
-                "city"
-            )
+            "cidade":
+                fixture.get(
+                    "venue",
+                    {}
+                ).get(
+                    "city"
+                )
         },
 
 
-        # Futuramente preencheremos
-        # com canais de transmissão.
         "transmissao": []
-
     }
 
 
@@ -381,17 +699,19 @@ for item in fixtures:
 
 
 # ============================================================
-# ORDENAR PELO HORÁRIO
+# ORDENAR
 # ============================================================
 
 jogos.sort(
     key=lambda jogo:
-        jogo.get("timestamp") or 0
+        jogo.get(
+            "timestamp"
+        ) or 0
 )
 
 
 # ============================================================
-# CRIAR LISTA DE CAMPEONATOS DISPONÍVEIS HOJE
+# GERAR LISTA DE CAMPEONATOS
 # ============================================================
 
 campeonatos = {}
@@ -399,39 +719,46 @@ campeonatos = {}
 
 for jogo in jogos:
 
-    campeonato = jogo["campeonato"]
+    campeonato = jogo[
+        "campeonato"
+    ]
 
     campeonato_id = campeonato.get(
         "id"
     )
 
-    if campeonato_id is None:
-        continue
-
 
     if campeonato_id not in campeonatos:
 
-        campeonatos[campeonato_id] = {
+        campeonatos[
+            campeonato_id
+        ] = {
 
-            "id": campeonato_id,
+            "id":
+                campeonato_id,
 
-            "nome": campeonato.get(
-                "nome"
-            ),
+            "nome":
+                campeonato.get(
+                    "nome"
+                ),
 
-            "pais": campeonato.get(
-                "pais"
-            ),
+            "pais":
+                campeonato.get(
+                    "pais"
+                ),
 
-            "logo": campeonato.get(
-                "logo"
-            ),
+            "logo":
+                campeonato.get(
+                    "logo"
+                ),
 
-            "bandeira": campeonato.get(
-                "bandeira"
-            ),
+            "bandeira":
+                campeonato.get(
+                    "bandeira"
+                ),
 
-            "quantidade_jogos": 0
+            "quantidade_jogos":
+                0
         }
 
 
@@ -450,65 +777,76 @@ lista_campeonatos = list(
 lista_campeonatos.sort(
     key=lambda campeonato:
         (
-            campeonato.get("pais") or "",
-            campeonato.get("nome") or ""
+            campeonato.get(
+                "pais"
+            ) or "",
+
+            campeonato.get(
+                "nome"
+            ) or ""
         )
 )
 
 
 # ============================================================
-# GERAR JSON
+# JSON FINAL
 # ============================================================
 
 saida = {
 
-    "versao": 3,
+    "versao": 4,
 
     "data": data_hoje,
 
-    "gerado_em": agora.isoformat(),
+    "gerado_em":
+        agora.isoformat(),
 
-    "timezone_referencia": TIMEZONE_REFERENCIA,
+    "timezone_referencia":
+        TIMEZONE_REFERENCIA,
 
 
     "periodo": {
 
-        "inicio": "00:00",
+        "inicio":
+            "00:00",
 
-        "fim": "23:59"
+        "fim":
+            "23:59"
     },
 
 
     "horario": {
 
-        "campo_recomendado": "timestamp",
+        "campo_recomendado":
+            "timestamp",
 
-        "formato": "Unix timestamp",
+        "formato":
+            "Unix timestamp",
 
         "observacao":
-            "O aplicativo deve converter o timestamp "
-            "usando o mesmo timezone ou ajuste utilizado "
-            "pelo EPG."
+            "Converter usando o mesmo "
+            "timezone/offset configurado "
+            "para o EPG."
     },
 
 
-    "quantidade_campeonatos": len(
-        lista_campeonatos
-    ),
+    "quantidade_campeonatos":
+        len(
+            lista_campeonatos
+        ),
 
-    "quantidade_jogos": len(
+    "quantidade_jogos":
+        len(
+            jogos
+        ),
+
+
+    "campeonatos":
+        lista_campeonatos,
+
+
+    "jogos":
         jogos
-    ),
-
-
-    # Lista resumida para facilitar a criação
-    # das categorias no aplicativo.
-    "campeonatos": lista_campeonatos,
-
-
-    # Lista completa de partidas.
-    "jogos": jogos
-
 }
 
 
@@ -535,13 +873,17 @@ with open(
 print()
 
 print(
-    f"{len(jogos)} jogos salvos."
+    f"{len(fixtures)} jogos recebidos da API."
 )
 
 print(
-    f"{len(lista_campeonatos)} campeonatos encontrados."
+    f"{len(jogos)} jogos relevantes mantidos."
 )
 
 print(
-    "Arquivo data/jogos-hoje.json atualizado."
+    f"{len(lista_campeonatos)} campeonatos."
+)
+
+print(
+    "JSON atualizado."
 )
