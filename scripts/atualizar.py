@@ -100,7 +100,30 @@ COMPETICOES_BRASIL = (
 )
 
 
-# Competições internacionais / estrangeiras relevantes.
+# ============================================================
+# COMPETIÇÕES DE BASE PERMITIDAS
+# ============================================================
+
+# Exceções específicas.
+# Continuamos bloqueando U17/U20 em geral,
+# mas permitimos especificamente o Brasileiro Sub-17.
+COMPETICOES_BASE_PERMITIDAS = (
+    "brasileiro u17",
+    "brasileiro u-17",
+    "brasileiro sub 17",
+    "brasileiro sub-17",
+
+    "campeonato brasileiro u17",
+    "campeonato brasileiro u-17",
+    "campeonato brasileiro sub 17",
+    "campeonato brasileiro sub-17",
+)
+
+
+# ============================================================
+# COMPETIÇÕES INTERNACIONAIS
+# ============================================================
+
 COMPETICOES_INTERNACIONAIS = (
     # CONMEBOL
     "conmebol libertadores",
@@ -149,7 +172,7 @@ COMPETICOES_INTERNACIONAIS = (
     "liga profesional argentina",
     "liga profesional de futbol",
 
-    # Seleções / mundial
+    # Seleções / Mundial
     "world cup",
     "fifa world cup",
     "club world cup",
@@ -164,7 +187,12 @@ COMPETICOES_INTERNACIONAIS = (
 )
 
 
-# Sempre ignorar essas categorias.
+# ============================================================
+# CATEGORIAS BLOQUEADAS
+# ============================================================
+
+# Tudo isso continua bloqueado,
+# exceto competições explicitamente permitidas acima.
 BLOQUEADOS = (
     "u17",
     "u-17",
@@ -208,7 +236,10 @@ BLOQUEADOS = (
 )
 
 
-# Divisões estaduais que não queremos.
+# ============================================================
+# DIVISÕES ESTADUAIS INFERIORES BLOQUEADAS
+# ============================================================
+
 DIVISOES_INFERIORES = (
     "paulista a2",
     "paulista - a2",
@@ -300,9 +331,30 @@ def competicao_relevante(nome, pais):
     pais_normalizado = normalizar(pais)
 
 
-    # -----------------------------------------
+    # ========================================================
+    # EXCEÇÕES DE BASE PERMITIDAS
+    # ========================================================
+    #
+    # Essa verificação precisa acontecer ANTES dos bloqueios.
+    #
+    # Assim:
+    #
+    # Brasileiro U17 -> PERMITE
+    # Paulista U20   -> BLOQUEIA
+    # Premier League U18 -> BLOQUEIA
+    # etc.
+    # ========================================================
+
+    if contem_algum(
+        nome_normalizado,
+        COMPETICOES_BASE_PERMITIDAS
+    ):
+        return True
+
+
+    # ========================================================
     # BLOQUEIOS GERAIS
-    # -----------------------------------------
+    # ========================================================
 
     if contem_algum(
         nome_normalizado,
@@ -318,9 +370,9 @@ def competicao_relevante(nome, pais):
         return False
 
 
-    # -----------------------------------------
+    # ========================================================
     # BRASIL
-    # -----------------------------------------
+    # ========================================================
 
     if pais_normalizado == "brazil":
 
@@ -330,9 +382,9 @@ def competicao_relevante(nome, pais):
         )
 
 
-    # -----------------------------------------
+    # ========================================================
     # INTERNACIONAL
-    # -----------------------------------------
+    # ========================================================
 
     return contem_algum(
         nome_normalizado,
@@ -489,8 +541,9 @@ for item in fixtures:
         ),
 
 
-        # CAMPO QUE O APP DEVE USAR
-        # PARA CALCULAR O HORÁRIO.
+        # Campo principal de horário.
+        # O app deve converter usando o mesmo
+        # timezone/offset utilizado pelo EPG.
         "timestamp": fixture.get(
             "timestamp"
         ),
@@ -499,6 +552,7 @@ for item in fixtures:
         "inicio_utc": inicio_utc,
 
 
+        # Apenas referência/debug.
         "horario_referencia": {
 
             "timezone":
@@ -689,6 +743,7 @@ for item in fixtures:
         },
 
 
+        # Futuramente canais de transmissão.
         "transmissao": []
     }
 
@@ -699,7 +754,7 @@ for item in fixtures:
 
 
 # ============================================================
-# ORDENAR
+# ORDENAR PELO HORÁRIO
 # ============================================================
 
 jogos.sort(
@@ -726,6 +781,10 @@ for jogo in jogos:
     campeonato_id = campeonato.get(
         "id"
     )
+
+
+    if campeonato_id is None:
+        continue
 
 
     if campeonato_id not in campeonatos:
@@ -794,9 +853,10 @@ lista_campeonatos.sort(
 
 saida = {
 
-    "versao": 4,
+    "versao": 5,
 
-    "data": data_hoje,
+    "data":
+        data_hoje,
 
     "gerado_em":
         agora.isoformat(),
@@ -850,6 +910,10 @@ saida = {
 }
 
 
+# ============================================================
+# SALVAR JSON
+# ============================================================
+
 os.makedirs(
     "data",
     exist_ok=True
@@ -870,6 +934,10 @@ with open(
     )
 
 
+# ============================================================
+# LOG FINAL
+# ============================================================
+
 print()
 
 print(
@@ -882,6 +950,10 @@ print(
 
 print(
     f"{len(lista_campeonatos)} campeonatos."
+)
+
+print(
+    "Brasileiro Sub-17 está permitido."
 )
 
 print(
