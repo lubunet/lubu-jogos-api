@@ -1,0 +1,940 @@
+{
+  "data": "2026-08-18",
+  "timezone": "America/Cuiaba",
+  "periodo": {
+    "inicio": "00:00",
+    "fim": "23:59"
+  },
+  "atualizado_em": "2026-08-18T11:08:16.327616-04:00",
+  "quantidade": 16,
+  "jogos": [
+    {
+      "id": 1543981,
+      "data": "2026-08-18",
+      "horario": "14:00",
+      "timestamp": 1787076000,
+      "status": {
+        "codigo": "NS",
+        "descricao": "Not Started",
+        "minuto": null
+      },
+      "campeonato": {
+        "id": 1128,
+        "nome": "Brasileiro U17",
+        "pais": "Brazil",
+        "logo": "https://media.api-sports.io/football/leagues/1128.png",
+        "bandeira": "https://media.api-sports.io/flags/br.svg",
+        "temporada": 2026,
+        "rodada": "Regular Season - 12"
+      },
+      "casa": {
+        "id": 24469,
+        "nome": "Athletico PR U17",
+        "logo": "https://media.api-sports.io/football/teams/24469.png",
+        "vencedor": null,
+        "gols": null
+      },
+      "fora": {
+        "id": 27733,
+        "nome": "Vitoria U17",
+        "logo": "https://media.api-sports.io/football/teams/27733.png",
+        "vencedor": null,
+        "gols": null
+      },
+      "placar": {
+        "intervalo": {
+          "home": null,
+          "away": null
+        },
+        "final": {
+          "home": null,
+          "away": null
+        },
+        "prorrogacao": {
+          "home": null,
+          "away": null
+        },
+        "penaltis": {
+          "home": null,
+          "away": null
+        }
+      },
+      "estadio": {
+        "id": null,
+        "nome": null,
+        "cidade": null
+      },
+      "transmissao": []
+    },
+    {
+      "id": 1543982,
+      "data": "2026-08-18",
+      "horario": "14:00",
+      "timestamp": 1787076000,
+      "status": {
+        "codigo": "NS",
+        "descricao": "Not Started",
+        "minuto": null
+      },
+      "campeonato": {
+        "id": 1128,
+        "nome": "Brasileiro U17",
+        "pais": "Brazil",
+        "logo": "https://media.api-sports.io/football/leagues/1128.png",
+        "bandeira": "https://media.api-sports.io/flags/br.svg",
+        "temporada": 2026,
+        "rodada": "Regular Season - 12"
+      },
+      "casa": {
+        "id": 24470,
+        "nome": "Atletico GO U17",
+        "logo": "https://media.api-sports.io/football/teams/24470.png",
+        "vencedor": null,
+        "gols": null
+      },
+      "fora": {
+        "id": 24487,
+        "nome": "Sao Paulo U17",
+        "logo": "https://media.api-sports.io/football/teams/24487.png",
+        "vencedor": null,
+        "gols": null
+      },
+      "placar": {
+        "intervalo": {
+          "home": null,
+          "away": null
+        },
+        "final": {
+          "home": null,
+          "away": null
+        },
+        "prorrogacao": {
+          "home": null,
+          "away": null
+        },
+        "penaltis": {
+          "home": null,
+          "away": null
+        }
+      },
+      "estadio": {
+        "id": null,
+        "nome": null,
+        "cidade": null
+      },
+      "transmissao": []
+    },
+    {
+      "id": 1543983,
+      "data": "2026-08-18",
+      "horario": "14:00",
+      "timestamp": 1787076000,
+      "status": {
+        "codigo": "NS",
+        "descricao": "Not Started",
+        "minuto": null
+      },
+      "campeonato": {
+        "id": 1128,
+        "nome": "Brasileiro U17",
+        "pais": "Brazil",
+        "logo": "https://media.api-sports.io/football/leagues/1128.png",
+        "bandeira": "https://media.api-sports.io/flags/br.svg",
+        "temporada": 2026,
+        "rodada": "Regular Season - 12"
+      },
+      "casa": {
+        "id": 24471,
+        "nome": "Atlético Mineiro U17",
+        "logo": "https://media.api-sports.io/football/teams/24471.png",
+        "vencedor": null,
+        "gols": null
+      },
+      "fora": {
+        "id": 24482,
+        "nome": "Gremio U17",
+        "logo": "https://media.api-sports.io/football/teams/24482.png",
+        "vencedor": null,
+        "gols": null
+      },
+      "placar": {
+        "intervalo": {
+          "home": null,
+          "away": null
+        },
+        "final": {
+          "home": null,
+          "away": null
+        },
+        "prorrogacao": {
+          "home": null,
+          "away": null
+        },
+        "penaltis": {
+          "home": null,
+          "away": null
+        }
+      },
+      "estadio": {
+        "id": null,
+        "nome": null,
+        "cidade": null
+      },
+      "transmissao": []
+    },
+    {
+      "id": 1543984,
+      "data": "2026-08-18",
+      "horario": "14:00",
+      "timestamp": 1787076000,
+      "status": {
+        "codigo": "NS",
+        "descricao": "Not Started",
+        "minuto": null
+      },
+      "campeonato": {
+        "id": 1128,
+        "nome": "Brasileiro U17",
+        "pais": "Brazil",
+        "logo": "https://media.api-sports.io/football/leagues/1128.png",
+        "bandeira": "https://media.api-sports.io/flags/br.svg",
+        "temporada": 2026,
+        "rodada": "Regular Season - 12"
+      },
+      "casa": {
+        "id": 24472,
+        "nome": "Bahia U17",
+        "logo": "https://media.api-sports.io/football/teams/24472.png",
+        "vencedor": null,
+        "gols": null
+      },
+      "fora": {
+        "id": 24485,
+        "nome": "RB Bragantino U17",
+        "logo": "https://media.api-sports.io/football/teams/24485.png",
+        "vencedor": null,
+        "gols": null
+      },
+      "placar": {
+        "intervalo": {
+          "home": null,
+          "away": null
+        },
+        "final": {
+          "home": null,
+          "away": null
+        },
+        "prorrogacao": {
+          "home": null,
+          "away": null
+        },
+        "penaltis": {
+          "home": null,
+          "away": null
+        }
+      },
+      "estadio": {
+        "id": null,
+        "nome": null,
+        "cidade": null
+      },
+      "transmissao": []
+    },
+    {
+      "id": 1543987,
+      "data": "2026-08-18",
+      "horario": "14:00",
+      "timestamp": 1787076000,
+      "status": {
+        "codigo": "NS",
+        "descricao": "Not Started",
+        "minuto": null
+      },
+      "campeonato": {
+        "id": 1128,
+        "nome": "Brasileiro U17",
+        "pais": "Brazil",
+        "logo": "https://media.api-sports.io/football/leagues/1128.png",
+        "bandeira": "https://media.api-sports.io/flags/br.svg",
+        "temporada": 2026,
+        "rodada": "Regular Season - 12"
+      },
+      "casa": {
+        "id": 24480,
+        "nome": "Fortaleza U17",
+        "logo": "https://media.api-sports.io/football/teams/24480.png",
+        "vencedor": null,
+        "gols": null
+      },
+      "fora": {
+        "id": 24468,
+        "nome": "America MG U17",
+        "logo": "https://media.api-sports.io/football/teams/24468.png",
+        "vencedor": null,
+        "gols": null
+      },
+      "placar": {
+        "intervalo": {
+          "home": null,
+          "away": null
+        },
+        "final": {
+          "home": null,
+          "away": null
+        },
+        "prorrogacao": {
+          "home": null,
+          "away": null
+        },
+        "penaltis": {
+          "home": null,
+          "away": null
+        }
+      },
+      "estadio": {
+        "id": null,
+        "nome": null,
+        "cidade": null
+      },
+      "transmissao": []
+    },
+    {
+      "id": 1543989,
+      "data": "2026-08-18",
+      "horario": "14:00",
+      "timestamp": 1787076000,
+      "status": {
+        "codigo": "NS",
+        "descricao": "Not Started",
+        "minuto": null
+      },
+      "campeonato": {
+        "id": 1128,
+        "nome": "Brasileiro U17",
+        "pais": "Brazil",
+        "logo": "https://media.api-sports.io/football/leagues/1128.png",
+        "bandeira": "https://media.api-sports.io/flags/br.svg",
+        "temporada": 2026,
+        "rodada": "Regular Season - 12"
+      },
+      "casa": {
+        "id": 24486,
+        "nome": "Santos U17",
+        "logo": "https://media.api-sports.io/football/teams/24486.png",
+        "vencedor": null,
+        "gols": null
+      },
+      "fora": {
+        "id": 24483,
+        "nome": "Internacional U17",
+        "logo": "https://media.api-sports.io/football/teams/24483.png",
+        "vencedor": null,
+        "gols": null
+      },
+      "placar": {
+        "intervalo": {
+          "home": null,
+          "away": null
+        },
+        "final": {
+          "home": null,
+          "away": null
+        },
+        "prorrogacao": {
+          "home": null,
+          "away": null
+        },
+        "penaltis": {
+          "home": null,
+          "away": null
+        }
+      },
+      "estadio": {
+        "id": null,
+        "nome": null,
+        "cidade": null
+      },
+      "transmissao": []
+    },
+    {
+      "id": 1543990,
+      "data": "2026-08-18",
+      "horario": "14:00",
+      "timestamp": 1787076000,
+      "status": {
+        "codigo": "NS",
+        "descricao": "Not Started",
+        "minuto": null
+      },
+      "campeonato": {
+        "id": 1128,
+        "nome": "Brasileiro U17",
+        "pais": "Brazil",
+        "logo": "https://media.api-sports.io/football/leagues/1128.png",
+        "bandeira": "https://media.api-sports.io/flags/br.svg",
+        "temporada": 2026,
+        "rodada": "Regular Season - 12"
+      },
+      "casa": {
+        "id": 25807,
+        "nome": "Vasco U17",
+        "logo": "https://media.api-sports.io/football/teams/25807.png",
+        "vencedor": null,
+        "gols": null
+      },
+      "fora": {
+        "id": 25797,
+        "nome": "Juventude U17",
+        "logo": "https://media.api-sports.io/football/teams/25797.png",
+        "vencedor": null,
+        "gols": null
+      },
+      "placar": {
+        "intervalo": {
+          "home": null,
+          "away": null
+        },
+        "final": {
+          "home": null,
+          "away": null
+        },
+        "prorrogacao": {
+          "home": null,
+          "away": null
+        },
+        "penaltis": {
+          "home": null,
+          "away": null
+        }
+      },
+      "estadio": {
+        "id": null,
+        "nome": null,
+        "cidade": null
+      },
+      "transmissao": []
+    },
+    {
+      "id": 1547436,
+      "data": "2026-08-18",
+      "horario": "14:00",
+      "timestamp": 1787076000,
+      "status": {
+        "codigo": "NS",
+        "descricao": "Not Started",
+        "minuto": null
+      },
+      "campeonato": {
+        "id": 1086,
+        "nome": "Paulista - U20",
+        "pais": "Brazil",
+        "logo": "https://media.api-sports.io/football/leagues/1086.png",
+        "bandeira": "https://media.api-sports.io/flags/br.svg",
+        "temporada": 2026,
+        "rodada": "Regular Season - 12"
+      },
+      "casa": {
+        "id": 23475,
+        "nome": "Gremio Prudente U20",
+        "logo": "https://media.api-sports.io/football/teams/23475.png",
+        "vencedor": null,
+        "gols": null
+      },
+      "fora": {
+        "id": 18345,
+        "nome": "RB Bragantino U20",
+        "logo": "https://media.api-sports.io/football/teams/18345.png",
+        "vencedor": null,
+        "gols": null
+      },
+      "placar": {
+        "intervalo": {
+          "home": null,
+          "away": null
+        },
+        "final": {
+          "home": null,
+          "away": null
+        },
+        "prorrogacao": {
+          "home": null,
+          "away": null
+        },
+        "penaltis": {
+          "home": null,
+          "away": null
+        }
+      },
+      "estadio": {
+        "id": null,
+        "nome": null,
+        "cidade": null
+      },
+      "transmissao": []
+    },
+    {
+      "id": 1548272,
+      "data": "2026-08-18",
+      "horario": "14:00",
+      "timestamp": 1787076000,
+      "status": {
+        "codigo": "NS",
+        "descricao": "Not Started",
+        "minuto": null
+      },
+      "campeonato": {
+        "id": 1147,
+        "nome": "Capixaba B",
+        "pais": "Brazil",
+        "logo": "https://media.api-sports.io/football/leagues/1147.png",
+        "bandeira": "https://media.api-sports.io/flags/br.svg",
+        "temporada": 2027,
+        "rodada": "Regular Season - 8"
+      },
+      "casa": {
+        "id": 27798,
+        "nome": "Doze",
+        "logo": "https://media.api-sports.io/football/teams/27798.png",
+        "vencedor": null,
+        "gols": null
+      },
+      "fora": {
+        "id": 25010,
+        "nome": "GEL",
+        "logo": "https://media.api-sports.io/football/teams/25010.png",
+        "vencedor": null,
+        "gols": null
+      },
+      "placar": {
+        "intervalo": {
+          "home": null,
+          "away": null
+        },
+        "final": {
+          "home": null,
+          "away": null
+        },
+        "prorrogacao": {
+          "home": null,
+          "away": null
+        },
+        "penaltis": {
+          "home": null,
+          "away": null
+        }
+      },
+      "estadio": {
+        "id": null,
+        "nome": null,
+        "cidade": null
+      },
+      "transmissao": []
+    },
+    {
+      "id": 1547770,
+      "data": "2026-08-18",
+      "horario": "18:00",
+      "timestamp": 1787090400,
+      "status": {
+        "codigo": "NS",
+        "descricao": "Not Started",
+        "minuto": null
+      },
+      "campeonato": {
+        "id": 13,
+        "nome": "CONMEBOL Libertadores",
+        "pais": "World",
+        "logo": "https://media.api-sports.io/football/leagues/13.png",
+        "bandeira": null,
+        "temporada": 2026,
+        "rodada": "Round of 16"
+      },
+      "casa": {
+        "id": 473,
+        "nome": "Independ. Rivadavia",
+        "logo": "https://media.api-sports.io/football/teams/473.png",
+        "vencedor": null,
+        "gols": null
+      },
+      "fora": {
+        "id": 124,
+        "nome": "Fluminense",
+        "logo": "https://media.api-sports.io/football/teams/124.png",
+        "vencedor": null,
+        "gols": null
+      },
+      "placar": {
+        "intervalo": {
+          "home": null,
+          "away": null
+        },
+        "final": {
+          "home": null,
+          "away": null
+        },
+        "prorrogacao": {
+          "home": null,
+          "away": null
+        },
+        "penaltis": {
+          "home": null,
+          "away": null
+        }
+      },
+      "estadio": {
+        "id": null,
+        "nome": "Estadio Malvinas Argentinas",
+        "cidade": "Mendoza"
+      },
+      "transmissao": []
+    },
+    {
+      "id": 1520826,
+      "data": "2026-08-18",
+      "horario": "18:30",
+      "timestamp": 1787092200,
+      "status": {
+        "codigo": "NS",
+        "descricao": "Not Started",
+        "minuto": null
+      },
+      "campeonato": {
+        "id": 72,
+        "nome": "Serie B",
+        "pais": "Brazil",
+        "logo": "https://media.api-sports.io/football/leagues/72.png",
+        "bandeira": "https://media.api-sports.io/flags/br.svg",
+        "temporada": 2026,
+        "rodada": "Regular Season - 23"
+      },
+      "casa": {
+        "id": 148,
+        "nome": "Londrina",
+        "logo": "https://media.api-sports.io/football/teams/148.png",
+        "vencedor": null,
+        "gols": null
+      },
+      "fora": {
+        "id": 144,
+        "nome": "Atletico Goianiense",
+        "logo": "https://media.api-sports.io/football/teams/144.png",
+        "vencedor": null,
+        "gols": null
+      },
+      "placar": {
+        "intervalo": {
+          "home": null,
+          "away": null
+        },
+        "final": {
+          "home": null,
+          "away": null
+        },
+        "prorrogacao": {
+          "home": null,
+          "away": null
+        },
+        "penaltis": {
+          "home": null,
+          "away": null
+        }
+      },
+      "estadio": {
+        "id": null,
+        "nome": null,
+        "cidade": "Londrina"
+      },
+      "transmissao": []
+    },
+    {
+      "id": 1548271,
+      "data": "2026-08-18",
+      "horario": "18:45",
+      "timestamp": 1787093100,
+      "status": {
+        "codigo": "NS",
+        "descricao": "Not Started",
+        "minuto": null
+      },
+      "campeonato": {
+        "id": 1147,
+        "nome": "Capixaba B",
+        "pais": "Brazil",
+        "logo": "https://media.api-sports.io/football/leagues/1147.png",
+        "bandeira": "https://media.api-sports.io/flags/br.svg",
+        "temporada": 2027,
+        "rodada": "Regular Season - 8"
+      },
+      "casa": {
+        "id": 18810,
+        "nome": "CTE Colatina",
+        "logo": "https://media.api-sports.io/football/teams/18810.png",
+        "vencedor": null,
+        "gols": null
+      },
+      "fora": {
+        "id": 27711,
+        "nome": "Audax São Mateus",
+        "logo": "https://media.api-sports.io/football/teams/27711.png",
+        "vencedor": null,
+        "gols": null
+      },
+      "placar": {
+        "intervalo": {
+          "home": null,
+          "away": null
+        },
+        "final": {
+          "home": null,
+          "away": null
+        },
+        "prorrogacao": {
+          "home": null,
+          "away": null
+        },
+        "penaltis": {
+          "home": null,
+          "away": null
+        }
+      },
+      "estadio": {
+        "id": null,
+        "nome": null,
+        "cidade": null
+      },
+      "transmissao": []
+    },
+    {
+      "id": 1546103,
+      "data": "2026-08-18",
+      "horario": "19:00",
+      "timestamp": 1787094000,
+      "status": {
+        "codigo": "NS",
+        "descricao": "Not Started",
+        "minuto": null
+      },
+      "campeonato": {
+        "id": 742,
+        "nome": "Copa Paulista",
+        "pais": "Brazil",
+        "logo": "https://media.api-sports.io/football/leagues/742.png",
+        "bandeira": "https://media.api-sports.io/flags/br.svg",
+        "temporada": 2026,
+        "rodada": "Group Stage - 5"
+      },
+      "casa": {
+        "id": 10031,
+        "nome": "Comercial",
+        "logo": "https://media.api-sports.io/football/teams/10031.png",
+        "vencedor": null,
+        "gols": null
+      },
+      "fora": {
+        "id": 7870,
+        "nome": "XV de Piracicaba",
+        "logo": "https://media.api-sports.io/football/teams/7870.png",
+        "vencedor": null,
+        "gols": null
+      },
+      "placar": {
+        "intervalo": {
+          "home": null,
+          "away": null
+        },
+        "final": {
+          "home": null,
+          "away": null
+        },
+        "prorrogacao": {
+          "home": null,
+          "away": null
+        },
+        "penaltis": {
+          "home": null,
+          "away": null
+        }
+      },
+      "estadio": {
+        "id": null,
+        "nome": null,
+        "cidade": null
+      },
+      "transmissao": []
+    },
+    {
+      "id": 1520827,
+      "data": "2026-08-18",
+      "horario": "20:30",
+      "timestamp": 1787099400,
+      "status": {
+        "codigo": "NS",
+        "descricao": "Not Started",
+        "minuto": null
+      },
+      "campeonato": {
+        "id": 72,
+        "nome": "Serie B",
+        "pais": "Brazil",
+        "logo": "https://media.api-sports.io/football/leagues/72.png",
+        "bandeira": "https://media.api-sports.io/flags/br.svg",
+        "temporada": 2026,
+        "rodada": "Regular Season - 23"
+      },
+      "casa": {
+        "id": 755,
+        "nome": "Nautico Recife",
+        "logo": "https://media.api-sports.io/football/teams/755.png",
+        "vencedor": null,
+        "gols": null
+      },
+      "fora": {
+        "id": 129,
+        "nome": "Ceara",
+        "logo": "https://media.api-sports.io/football/teams/129.png",
+        "vencedor": null,
+        "gols": null
+      },
+      "placar": {
+        "intervalo": {
+          "home": null,
+          "away": null
+        },
+        "final": {
+          "home": null,
+          "away": null
+        },
+        "prorrogacao": {
+          "home": null,
+          "away": null
+        },
+        "penaltis": {
+          "home": null,
+          "away": null
+        }
+      },
+      "estadio": {
+        "id": null,
+        "nome": null,
+        "cidade": "Recife"
+      },
+      "transmissao": []
+    },
+    {
+      "id": 1607653,
+      "data": "2026-08-18",
+      "horario": "20:30",
+      "timestamp": 1787099400,
+      "status": {
+        "codigo": "NS",
+        "descricao": "Not Started",
+        "minuto": null
+      },
+      "campeonato": {
+        "id": 11,
+        "nome": "CONMEBOL Sudamericana",
+        "pais": "World",
+        "logo": "https://media.api-sports.io/football/leagues/11.png",
+        "bandeira": null,
+        "temporada": 2026,
+        "rodada": "Round of 16"
+      },
+      "casa": {
+        "id": 126,
+        "nome": "Sao Paulo",
+        "logo": "https://media.api-sports.io/football/teams/126.png",
+        "vencedor": null,
+        "gols": null
+      },
+      "fora": {
+        "id": 3702,
+        "nome": "Bolívar",
+        "logo": "https://media.api-sports.io/football/teams/3702.png",
+        "vencedor": null,
+        "gols": null
+      },
+      "placar": {
+        "intervalo": {
+          "home": null,
+          "away": null
+        },
+        "final": {
+          "home": null,
+          "away": null
+        },
+        "prorrogacao": {
+          "home": null,
+          "away": null
+        },
+        "penaltis": {
+          "home": null,
+          "away": null
+        }
+      },
+      "estadio": {
+        "id": null,
+        "nome": null,
+        "cidade": null
+      },
+      "transmissao": []
+    },
+    {
+      "id": 1520825,
+      "data": "2026-08-18",
+      "horario": "20:35",
+      "timestamp": 1787099700,
+      "status": {
+        "codigo": "NS",
+        "descricao": "Not Started",
+        "minuto": null
+      },
+      "campeonato": {
+        "id": 72,
+        "nome": "Serie B",
+        "pais": "Brazil",
+        "logo": "https://media.api-sports.io/football/leagues/72.png",
+        "bandeira": "https://media.api-sports.io/flags/br.svg",
+        "temporada": 2026,
+        "rodada": "Regular Season - 23"
+      },
+      "casa": {
+        "id": 151,
+        "nome": "Goias",
+        "logo": "https://media.api-sports.io/football/teams/151.png",
+        "vencedor": null,
+        "gols": null
+      },
+      "fora": {
+        "id": 152,
+        "nome": "Juventude",
+        "logo": "https://media.api-sports.io/football/teams/152.png",
+        "vencedor": null,
+        "gols": null
+      },
+      "placar": {
+        "intervalo": {
+          "home": null,
+          "away": null
+        },
+        "final": {
+          "home": null,
+          "away": null
+        },
+        "prorrogacao": {
+          "home": null,
+          "away": null
+        },
+        "penaltis": {
+          "home": null,
+          "away": null
+        }
+      },
+      "estadio": {
+        "id": null,
+        "nome": null,
+        "cidade": "Goiania"
+      },
+      "transmissao": []
+    }
+  ]
+}
