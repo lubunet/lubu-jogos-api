@@ -1,10 +1,11 @@
 import os
 import json
-import requests
+import re
 import unicodedata
-
 from datetime import datetime, timezone
 from zoneinfo import ZoneInfo
+
+import requests
 
 
 # ============================================================
@@ -13,10 +14,9 @@ from zoneinfo import ZoneInfo
 
 API_URL = "https://v3.football.api-sports.io"
 API_KEY = os.environ["API_FOOTBALL_KEY"]
-
 TIMEZONE_REFERENCIA = "America/Cuiaba"
 
-headers = {
+HEADERS = {
     "x-apisports-key": API_KEY
 }
 
@@ -25,7 +25,6 @@ headers = {
 # COMPETIÇÕES RELEVANTES
 # ============================================================
 
-# Competições brasileiras que queremos aceitar.
 COMPETICOES_BRASIL = (
     # Nacionais
     "serie a",
@@ -52,7 +51,7 @@ COMPETICOES_BRASIL = (
     "mineiro - 1",
     "mineiro modulo i",
 
-    # RS
+    # Rio Grande do Sul
     "gaucho - 1",
     "gaucho 1",
 
@@ -104,15 +103,11 @@ COMPETICOES_BRASIL = (
 # COMPETIÇÕES DE BASE PERMITIDAS
 # ============================================================
 
-# Exceções específicas.
-# Continuamos bloqueando U17/U20 em geral,
-# mas permitimos especificamente o Brasileiro Sub-17.
 COMPETICOES_BASE_PERMITIDAS = (
     "brasileiro u17",
     "brasileiro u-17",
     "brasileiro sub 17",
     "brasileiro sub-17",
-
     "campeonato brasileiro u17",
     "campeonato brasileiro u-17",
     "campeonato brasileiro sub 17",
@@ -191,8 +186,6 @@ COMPETICOES_INTERNACIONAIS = (
 # CATEGORIAS BLOQUEADAS
 # ============================================================
 
-# Tudo isso continua bloqueado,
-# exceto competições explicitamente permitidas acima.
 BLOQUEADOS = (
     "u17",
     "u-17",
@@ -202,9 +195,12 @@ BLOQUEADOS = (
     "u18",
     "u-18",
     "sub 18",
+    "sub-18",
 
     "u19",
     "u-19",
+    "sub 19",
+    "sub-19",
 
     "u20",
     "u-20",
@@ -213,9 +209,13 @@ BLOQUEADOS = (
 
     "u21",
     "u-21",
+    "sub 21",
+    "sub-21",
 
     "u23",
     "u-23",
+    "sub 23",
+    "sub-23",
 
     "youth",
     "junior",
@@ -237,14 +237,16 @@ BLOQUEADOS = (
 
 
 # ============================================================
-# DIVISÕES ESTADUAIS INFERIORES BLOQUEADAS
+# DIVISÕES ESTADUAIS INFERIORES
 # ============================================================
 
 DIVISOES_INFERIORES = (
     "paulista a2",
     "paulista - a2",
+
     "paulista a3",
     "paulista - a3",
+
     "paulista a4",
     "paulista - a4",
 
@@ -269,6 +271,111 @@ DIVISOES_INFERIORES = (
 
 
 # ============================================================
+# CORREÇÃO DOS CLUBES DO BRASILEIRO SUB-17
+# ============================================================
+
+ALIASES_CLUBE_PRINCIPAL = {
+
+    "america mg": (
+        "america mineiro",
+        "america-mg",
+        "america mg",
+    ),
+
+    "atletico go": (
+        "atletico goianiense",
+        "atletico-go",
+        "atletico go",
+    ),
+
+    "atletico mg": (
+        "atletico-mg",
+        "atletico mineiro",
+        "atletico mg",
+    ),
+
+    "athletico pr": (
+        "athletico-pr",
+        "athletico paranaense",
+        "athletico pr",
+    ),
+
+    "bragantino": (
+        "rb bragantino",
+        "bragantino",
+    ),
+
+    "vasco": (
+        "vasco da gama",
+        "vasco",
+    ),
+
+    "vitoria": (
+        "vitoria",
+        "ec vitoria",
+    ),
+
+    "bahia": (
+        "bahia",
+        "ec bahia",
+    ),
+
+    "sport": (
+        "sport recife",
+        "sport",
+    ),
+}
+
+
+NOMES_EXIBICAO_U17 = {
+
+    "america mg": "América-MG",
+
+    "atletico go": "Atlético-GO",
+
+    "atletico mg": "Atlético-MG",
+
+    "athletico pr": "Athletico-PR",
+
+    "bahia": "Bahia",
+
+    "botafogo": "Botafogo",
+
+    "bragantino": "Bragantino",
+
+    "ceara": "Ceará",
+
+    "corinthians": "Corinthians",
+
+    "cruzeiro": "Cruzeiro",
+
+    "flamengo": "Flamengo",
+
+    "fluminense": "Fluminense",
+
+    "fortaleza": "Fortaleza",
+
+    "gremio": "Grêmio",
+
+    "internacional": "Internacional",
+
+    "juventude": "Juventude",
+
+    "palmeiras": "Palmeiras",
+
+    "santos": "Santos",
+
+    "sao paulo": "São Paulo",
+
+    "sport": "Sport",
+
+    "vasco": "Vasco",
+
+    "vitoria": "Vitória",
+}
+
+
+# ============================================================
 # FUNÇÕES
 # ============================================================
 
@@ -279,7 +386,7 @@ def normalizar(texto):
 
     texto = unicodedata.normalize(
         "NFKD",
-        texto
+        str(texto)
     ).encode(
         "ASCII",
         "ignore"
@@ -290,13 +397,32 @@ def normalizar(texto):
     return texto.lower().strip()
 
 
+def chave_nome_clube(texto):
+
+    texto = normalizar(
+        texto
+    )
+
+    texto = re.sub(
+        r"[^a-z0-9]+",
+        " ",
+        texto
+    )
+
+    texto = re.sub(
+        r"\s+",
+        " ",
+        texto
+    )
+
+    return texto.strip()
+
+
 def chamar_api(endpoint, params=None):
 
-    url = f"{API_URL}/{endpoint}"
-
     response = requests.get(
-        url,
-        headers=headers,
+        f"{API_URL}/{endpoint}",
+        headers=HEADERS,
         params=params,
         timeout=30
     )
@@ -306,90 +432,486 @@ def chamar_api(endpoint, params=None):
     dados = response.json()
 
     if dados.get("errors"):
+
         raise Exception(
-            f"Erro retornado pela API-Football: {dados['errors']}"
+            f"Erro retornado pela API-Football: "
+            f"{dados['errors']}"
         )
 
-    return dados.get("response", [])
+    return dados.get(
+        "response",
+        []
+    )
 
 
 def contem_algum(texto, termos):
 
-    texto = normalizar(texto)
+    texto = normalizar(
+        texto
+    )
 
-    for termo in termos:
-
-        if normalizar(termo) in texto:
-            return True
-
-    return False
-
-
-def competicao_relevante(nome, pais):
-
-    nome_normalizado = normalizar(nome)
-    pais_normalizado = normalizar(pais)
+    return any(
+        normalizar(termo) in texto
+        for termo in termos
+    )
 
 
-    # ========================================================
-    # EXCEÇÕES DE BASE PERMITIDAS
-    # ========================================================
-    #
-    # Essa verificação precisa acontecer ANTES dos bloqueios.
-    #
-    # Assim:
-    #
-    # Brasileiro U17 -> PERMITE
-    # Paulista U20   -> BLOQUEIA
-    # Premier League U18 -> BLOQUEIA
-    # etc.
-    # ========================================================
+def eh_brasileiro_u17(
+    nome_campeonato,
+    pais_campeonato
+):
 
-    if contem_algum(
-        nome_normalizado,
-        COMPETICOES_BASE_PERMITIDAS
+    return (
+        normalizar(
+            pais_campeonato
+        ) == "brazil"
+
+        and
+
+        contem_algum(
+            nome_campeonato,
+            COMPETICOES_BASE_PERMITIDAS
+        )
+    )
+
+
+def competicao_relevante(
+    nome_campeonato,
+    pais_campeonato
+):
+
+    nome = normalizar(
+        nome_campeonato
+    )
+
+    pais = normalizar(
+        pais_campeonato
+    )
+
+
+    # Brasileiro Sub-17 é uma exceção permitida.
+    if eh_brasileiro_u17(
+        nome_campeonato,
+        pais_campeonato
     ):
         return True
 
 
-    # ========================================================
-    # BLOQUEIOS GERAIS
-    # ========================================================
-
+    # Bloqueia outras bases, feminino, amistosos etc.
     if contem_algum(
-        nome_normalizado,
+        nome,
         BLOQUEADOS
     ):
         return False
 
 
     if contem_algum(
-        nome_normalizado,
+        nome,
         DIVISOES_INFERIORES
     ):
         return False
 
 
-    # ========================================================
-    # BRASIL
-    # ========================================================
-
-    if pais_normalizado == "brazil":
+    if pais == "brazil":
 
         return contem_algum(
-            nome_normalizado,
+            nome,
             COMPETICOES_BRASIL
         )
 
 
-    # ========================================================
-    # INTERNACIONAL
-    # ========================================================
-
     return contem_algum(
-        nome_normalizado,
+        nome,
         COMPETICOES_INTERNACIONAIS
     )
+
+
+# ============================================================
+# FUNÇÕES PARA CORRIGIR O SUB-17
+# ============================================================
+
+def limpar_sufixo_u17(nome):
+
+    if not nome:
+        return ""
+
+    return re.sub(
+        r"\s*(?:U[\s-]?17|SUB[\s-]?17)\s*$",
+        "",
+        str(nome),
+        flags=re.IGNORECASE
+    ).strip()
+
+
+def eh_time_de_base_ou_reserva(nome):
+
+    marcadores = (
+        "u17",
+        "u-17",
+
+        "u18",
+        "u-18",
+
+        "u19",
+        "u-19",
+
+        "u20",
+        "u-20",
+
+        "u21",
+        "u-21",
+
+        "u23",
+        "u-23",
+
+        "sub 17",
+        "sub-17",
+
+        "sub 20",
+        "sub-20",
+
+        "youth",
+
+        "junior",
+        "juniors",
+
+        "women",
+        "woman",
+
+        "feminino",
+        "feminina",
+
+        "reserve",
+        "reserves",
+    )
+
+    return contem_algum(
+        nome,
+        marcadores
+    )
+
+
+def criar_indice_clubes_principais_brasil():
+
+    print(
+        "Brasileiro Sub-17 encontrado."
+    )
+
+    print(
+        "Buscando clubes principais "
+        "para corrigir nomes e escudos..."
+    )
+
+
+    resposta = chamar_api(
+        "teams",
+        {
+            "country": "Brazil"
+        }
+    )
+
+
+    indice = {}
+
+
+    for item in resposta:
+
+        team = item.get(
+            "team",
+            {}
+        )
+
+
+        if team.get(
+            "national",
+            False
+        ):
+            continue
+
+
+        nome = team.get(
+            "name",
+            ""
+        )
+
+
+        if not nome:
+            continue
+
+
+        if eh_time_de_base_ou_reserva(
+            nome
+        ):
+            continue
+
+
+        chave = chave_nome_clube(
+            nome
+        )
+
+
+        if not chave:
+            continue
+
+
+        indice.setdefault(
+            chave,
+            {
+                "id":
+                    team.get(
+                        "id"
+                    ),
+
+                "nome":
+                    nome,
+
+                "logo":
+                    team.get(
+                        "logo"
+                    )
+            }
+        )
+
+
+    print(
+        f"{len(indice)} clubes principais indexados."
+    )
+
+
+    return indice
+
+
+def resolver_clube_principal(
+    nome_u17,
+    indice
+):
+
+    nome_base = limpar_sufixo_u17(
+        nome_u17
+    )
+
+
+    chave_base = chave_nome_clube(
+        nome_base
+    )
+
+
+    if not chave_base:
+
+        return None, nome_base
+
+
+    candidatos = [
+        chave_base
+    ]
+
+
+    for alias in ALIASES_CLUBE_PRINCIPAL.get(
+        chave_base,
+        ()
+    ):
+
+        candidatos.append(
+            chave_nome_clube(
+                alias
+            )
+        )
+
+
+    # --------------------------------------------------------
+    # TENTATIVA EXATA
+    # --------------------------------------------------------
+
+    for candidato in candidatos:
+
+        if candidato in indice:
+
+            nome_exibicao = (
+                NOMES_EXIBICAO_U17.get(
+                    chave_base,
+                    nome_base
+                )
+            )
+
+            return (
+                indice[candidato],
+                nome_exibicao
+            )
+
+
+    # --------------------------------------------------------
+    # TENTATIVA PARCIAL
+    # --------------------------------------------------------
+
+    possiveis = {}
+
+
+    for chave_indice, clube in indice.items():
+
+        for candidato in candidatos:
+
+            if (
+                candidato
+
+                and
+
+                (
+                    candidato in chave_indice
+
+                    or
+
+                    chave_indice in candidato
+                )
+            ):
+
+                clube_id = clube.get(
+                    "id"
+                )
+
+
+                if clube_id is not None:
+
+                    possiveis[
+                        clube_id
+                    ] = clube
+
+
+                break
+
+
+    if len(possiveis) == 1:
+
+        clube = next(
+            iter(
+                possiveis.values()
+            )
+        )
+
+
+        nome_exibicao = (
+            NOMES_EXIBICAO_U17.get(
+                chave_base,
+                nome_base
+            )
+        )
+
+
+        return (
+            clube,
+            nome_exibicao
+        )
+
+
+    # Não achou o profissional.
+    # Pelo menos remove U17 do nome.
+
+    nome_exibicao = (
+        NOMES_EXIBICAO_U17.get(
+            chave_base,
+            nome_base
+        )
+    )
+
+
+    return (
+        None,
+        nome_exibicao
+    )
+
+
+def preparar_time(
+    dados_time,
+    goals,
+    lado,
+    brasileiro_u17,
+    indice_principais
+):
+
+    nome_original = dados_time.get(
+        "name"
+    )
+
+    logo_original = dados_time.get(
+        "logo"
+    )
+
+
+    time_saida = {
+
+        "id":
+            dados_time.get(
+                "id"
+            ),
+
+        "nome":
+            nome_original,
+
+        "logo":
+            logo_original,
+
+        "vencedor":
+            dados_time.get(
+                "winner"
+            ),
+
+        "gols":
+            goals.get(
+                lado
+            )
+    }
+
+
+    if not brasileiro_u17:
+
+        return time_saida
+
+
+    clube_principal, nome_exibicao = (
+        resolver_clube_principal(
+            nome_original,
+            indice_principais
+        )
+    )
+
+
+    # Remove o U17 do nome mostrado no app.
+    time_saida[
+        "nome"
+    ] = nome_exibicao
+
+
+    # Mantém original apenas para debug.
+    time_saida[
+        "nome_original_api"
+    ] = nome_original
+
+
+    time_saida[
+        "logo_original_api"
+    ] = logo_original
+
+
+    if clube_principal:
+
+        time_saida[
+            "clube_principal_id"
+        ] = clube_principal.get(
+            "id"
+        )
+
+
+        if clube_principal.get(
+            "logo"
+        ):
+
+            time_saida[
+                "logo"
+            ] = clube_principal[
+                "logo"
+            ]
+
+
+    return time_saida
 
 
 # ============================================================
@@ -400,9 +922,11 @@ tz_referencia = ZoneInfo(
     TIMEZONE_REFERENCIA
 )
 
+
 agora = datetime.now(
     tz_referencia
 )
+
 
 data_hoje = agora.strftime(
     "%Y-%m-%d"
@@ -421,15 +945,59 @@ print(
 fixtures = chamar_api(
     "fixtures",
     {
-        "date": data_hoje,
-        "timezone": TIMEZONE_REFERENCIA
+        "date":
+            data_hoje,
+
+        "timezone":
+            TIMEZONE_REFERENCIA
     }
 )
 
 
 print(
-    f"API retornou {len(fixtures)} jogos no total."
+    f"API retornou "
+    f"{len(fixtures)} jogos no total."
 )
+
+
+# ============================================================
+# VERIFICAR SE EXISTE BRASILEIRO SUB-17
+# ============================================================
+
+tem_brasileiro_u17 = any(
+
+    eh_brasileiro_u17(
+
+        item.get(
+            "league",
+            {}
+        ).get(
+            "name",
+            ""
+        ),
+
+        item.get(
+            "league",
+            {}
+        ).get(
+            "country",
+            ""
+        )
+
+    )
+
+    for item in fixtures
+)
+
+
+indice_clubes_principais = {}
+
+
+if tem_brasileiro_u17:
+
+    indice_clubes_principais = (
+        criar_indice_clubes_principais_brasil()
+    )
 
 
 # ============================================================
@@ -472,15 +1040,16 @@ for item in fixtures:
         ""
     )
 
+
     pais_campeonato = league.get(
         "country",
         ""
     )
 
 
-    # ========================================================
-    # FILTRO PRINCIPAL
-    # ========================================================
+    # --------------------------------------------------------
+    # FILTRO
+    # --------------------------------------------------------
 
     if not competicao_relevante(
         nome_campeonato,
@@ -490,23 +1059,54 @@ for item in fixtures:
         continue
 
 
-    casa = teams.get(
+    brasileiro_u17 = eh_brasileiro_u17(
+        nome_campeonato,
+        pais_campeonato
+    )
+
+
+    casa = preparar_time(
+
+        teams.get(
+            "home",
+            {}
+        ),
+
+        goals,
+
         "home",
-        {}
+
+        brasileiro_u17,
+
+        indice_clubes_principais
     )
 
-    fora = teams.get(
+
+    fora = preparar_time(
+
+        teams.get(
+            "away",
+            {}
+        ),
+
+        goals,
+
         "away",
-        {}
+
+        brasileiro_u17,
+
+        indice_clubes_principais
     )
 
 
-    # ========================================================
+    # --------------------------------------------------------
     # HORÁRIO
-    # ========================================================
+    # --------------------------------------------------------
 
     data_partida = datetime.fromisoformat(
-        fixture["date"]
+        fixture[
+            "date"
+        ]
     )
 
 
@@ -521,38 +1121,42 @@ for item in fixtures:
 
 
     inicio_utc = (
+
         data_utc
+
         .isoformat()
+
         .replace(
             "+00:00",
             "Z"
         )
+
     )
 
 
-    # ========================================================
+    # --------------------------------------------------------
     # JOGO
-    # ========================================================
+    # --------------------------------------------------------
 
     jogo = {
 
-        "id": fixture.get(
-            "id"
-        ),
+        "id":
+            fixture.get(
+                "id"
+            ),
 
 
-        # Campo principal de horário.
-        # O app deve converter usando o mesmo
-        # timezone/offset utilizado pelo EPG.
-        "timestamp": fixture.get(
-            "timestamp"
-        ),
+        # O app usa isso para o horário.
+        "timestamp":
+            fixture.get(
+                "timestamp"
+            ),
 
 
-        "inicio_utc": inicio_utc,
+        "inicio_utc":
+            inicio_utc,
 
 
-        # Apenas referência/debug.
         "horario_referencia": {
 
             "timezone":
@@ -633,62 +1237,12 @@ for item in fixtures:
         },
 
 
-        "casa": {
-
-            "id":
-                casa.get(
-                    "id"
-                ),
-
-            "nome":
-                casa.get(
-                    "name"
-                ),
-
-            "logo":
-                casa.get(
-                    "logo"
-                ),
-
-            "vencedor":
-                casa.get(
-                    "winner"
-                ),
-
-            "gols":
-                goals.get(
-                    "home"
-                )
-        },
+        "casa":
+            casa,
 
 
-        "fora": {
-
-            "id":
-                fora.get(
-                    "id"
-                ),
-
-            "nome":
-                fora.get(
-                    "name"
-                ),
-
-            "logo":
-                fora.get(
-                    "logo"
-                ),
-
-            "vencedor":
-                fora.get(
-                    "winner"
-                ),
-
-            "gols":
-                goals.get(
-                    "away"
-                )
-        },
+        "fora":
+            fora,
 
 
         "placar": {
@@ -743,8 +1297,8 @@ for item in fixtures:
         },
 
 
-        # Futuramente canais de transmissão.
-        "transmissao": []
+        "transmissao":
+            []
     }
 
 
@@ -754,19 +1308,26 @@ for item in fixtures:
 
 
 # ============================================================
-# ORDENAR PELO HORÁRIO
+# ORDENAR
 # ============================================================
 
 jogos.sort(
+
     key=lambda jogo:
+
         jogo.get(
             "timestamp"
-        ) or 0
+        )
+
+        or
+
+        0
+
 )
 
 
 # ============================================================
-# GERAR LISTA DE CAMPEONATOS
+# LISTA DE CAMPEONATOS
 # ============================================================
 
 campeonatos = {}
@@ -778,12 +1339,14 @@ for jogo in jogos:
         "campeonato"
     ]
 
+
     campeonato_id = campeonato.get(
         "id"
     )
 
 
     if campeonato_id is None:
+
         continue
 
 
@@ -834,16 +1397,30 @@ lista_campeonatos = list(
 
 
 lista_campeonatos.sort(
+
     key=lambda campeonato:
+
         (
+
             campeonato.get(
                 "pais"
-            ) or "",
+            )
+
+            or
+
+            "",
+
 
             campeonato.get(
                 "nome"
-            ) or ""
+            )
+
+            or
+
+            ""
+
         )
+
 )
 
 
@@ -853,13 +1430,17 @@ lista_campeonatos.sort(
 
 saida = {
 
-    "versao": 5,
+    "versao":
+        6,
+
 
     "data":
         data_hoje,
 
+
     "gerado_em":
         agora.isoformat(),
+
 
     "timezone_referencia":
         TIMEZONE_REFERENCIA,
@@ -895,6 +1476,7 @@ saida = {
             lista_campeonatos
         ),
 
+
     "quantidade_jogos":
         len(
             jogos
@@ -911,7 +1493,7 @@ saida = {
 
 
 # ============================================================
-# SALVAR JSON
+# SALVAR
 # ============================================================
 
 os.makedirs(
@@ -927,34 +1509,48 @@ with open(
 ) as arquivo:
 
     json.dump(
+
         saida,
+
         arquivo,
+
         ensure_ascii=False,
+
         indent=2
+
     )
 
 
 # ============================================================
-# LOG FINAL
+# LOG
 # ============================================================
 
 print()
+
 
 print(
     f"{len(fixtures)} jogos recebidos da API."
 )
 
+
 print(
     f"{len(jogos)} jogos relevantes mantidos."
 )
+
 
 print(
     f"{len(lista_campeonatos)} campeonatos."
 )
 
-print(
-    "Brasileiro Sub-17 está permitido."
-)
+
+if tem_brasileiro_u17:
+
+    print(
+        "Brasileiro Sub-17 corrigido: "
+        "nomes sem U17 e escudos dos "
+        "clubes principais quando encontrados."
+    )
+
 
 print(
     "JSON atualizado."
