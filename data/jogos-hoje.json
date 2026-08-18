@@ -1,7 +1,7 @@
 {
-  "versao": 5,
+  "versao": 6,
   "data": "2026-08-18",
-  "gerado_em": "2026-08-18T14:35:04.935194-04:00",
+  "gerado_em": "2026-08-18T14:50:40.992317-04:00",
   "timezone_referencia": "America/Cuiaba",
   "periodo": {
     "inicio": "00:00",
@@ -572,17 +572,22 @@
       },
       "casa": {
         "id": 24469,
-        "nome": "Athletico PR U17",
+        "nome": "Athletico-PR",
         "logo": "https://media.api-sports.io/football/teams/24469.png",
         "vencedor": null,
-        "gols": null
+        "gols": null,
+        "nome_original_api": "Athletico PR U17",
+        "logo_original_api": "https://media.api-sports.io/football/teams/24469.png"
       },
       "fora": {
         "id": 27733,
-        "nome": "Vitoria U17",
-        "logo": "https://media.api-sports.io/football/teams/27733.png",
+        "nome": "Vitória",
+        "logo": "https://media.api-sports.io/football/teams/136.png",
         "vencedor": null,
-        "gols": null
+        "gols": null,
+        "nome_original_api": "Vitoria U17",
+        "logo_original_api": "https://media.api-sports.io/football/teams/27733.png",
+        "clube_principal_id": 136
       },
       "placar": {
         "intervalo": {
@@ -634,17 +639,23 @@
       },
       "casa": {
         "id": 24470,
-        "nome": "Atletico GO U17",
-        "logo": "https://media.api-sports.io/football/teams/24470.png",
+        "nome": "Atlético-GO",
+        "logo": "https://media.api-sports.io/football/teams/144.png",
         "vencedor": null,
-        "gols": null
+        "gols": null,
+        "nome_original_api": "Atletico GO U17",
+        "logo_original_api": "https://media.api-sports.io/football/teams/24470.png",
+        "clube_principal_id": 144
       },
       "fora": {
         "id": 24487,
-        "nome": "Sao Paulo U17",
-        "logo": "https://media.api-sports.io/football/teams/24487.png",
+        "nome": "São Paulo",
+        "logo": "https://media.api-sports.io/football/teams/126.png",
         "vencedor": null,
-        "gols": null
+        "gols": null,
+        "nome_original_api": "Sao Paulo U17",
+        "logo_original_api": "https://media.api-sports.io/football/teams/24487.png",
+        "clube_principal_id": 126
       },
       "placar": {
         "intervalo": {
@@ -696,17 +707,23 @@
       },
       "casa": {
         "id": 24471,
-        "nome": "Atlético Mineiro U17",
-        "logo": "https://media.api-sports.io/football/teams/24471.png",
+        "nome": "Atlético Mineiro",
+        "logo": "https://media.api-sports.io/football/teams/117.png",
         "vencedor": null,
-        "gols": null
+        "gols": null,
+        "nome_original_api": "Atlético Mineiro U17",
+        "logo_original_api": "https://media.api-sports.io/football/teams/24471.png",
+        "clube_principal_id": 117
       },
       "fora": {
         "id": 24482,
-        "nome": "Gremio U17",
-        "logo": "https://media.api-sports.io/football/teams/24482.png",
+        "nome": "Grêmio",
+        "logo": "https://media.api-sports.io/football/teams/130.png",
         "vencedor": null,
-        "gols": null
+        "gols": null,
+        "nome_original_api": "Gremio U17",
+        "logo_original_api": "https://media.api-sports.io/football/teams/24482.png",
+        "clube_principal_id": 130
       },
       "placar": {
         "intervalo": {
@@ -758,17 +775,23 @@
       },
       "casa": {
         "id": 24472,
-        "nome": "Bahia U17",
-        "logo": "https://media.api-sports.io/football/teams/24472.png",
+        "nome": "Bahia",
+        "logo": "https://media.api-sports.io/football/teams/118.png",
         "vencedor": null,
-        "gols": null
+        "gols": null,
+        "nome_original_api": "Bahia U17",
+        "logo_original_api": "https://media.api-sports.io/football/teams/24472.png",
+        "clube_principal_id": 118
       },
       "fora": {
         "id": 24485,
-        "nome": "RB Bragantino U17",
-        "logo": "https://media.api-sports.io/football/teams/24485.png",
+        "nome": "RB Bragantino",
+        "logo": "https://media.api-sports.io/football/teams/794.png",
         "vencedor": null,
-        "gols": null
+        "gols": null,
+        "nome_original_api": "RB Bragantino U17",
+        "logo_original_api": "https://media.api-sports.io/football/teams/24485.png",
+        "clube_principal_id": 794
       },
       "placar": {
         "intervalo": {
@@ -820,17 +843,22 @@
       },
       "casa": {
         "id": 24480,
-        "nome": "Fortaleza U17",
+        "nome": "Fortaleza",
         "logo": "https://media.api-sports.io/football/teams/24480.png",
         "vencedor": null,
-        "gols": null
+        "gols": null,
+        "nome_original_api": "Fortaleza U17",
+        "logo_original_api": "https://media.api-sports.io/football/teams/24480.png"
       },
       "fora": {
         "id": 24468,
-        "nome": "America MG U17",
-        "logo": "https://media.api-sports.io/football/teams/24468.png",
+        "nome": "América-MG",
+        "logo": "https://media.api-sports.io/football/teams/125.png",
         "vencedor": null,
-        "gols": null
+        "gols": null,
+        "nome_original_api": "America MG U17",
+        "logo_original_api": "https://media.api-sports.io/football/teams/24468.png",
+        "clube_principal_id": 125
       },
       "placar": {
         "intervalo": {
@@ -882,17 +910,23 @@
       },
       "casa": {
         "id": 24486,
-        "nome": "Santos U17",
-        "logo": "https://media.api-sports.io/football/teams/24486.png",
+        "nome": "Santos",
+        "logo": "https://media.api-sports.io/football/teams/128.png",
         "vencedor": null,
-        "gols": null
+        "gols": null,
+        "nome_original_api": "Santos U17",
+        "logo_original_api": "https://media.api-sports.io/football/teams/24486.png",
+        "clube_principal_id": 128
       },
       "fora": {
         "id": 24483,
-        "nome": "Internacional U17",
-        "logo": "https://media.api-sports.io/football/teams/24483.png",
+        "nome": "Internacional",
+        "logo": "https://media.api-sports.io/football/teams/119.png",
         "vencedor": null,
-        "gols": null
+        "gols": null,
+        "nome_original_api": "Internacional U17",
+        "logo_original_api": "https://media.api-sports.io/football/teams/24483.png",
+        "clube_principal_id": 119
       },
       "placar": {
         "intervalo": {
@@ -944,17 +978,23 @@
       },
       "casa": {
         "id": 25807,
-        "nome": "Vasco U17",
-        "logo": "https://media.api-sports.io/football/teams/25807.png",
+        "nome": "Vasco",
+        "logo": "https://media.api-sports.io/football/teams/133.png",
         "vencedor": null,
-        "gols": null
+        "gols": null,
+        "nome_original_api": "Vasco U17",
+        "logo_original_api": "https://media.api-sports.io/football/teams/25807.png",
+        "clube_principal_id": 133
       },
       "fora": {
         "id": 25797,
-        "nome": "Juventude U17",
-        "logo": "https://media.api-sports.io/football/teams/25797.png",
+        "nome": "Juventude",
+        "logo": "https://media.api-sports.io/football/teams/152.png",
         "vencedor": null,
-        "gols": null
+        "gols": null,
+        "nome_original_api": "Juventude U17",
+        "logo_original_api": "https://media.api-sports.io/football/teams/25797.png",
+        "clube_principal_id": 152
       },
       "placar": {
         "intervalo": {
@@ -991,9 +1031,9 @@
         "horario": "14:00"
       },
       "status": {
-        "codigo": "1H",
-        "descricao": "First Half",
-        "minuto": 35
+        "codigo": "HT",
+        "descricao": "Halftime",
+        "minuto": 45
       },
       "campeonato": {
         "id": 1156,
@@ -1009,7 +1049,7 @@
         "nome": "Boreham Wood",
         "logo": "https://media.api-sports.io/football/teams/1830.png",
         "vencedor": true,
-        "gols": 2
+        "gols": 5
       },
       "fora": {
         "id": 14430,
@@ -1020,7 +1060,7 @@
       },
       "placar": {
         "intervalo": {
-          "home": 2,
+          "home": 5,
           "away": 0
         },
         "final": {
@@ -1053,9 +1093,9 @@
         "horario": "14:00"
       },
       "status": {
-        "codigo": "1H",
-        "descricao": "First Half",
-        "minuto": 34
+        "codigo": "HT",
+        "descricao": "Halftime",
+        "minuto": 45
       },
       "campeonato": {
         "id": 1156,
@@ -1070,19 +1110,19 @@
         "id": 8146,
         "nome": "Boston United",
         "logo": "https://media.api-sports.io/football/teams/8146.png",
-        "vencedor": null,
-        "gols": 0
+        "vencedor": true,
+        "gols": 1
       },
       "fora": {
         "id": 20078,
         "nome": "Birmingham City U21",
         "logo": "https://media.api-sports.io/football/teams/20078.png",
-        "vencedor": null,
+        "vencedor": false,
         "gols": 0
       },
       "placar": {
         "intervalo": {
-          "home": 0,
+          "home": 1,
           "away": 0
         },
         "final": {
@@ -1115,9 +1155,9 @@
         "horario": "14:00"
       },
       "status": {
-        "codigo": "1H",
-        "descricao": "First Half",
-        "minuto": 35
+        "codigo": "HT",
+        "descricao": "Halftime",
+        "minuto": 45
       },
       "campeonato": {
         "id": 1156,
@@ -1132,20 +1172,20 @@
         "id": 1841,
         "nome": "FC Halifax Town",
         "logo": "https://media.api-sports.io/football/teams/1841.png",
-        "vencedor": null,
-        "gols": 1
+        "vencedor": true,
+        "gols": 3
       },
       "fora": {
         "id": 19745,
         "nome": "Derby County U21",
         "logo": "https://media.api-sports.io/football/teams/19745.png",
-        "vencedor": null,
-        "gols": 1
+        "vencedor": false,
+        "gols": 2
       },
       "placar": {
         "intervalo": {
-          "home": 1,
-          "away": 1
+          "home": 3,
+          "away": 2
         },
         "final": {
           "home": null,
@@ -1177,9 +1217,9 @@
         "horario": "14:00"
       },
       "status": {
-        "codigo": "1H",
-        "descricao": "First Half",
-        "minuto": 35
+        "codigo": "HT",
+        "descricao": "Halftime",
+        "minuto": 45
       },
       "campeonato": {
         "id": 1156,
@@ -1239,9 +1279,9 @@
         "horario": "14:00"
       },
       "status": {
-        "codigo": "1H",
-        "descricao": "First Half",
-        "minuto": 35
+        "codigo": "HT",
+        "descricao": "Halftime",
+        "minuto": 45
       },
       "campeonato": {
         "id": 1156,
@@ -1301,9 +1341,9 @@
         "horario": "14:00"
       },
       "status": {
-        "codigo": "1H",
-        "descricao": "First Half",
-        "minuto": 35
+        "codigo": "HT",
+        "descricao": "Halftime",
+        "minuto": 45
       },
       "campeonato": {
         "id": 1156,
@@ -1318,19 +1358,19 @@
         "id": 1340,
         "nome": "Scunthorpe",
         "logo": "https://media.api-sports.io/football/teams/1340.png",
-        "vencedor": null,
-        "gols": 0
+        "vencedor": true,
+        "gols": 1
       },
       "fora": {
         "id": 11911,
         "nome": "Stoke City U21",
         "logo": "https://media.api-sports.io/football/teams/11911.png",
-        "vencedor": null,
+        "vencedor": false,
         "gols": 0
       },
       "placar": {
         "intervalo": {
-          "home": 0,
+          "home": 1,
           "away": 0
         },
         "final": {
@@ -1363,9 +1403,9 @@
         "horario": "14:00"
       },
       "status": {
-        "codigo": "1H",
-        "descricao": "First Half",
-        "minuto": 35
+        "codigo": "HT",
+        "descricao": "Halftime",
+        "minuto": 45
       },
       "campeonato": {
         "id": 1156,
@@ -1425,9 +1465,9 @@
         "horario": "14:00"
       },
       "status": {
-        "codigo": "1H",
-        "descricao": "First Half",
-        "minuto": 35
+        "codigo": "HT",
+        "descricao": "Halftime",
+        "minuto": 45
       },
       "campeonato": {
         "id": 1156,
@@ -1487,9 +1527,9 @@
         "horario": "14:00"
       },
       "status": {
-        "codigo": "1H",
-        "descricao": "First Half",
-        "minuto": 33
+        "codigo": "HT",
+        "descricao": "Halftime",
+        "minuto": 45
       },
       "campeonato": {
         "id": 1156,
@@ -1549,9 +1589,9 @@
         "horario": "14:00"
       },
       "status": {
-        "codigo": "1H",
-        "descricao": "First Half",
-        "minuto": 35
+        "codigo": "HT",
+        "descricao": "Halftime",
+        "minuto": 45
       },
       "campeonato": {
         "id": 1156,
@@ -1611,9 +1651,9 @@
         "horario": "14:00"
       },
       "status": {
-        "codigo": "1H",
-        "descricao": "First Half",
-        "minuto": 34
+        "codigo": "HT",
+        "descricao": "Halftime",
+        "minuto": 45
       },
       "campeonato": {
         "id": 871,
@@ -1628,20 +1668,20 @@
         "id": 22173,
         "nome": "Fleetwood Town U21",
         "logo": "https://media.api-sports.io/football/teams/22173.png",
-        "vencedor": null,
+        "vencedor": false,
         "gols": 1
       },
       "fora": {
         "id": 24848,
         "nome": "Preston North End U21",
         "logo": "https://media.api-sports.io/football/teams/24848.png",
-        "vencedor": null,
-        "gols": 1
+        "vencedor": true,
+        "gols": 2
       },
       "placar": {
         "intervalo": {
           "home": 1,
-          "away": 1
+          "away": 2
         },
         "final": {
           "home": null,
@@ -1673,9 +1713,9 @@
         "horario": "14:00"
       },
       "status": {
-        "codigo": "1H",
-        "descricao": "First Half",
-        "minuto": 35
+        "codigo": "HT",
+        "descricao": "Halftime",
+        "minuto": 45
       },
       "campeonato": {
         "id": 871,
@@ -1691,7 +1731,7 @@
         "nome": "Huddersfield Town U21",
         "logo": "https://media.api-sports.io/football/teams/20017.png",
         "vencedor": true,
-        "gols": 2
+        "gols": 3
       },
       "fora": {
         "id": 28224,
@@ -1702,7 +1742,7 @@
       },
       "placar": {
         "intervalo": {
-          "home": 2,
+          "home": 3,
           "away": 0
         },
         "final": {
@@ -1737,7 +1777,7 @@
       "status": {
         "codigo": "1H",
         "descricao": "First Half",
-        "minuto": 2
+        "minuto": 18
       },
       "campeonato": {
         "id": 1156,
@@ -1799,7 +1839,7 @@
       "status": {
         "codigo": "1H",
         "descricao": "First Half",
-        "minuto": 5
+        "minuto": 21
       },
       "campeonato": {
         "id": 1156,
@@ -1859,9 +1899,9 @@
         "horario": "14:45"
       },
       "status": {
-        "codigo": "NS",
-        "descricao": "Not Started",
-        "minuto": null
+        "codigo": "1H",
+        "descricao": "First Half",
+        "minuto": 6
       },
       "campeonato": {
         "id": 1156,
@@ -1876,20 +1916,20 @@
         "id": 1818,
         "nome": "Aldershot Town",
         "logo": "https://media.api-sports.io/football/teams/1818.png",
-        "vencedor": null,
-        "gols": null
+        "vencedor": false,
+        "gols": 0
       },
       "fora": {
         "id": 7194,
         "nome": "Fulham U21",
         "logo": "https://media.api-sports.io/football/teams/7194.png",
-        "vencedor": null,
-        "gols": null
+        "vencedor": true,
+        "gols": 1
       },
       "placar": {
         "intervalo": {
-          "home": null,
-          "away": null
+          "home": 0,
+          "away": 1
         },
         "final": {
           "home": null,
@@ -1921,9 +1961,9 @@
         "horario": "14:45"
       },
       "status": {
-        "codigo": "NS",
-        "descricao": "Not Started",
-        "minuto": null
+        "codigo": "1H",
+        "descricao": "First Half",
+        "minuto": 6
       },
       "campeonato": {
         "id": 1156,
@@ -1939,19 +1979,19 @@
         "nome": "Tamworth",
         "logo": "https://media.api-sports.io/football/teams/7752.png",
         "vencedor": null,
-        "gols": null
+        "gols": 0
       },
       "fora": {
         "id": 7199,
         "nome": "Newcastle United U21",
         "logo": "https://media.api-sports.io/football/teams/7199.png",
         "vencedor": null,
-        "gols": null
+        "gols": 0
       },
       "placar": {
         "intervalo": {
-          "home": null,
-          "away": null
+          "home": 0,
+          "away": 0
         },
         "final": {
           "home": null,
@@ -1983,9 +2023,9 @@
         "horario": "14:45"
       },
       "status": {
-        "codigo": "NS",
-        "descricao": "Not Started",
-        "minuto": null
+        "codigo": "1H",
+        "descricao": "First Half",
+        "minuto": 5
       },
       "campeonato": {
         "id": 1156,
@@ -2001,19 +2041,19 @@
         "nome": "Woking",
         "logo": "https://media.api-sports.io/football/teams/1836.png",
         "vencedor": null,
-        "gols": null
+        "gols": 0
       },
       "fora": {
         "id": 11913,
         "nome": "West Bromwich Albion U21",
         "logo": "https://media.api-sports.io/football/teams/11913.png",
         "vencedor": null,
-        "gols": null
+        "gols": 0
       },
       "placar": {
         "intervalo": {
-          "home": null,
-          "away": null
+          "home": 0,
+          "away": 0
         },
         "final": {
           "home": null,
