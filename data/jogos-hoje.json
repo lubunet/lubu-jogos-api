@@ -1,7 +1,7 @@
 {
-  "versao": 9,
+  "versao": 10,
   "data": "2026-08-18",
-  "gerado_em": "2026-08-18T15:36:32.614786-04:00",
+  "gerado_em": "2026-08-18T16:19:52.035620-04:00",
   "timezone_referencia": "America/Cuiaba",
   "periodo": {
     "inicio": "00:00",
@@ -269,9 +269,9 @@
         "horario": "14:00"
       },
       "status": {
-        "codigo": "NS",
-        "descricao": "Not Started",
-        "minuto": null
+        "codigo": "FT",
+        "descricao": "Match Finished",
+        "minuto": 90
       },
       "campeonato": {
         "id": 1128,
@@ -286,8 +286,8 @@
         "id": 24469,
         "nome": "Athletico-PR",
         "logo": "https://media.api-sports.io/football/teams/134.png",
-        "vencedor": null,
-        "gols": null,
+        "vencedor": true,
+        "gols": 3,
         "nome_original_api": "Athletico PR U17",
         "logo_original_api": "https://media.api-sports.io/football/teams/24469.png",
         "clube_principal_id": 134,
@@ -297,8 +297,8 @@
         "id": 27733,
         "nome": "Vitória",
         "logo": "https://media.api-sports.io/football/teams/136.png",
-        "vencedor": null,
-        "gols": null,
+        "vencedor": false,
+        "gols": 1,
         "nome_original_api": "Vitoria U17",
         "logo_original_api": "https://media.api-sports.io/football/teams/27733.png",
         "clube_principal_id": 136,
@@ -310,8 +310,8 @@
           "away": null
         },
         "final": {
-          "home": null,
-          "away": null
+          "home": 3,
+          "away": 1
         },
         "prorrogacao": {
           "home": null,
@@ -425,13 +425,13 @@
       "casa": {
         "id": 24471,
         "nome": "Atlético-MG",
-        "logo": "https://media.api-sports.io/football/teams/117.png",
+        "logo": "https://upload.wikimedia.org/wikipedia/commons/a/a2/Atletico_Mineiro_logo.png",
         "vencedor": null,
         "gols": null,
         "nome_original_api": "Atlético Mineiro U17",
         "logo_original_api": "https://media.api-sports.io/football/teams/24471.png",
-        "clube_principal_id": 117,
-        "origem_logo": "clube_principal"
+        "origem_logo": "fallback_manual",
+        "clube_principal_id": 117
       },
       "fora": {
         "id": 24482,
@@ -689,9 +689,9 @@
         "horario": "14:00"
       },
       "status": {
-        "codigo": "NS",
-        "descricao": "Not Started",
-        "minuto": null
+        "codigo": "FT",
+        "descricao": "Match Finished",
+        "minuto": 90
       },
       "campeonato": {
         "id": 1128,
@@ -706,8 +706,8 @@
         "id": 25807,
         "nome": "Vasco",
         "logo": "https://media.api-sports.io/football/teams/133.png",
-        "vencedor": null,
-        "gols": null,
+        "vencedor": true,
+        "gols": 3,
         "nome_original_api": "Vasco U17",
         "logo_original_api": "https://media.api-sports.io/football/teams/25807.png",
         "clube_principal_id": 133,
@@ -717,8 +717,8 @@
         "id": 25797,
         "nome": "Juventude",
         "logo": "https://media.api-sports.io/football/teams/152.png",
-        "vencedor": null,
-        "gols": null,
+        "vencedor": false,
+        "gols": 0,
         "nome_original_api": "Juventude U17",
         "logo_original_api": "https://media.api-sports.io/football/teams/25797.png",
         "clube_principal_id": 152,
@@ -726,12 +726,12 @@
       },
       "placar": {
         "intervalo": {
-          "home": null,
-          "away": null
+          "home": 2,
+          "away": 0
         },
         "final": {
-          "home": null,
-          "away": null
+          "home": 3,
+          "away": 0
         },
         "prorrogacao": {
           "home": null,
@@ -759,9 +759,9 @@
         "horario": "14:00"
       },
       "status": {
-        "codigo": "2H",
-        "descricao": "Second Half",
-        "minuto": 74
+        "codigo": "FT",
+        "descricao": "Match Finished",
+        "minuto": 90
       },
       "campeonato": {
         "id": 504,
@@ -792,8 +792,8 @@
           "away": 3
         },
         "final": {
-          "home": null,
-          "away": null
+          "home": 1,
+          "away": 4
         },
         "prorrogacao": {
           "home": null,
@@ -821,9 +821,9 @@
         "horario": "14:00"
       },
       "status": {
-        "codigo": "2H",
-        "descricao": "Second Half",
-        "minuto": 74
+        "codigo": "FT",
+        "descricao": "Match Finished",
+        "minuto": 90
       },
       "campeonato": {
         "id": 504,
@@ -854,8 +854,8 @@
           "away": 2
         },
         "final": {
-          "home": null,
-          "away": null
+          "home": 1,
+          "away": 3
         },
         "prorrogacao": {
           "home": null,
@@ -883,9 +883,9 @@
         "horario": "15:00"
       },
       "status": {
-        "codigo": "1H",
-        "descricao": "First Half",
-        "minuto": 35
+        "codigo": "2H",
+        "descricao": "Second Half",
+        "minuto": 59
       },
       "campeonato": {
         "id": 2,
@@ -900,20 +900,20 @@
         "id": 620,
         "nome": "Dinamo Zagreb",
         "logo": "https://media.api-sports.io/football/teams/620.png",
-        "vencedor": true,
+        "vencedor": null,
         "gols": 2
       },
       "fora": {
         "id": 759,
         "nome": "Viking",
         "logo": "https://media.api-sports.io/football/teams/759.png",
-        "vencedor": false,
-        "gols": 1
+        "vencedor": null,
+        "gols": 2
       },
       "placar": {
         "intervalo": {
           "home": 2,
-          "away": 1
+          "away": 2
         },
         "final": {
           "home": null,
@@ -945,9 +945,9 @@
         "horario": "15:00"
       },
       "status": {
-        "codigo": "1H",
-        "descricao": "First Half",
-        "minuto": 36
+        "codigo": "2H",
+        "descricao": "Second Half",
+        "minuto": 62
       },
       "campeonato": {
         "id": 2,
@@ -963,19 +963,19 @@
         "nome": "Fenerbahçe",
         "logo": "https://media.api-sports.io/football/teams/611.png",
         "vencedor": null,
-        "gols": 0
+        "gols": 1
       },
       "fora": {
         "id": 80,
         "nome": "Lyon",
         "logo": "https://media.api-sports.io/football/teams/80.png",
         "vencedor": null,
-        "gols": 0
+        "gols": 1
       },
       "placar": {
         "intervalo": {
           "home": 0,
-          "away": 0
+          "away": 1
         },
         "final": {
           "home": null,
@@ -1007,9 +1007,9 @@
         "horario": "15:00"
       },
       "status": {
-        "codigo": "1H",
-        "descricao": "First Half",
-        "minuto": 36
+        "codigo": "2H",
+        "descricao": "Second Half",
+        "minuto": 64
       },
       "campeonato": {
         "id": 2,
