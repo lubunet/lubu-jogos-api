@@ -1,0 +1,64 @@
+name: Atualizar jogos brasileiros
+
+on:
+
+  workflow_dispatch:
+
+  schedule:
+    - cron: "10 0,12 * * *"
+      timezone: "America/Cuiaba"
+
+
+permissions:
+  contents: write
+
+
+jobs:
+
+  atualizar:
+
+    runs-on: ubuntu-latest
+
+
+    steps:
+
+      - name: Baixar repositorio
+        uses: actions/checkout@v4
+
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+
+      - name: Instalar dependencias
+        run: |
+          pip install requests
+
+
+      - name: Buscar jogos brasileiros
+        env:
+          API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+        run: |
+          python scripts/atualizar.py
+
+
+      - name: Salvar JSON no GitHub
+        run: |
+
+          git config user.name "LUBU Bot"
+          git config user.email "lubu-bot@users.noreply.github.com"
+
+          git add data/jogos-hoje.json
+
+          if git diff --cached --quiet; then
+
+            echo "Nenhuma alteracao encontrada."
+
+          else
+
+            git commit -m "Atualizar jogos brasileiros"
+            git push
+
+          fi
