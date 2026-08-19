@@ -1084,53 +1084,322 @@ def encontrar_evento(jogo, eventos):
 # CONFIRMACAO ENTRE AS DUAS FONTES
 # ============================================================
 
+def evento_bate_estritamente(jogo, evento):
+    """
+    Fallback seguro para quando apenas UMA das duas fontes lista o jogo.
+
+    So aceitamos fonte unica quando:
+      - time da casa bate exatamente apos aliases/normalizacao;
+      - visitante bate exatamente apos aliases/normalizacao;
+      - competicao bate exatamente apos normalizacao;
+      - horario difere no maximo 5 minutos.
+
+    Isso permite aproveitar uma transmissao real que exista apenas
+    no DPF ou apenas no Mantos sem aceitar correspondencias vagas.
+    """
+
+    casa = jogo.get(
+        "casa",
+        {}
+    ).get(
+        "nome",
+        ""
+    )
+
+    fora = jogo.get(
+        "fora",
+        {}
+    ).get(
+        "nome",
+        ""
+    )
+
+    competicao = jogo.get(
+        "campeonato",
+        {}
+    ).get(
+        "nome",
+        ""
+    )
+
+    hora = horario_brasilia_do_jogo(
+        jogo
+    )
+
+    if (
+        not casa
+        or not fora
+        or not competicao
+        or hora is None
+    ):
+        return False
+
+    if diferenca_minutos(
+        hora,
+        evento.get(
+            "hora",
+            -9999
+        )
+    ) > 5:
+        return False
+
+    if normalizar_time(
+        casa
+    ) != normalizar_time(
+        evento.get(
+            "casa",
+            ""
+        )
+    ):
+        return False
+
+    if normalizar_time(
+        fora
+    ) != normalizar_time(
+        evento.get(
+            "fora",
+            ""
+        )
+    ):
+        return False
+
+    if normalizar_competicao(
+        competicao
+    ) != normalizar_competicao(
+        evento.get(
+            "competicao",
+            ""
+        )
+    ):
+        return False
+
+    canais = evento.get(
+        "canais"
+    )
+
+    if not isinstance(
+        canais,
+        list
+    ) or not canais:
+        return False
+
+    return True
+
+
+def montar_transmissao(
+    canais,
+    fonte
+):
+    resultado = []
+
+    for canal in sorted(
+        set(
+            canais
+        )
+    ):
+
+        if not canal:
+            continue
+
+        resultado.append(
+            {
+                "canal":
+                    nome_exibicao_canal(
+                        canal
+                    ),
+
+                "fonte":
+                    fonte,
+            }
+        )
+
+    return resultado
+
+
 def confirmar_transmissao(jogo, fontes):
+    """
+    Regras:
+
+    1) Se DPF E Mantos encontrarem o jogo:
+       grava somente os canais presentes nas DUAS fontes.
+
+    2) Se apenas UMA fonte encontrar o jogo:
+       aceita somente se a correspondencia for ESTRITA:
+       times + competicao + horario praticamente exatos.
+
+    3) Se as duas encontrarem, mas nao concordarem em nenhum canal:
+       conflito -> nao inventa nada.
+
+    Importante:
+    o main() continua exigindo que as DUAS fontes estejam online
+    e tenham sido parseadas com sucesso antes de modificar o JSON.
+    Portanto fonte unica significa "uma fonte nao listou esse jogo",
+    e nao "um dos sites esta fora do ar".
+    """
+
     encontrados = {}
 
     for nome_fonte, eventos in fontes.items():
-        evento = encontrar_evento(jogo, eventos)
+
+        evento = encontrar_evento(
+            jogo,
+            eventos
+        )
 
         if evento:
-            encontrados[nome_fonte] = evento
 
-    if len(encontrados) < CONFIRMACOES_MINIMAS:
+            encontrados[
+                nome_fonte
+            ] = evento
+
+
+    # ========================================================
+    # NENHUMA FONTE ENCONTROU
+    # ========================================================
+
+    if not encontrados:
+
         return {
-            "status": "insuficiente",
-            "transmissao": None,
-            "fontes": encontrados,
+            "status":
+                "insuficiente",
+
+            "transmissao":
+                None,
+
+            "fontes":
+                encontrados,
         }
+
+
+    # ========================================================
+    # APENAS UMA FONTE ENCONTROU
+    # ========================================================
+    #
+    # Antes o script parava aqui.
+    # Agora usamos um fallback MUITO rigoroso.
+    # ========================================================
+
+    if len(
+        encontrados
+    ) == 1:
+
+        nome_fonte, evento = next(
+            iter(
+                encontrados.items()
+            )
+        )
+
+        if not evento_bate_estritamente(
+            jogo,
+            evento
+        ):
+
+            return {
+                "status":
+                    "insuficiente",
+
+                "transmissao":
+                    None,
+
+                "fontes":
+                    encontrados,
+            }
+
+        transmissao = montar_transmissao(
+            evento.get(
+                "canais",
+                []
+            ),
+            nome_fonte
+        )
+
+        if not transmissao:
+
+            return {
+                "status":
+                    "insuficiente",
+
+                "transmissao":
+                    None,
+
+                "fontes":
+                    encontrados,
+            }
+
+        return {
+            "status":
+                "confirmado_fonte_unica",
+
+            "transmissao":
+                transmissao,
+
+            "fontes":
+                encontrados,
+        }
+
+
+    # ========================================================
+    # DUAS FONTES ENCONTRARAM O JOGO
+    # ========================================================
 
     votos = Counter()
 
     for evento in encontrados.values():
-        for canal in set(evento["canais"]):
-            votos[canal] += 1
+
+        for canal in set(
+            evento[
+                "canais"
+            ]
+        ):
+
+            votos[
+                canal
+            ] += 1
+
 
     canais_confirmados = sorted(
+
         canal
-        for canal, quantidade in votos.items()
-        if quantidade >= CONFIRMACOES_MINIMAS
+
+        for canal, quantidade
+        in votos.items()
+
+        if quantidade
+        >=
+        CONFIRMACOES_MINIMAS
     )
 
+
+    # As duas acharam a partida, mas nao concordaram em canal.
     if not canais_confirmados:
+
         return {
-            "status": "conflito",
-            "transmissao": [],
-            "fontes": encontrados,
+            "status":
+                "conflito",
+
+            "transmissao":
+                [],
+
+            "fontes":
+                encontrados,
         }
 
-    transmissao = [
-        {
-            "canal": nome_exibicao_canal(canal),
-            "fonte": "DPF + Mantos",
-        }
-        for canal in canais_confirmados
-    ]
+
+    transmissao = montar_transmissao(
+        canais_confirmados,
+        "DPF + Mantos"
+    )
+
 
     return {
-        "status": "confirmado",
-        "transmissao": transmissao,
-        "fontes": encontrados,
+        "status":
+            "confirmado",
+
+        "transmissao":
+            transmissao,
+
+        "fontes":
+            encontrados,
     }
 
 
@@ -1187,7 +1456,7 @@ def salvar_atomico(dados):
 # ============================================================
 
 def main():
-    print("=== LUBU - Atualizacao de transmissoes v2 ===")
+    print("=== LUBU - Atualizacao de transmissoes v3 ===")
 
     try:
         with open(
@@ -1322,9 +1591,25 @@ def main():
             for item in nova_transmissao
         )
 
-        print(
-            f"[OK] {nome_jogo(jogo)} -> {canais_log}"
-        )
+        if status == "confirmado_fonte_unica":
+
+            fonte_log = nova_transmissao[
+                0
+            ].get(
+                "fonte",
+                "fonte unica"
+            )
+
+            print(
+                f"[OK-FONTE-UNICA] {nome_jogo(jogo)} "
+                f"-> {canais_log} ({fonte_log})"
+            )
+
+        else:
+
+            print(
+                f"[OK] {nome_jogo(jogo)} -> {canais_log}"
+            )
 
     print("")
     print("=== RESUMO ===")
