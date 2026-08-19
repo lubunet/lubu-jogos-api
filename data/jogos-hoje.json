@@ -1,7 +1,7 @@
 {
-  "versao": 14,
+  "versao": 15,
   "data": "2026-08-19",
-  "gerado_em": "2026-08-19T13:33:04.817659-04:00",
+  "gerado_em": "2026-08-19T14:16:01.954550-04:00",
   "timezone_referencia": "America/Cuiaba",
   "periodo": {
     "inicio": "00:00",
@@ -12,8 +12,8 @@
     "formato": "Unix timestamp",
     "observacao": "Converter usando o mesmo timezone/offset configurado para o EPG."
   },
-  "quantidade_campeonatos": 8,
-  "quantidade_jogos": 14,
+  "quantidade_campeonatos": 5,
+  "quantidade_jogos": 13,
   "campeonatos": [
     {
       "id": 1128,
@@ -24,36 +24,12 @@
       "quantidade_jogos": 1
     },
     {
-      "id": 1147,
-      "nome": "Capixaba B",
-      "pais": "Brazil",
-      "logo": "https://media.api-sports.io/football/leagues/1147.png",
-      "bandeira": "https://media.api-sports.io/flags/br.svg",
-      "quantidade_jogos": 2
-    },
-    {
-      "id": 1112,
-      "nome": "Cearense U20",
-      "pais": "Brazil",
-      "logo": "https://media.api-sports.io/football/leagues/1112.png",
-      "bandeira": "https://media.api-sports.io/flags/br.svg",
-      "quantidade_jogos": 1
-    },
-    {
       "id": 742,
       "nome": "Copa Paulista",
       "pais": "Brazil",
       "logo": "https://media.api-sports.io/football/leagues/742.png",
       "bandeira": "https://media.api-sports.io/flags/br.svg",
       "quantidade_jogos": 1
-    },
-    {
-      "id": 1088,
-      "nome": "Pernambucano - U20",
-      "pais": "Brazil",
-      "logo": "https://media.api-sports.io/football/leagues/1088.png",
-      "bandeira": "https://media.api-sports.io/flags/br.svg",
-      "quantidade_jogos": 2
     },
     {
       "id": 72,
@@ -69,7 +45,7 @@
       "pais": "World",
       "logo": "https://media.api-sports.io/football/leagues/13.png",
       "bandeira": null,
-      "quantidade_jogos": 1
+      "quantidade_jogos": 3
     },
     {
       "id": 11,
@@ -77,258 +53,10 @@
       "pais": "World",
       "logo": "https://media.api-sports.io/football/leagues/11.png",
       "bandeira": null,
-      "quantidade_jogos": 1
+      "quantidade_jogos": 3
     }
   ],
   "jogos": [
-    {
-      "id": 1627177,
-      "timestamp": 1787144400,
-      "inicio_utc": "2026-08-19T13:00:00Z",
-      "horario_referencia": {
-        "timezone": "America/Cuiaba",
-        "data": "2026-08-19",
-        "horario": "09:00"
-      },
-      "status": {
-        "codigo": "NS",
-        "descricao": "Not Started",
-        "minuto": null
-      },
-      "campeonato": {
-        "id": 1088,
-        "nome": "Pernambucano - U20",
-        "pais": "Brazil",
-        "logo": "https://media.api-sports.io/football/leagues/1088.png",
-        "bandeira": "https://media.api-sports.io/flags/br.svg",
-        "temporada": 2026,
-        "rodada": "Regular Season - 1"
-      },
-      "casa": {
-        "id": 13029,
-        "nome": "Nautico U20",
-        "logo": "https://media.api-sports.io/football/teams/13029.png",
-        "vencedor": null,
-        "gols": null
-      },
-      "fora": {
-        "id": 28228,
-        "nome": "Academica Vitoria U20",
-        "logo": "https://media.api-sports.io/football/teams/28228.png",
-        "vencedor": null,
-        "gols": null
-      },
-      "placar": {
-        "intervalo": {
-          "home": null,
-          "away": null
-        },
-        "final": {
-          "home": null,
-          "away": null
-        },
-        "prorrogacao": {
-          "home": null,
-          "away": null
-        },
-        "penaltis": {
-          "home": null,
-          "away": null
-        }
-      },
-      "estadio": {
-        "id": null,
-        "nome": null,
-        "cidade": null
-      },
-      "transmissao": []
-    },
-    {
-      "id": 1548274,
-      "timestamp": 1787162400,
-      "inicio_utc": "2026-08-19T18:00:00Z",
-      "horario_referencia": {
-        "timezone": "America/Cuiaba",
-        "data": "2026-08-19",
-        "horario": "14:00"
-      },
-      "status": {
-        "codigo": "NS",
-        "descricao": "Not Started",
-        "minuto": null
-      },
-      "campeonato": {
-        "id": 1147,
-        "nome": "Capixaba B",
-        "pais": "Brazil",
-        "logo": "https://media.api-sports.io/football/leagues/1147.png",
-        "bandeira": "https://media.api-sports.io/flags/br.svg",
-        "temporada": 2027,
-        "rodada": "Regular Season - 8"
-      },
-      "casa": {
-        "id": 25011,
-        "nome": "Tupy",
-        "logo": "https://media.api-sports.io/football/teams/25011.png",
-        "vencedor": null,
-        "gols": null
-      },
-      "fora": {
-        "id": 23568,
-        "nome": "Sport Brasil ES",
-        "logo": "https://media.api-sports.io/football/teams/23568.png",
-        "vencedor": null,
-        "gols": null
-      },
-      "placar": {
-        "intervalo": {
-          "home": null,
-          "away": null
-        },
-        "final": {
-          "home": null,
-          "away": null
-        },
-        "prorrogacao": {
-          "home": null,
-          "away": null
-        },
-        "penaltis": {
-          "home": null,
-          "away": null
-        }
-      },
-      "estadio": {
-        "id": null,
-        "nome": null,
-        "cidade": null
-      },
-      "transmissao": []
-    },
-    {
-      "id": 1610885,
-      "timestamp": 1787162400,
-      "inicio_utc": "2026-08-19T18:00:00Z",
-      "horario_referencia": {
-        "timezone": "America/Cuiaba",
-        "data": "2026-08-19",
-        "horario": "14:00"
-      },
-      "status": {
-        "codigo": "NS",
-        "descricao": "Not Started",
-        "minuto": null
-      },
-      "campeonato": {
-        "id": 1112,
-        "nome": "Cearense U20",
-        "pais": "Brazil",
-        "logo": "https://media.api-sports.io/football/leagues/1112.png",
-        "bandeira": "https://media.api-sports.io/flags/br.svg",
-        "temporada": 2026,
-        "rodada": "Semi-finals"
-      },
-      "casa": {
-        "id": 13009,
-        "nome": "Fortaleza U20",
-        "logo": "https://media.api-sports.io/football/teams/13009.png",
-        "vencedor": null,
-        "gols": null
-      },
-      "fora": {
-        "id": 26056,
-        "nome": "Quixadá U20",
-        "logo": "https://media.api-sports.io/football/teams/26056.png",
-        "vencedor": null,
-        "gols": null
-      },
-      "placar": {
-        "intervalo": {
-          "home": null,
-          "away": null
-        },
-        "final": {
-          "home": null,
-          "away": null
-        },
-        "prorrogacao": {
-          "home": null,
-          "away": null
-        },
-        "penaltis": {
-          "home": null,
-          "away": null
-        }
-      },
-      "estadio": {
-        "id": null,
-        "nome": null,
-        "cidade": null
-      },
-      "transmissao": []
-    },
-    {
-      "id": 1627178,
-      "timestamp": 1787162400,
-      "inicio_utc": "2026-08-19T18:00:00Z",
-      "horario_referencia": {
-        "timezone": "America/Cuiaba",
-        "data": "2026-08-19",
-        "horario": "14:00"
-      },
-      "status": {
-        "codigo": "NS",
-        "descricao": "Not Started",
-        "minuto": null
-      },
-      "campeonato": {
-        "id": 1088,
-        "nome": "Pernambucano - U20",
-        "pais": "Brazil",
-        "logo": "https://media.api-sports.io/football/leagues/1088.png",
-        "bandeira": "https://media.api-sports.io/flags/br.svg",
-        "temporada": 2026,
-        "rodada": "Regular Season - 1"
-      },
-      "casa": {
-        "id": 23491,
-        "nome": "CA Porto U20",
-        "logo": "https://media.api-sports.io/football/teams/23491.png",
-        "vencedor": null,
-        "gols": null
-      },
-      "fora": {
-        "id": 13053,
-        "nome": "Santa Cruz U20",
-        "logo": "https://media.api-sports.io/football/teams/13053.png",
-        "vencedor": null,
-        "gols": null
-      },
-      "placar": {
-        "intervalo": {
-          "home": null,
-          "away": null
-        },
-        "final": {
-          "home": null,
-          "away": null
-        },
-        "prorrogacao": {
-          "home": null,
-          "away": null
-        },
-        "penaltis": {
-          "home": null,
-          "away": null
-        }
-      },
-      "estadio": {
-        "id": null,
-        "nome": null,
-        "cidade": null
-      },
-      "transmissao": []
-    },
     {
       "id": 1543986,
       "timestamp": 1787169600,
@@ -470,6 +198,130 @@
           "fonte": "DPF + Mantos"
         }
       ]
+    },
+    {
+      "id": 1547765,
+      "timestamp": 1787176800,
+      "inicio_utc": "2026-08-19T22:00:00Z",
+      "horario_referencia": {
+        "timezone": "America/Cuiaba",
+        "data": "2026-08-19",
+        "horario": "18:00"
+      },
+      "status": {
+        "codigo": "NS",
+        "descricao": "Not Started",
+        "minuto": null
+      },
+      "campeonato": {
+        "id": 13,
+        "nome": "CONMEBOL Libertadores",
+        "pais": "World",
+        "logo": "https://media.api-sports.io/football/leagues/13.png",
+        "bandeira": null,
+        "temporada": 2026,
+        "rodada": "Round of 16"
+      },
+      "casa": {
+        "id": 1176,
+        "nome": "Cerro Porteno",
+        "logo": "https://media.api-sports.io/football/teams/1176.png",
+        "vencedor": null,
+        "gols": null
+      },
+      "fora": {
+        "id": 121,
+        "nome": "Palmeiras",
+        "logo": "https://media.api-sports.io/football/teams/121.png",
+        "vencedor": null,
+        "gols": null
+      },
+      "placar": {
+        "intervalo": {
+          "home": null,
+          "away": null
+        },
+        "final": {
+          "home": null,
+          "away": null
+        },
+        "prorrogacao": {
+          "home": null,
+          "away": null
+        },
+        "penaltis": {
+          "home": null,
+          "away": null
+        }
+      },
+      "estadio": {
+        "id": null,
+        "nome": "Estadio General Pablo Rojas",
+        "cidade": null
+      },
+      "transmissao": []
+    },
+    {
+      "id": 1547766,
+      "timestamp": 1787176800,
+      "inicio_utc": "2026-08-19T22:00:00Z",
+      "horario_referencia": {
+        "timezone": "America/Cuiaba",
+        "data": "2026-08-19",
+        "horario": "18:00"
+      },
+      "status": {
+        "codigo": "NS",
+        "descricao": "Not Started",
+        "minuto": null
+      },
+      "campeonato": {
+        "id": 13,
+        "nome": "CONMEBOL Libertadores",
+        "pais": "World",
+        "logo": "https://media.api-sports.io/football/leagues/13.png",
+        "bandeira": null,
+        "temporada": 2026,
+        "rodada": "Round of 16"
+      },
+      "casa": {
+        "id": 2330,
+        "nome": "Coquimbo Unido",
+        "logo": "https://media.api-sports.io/football/teams/2330.png",
+        "vencedor": null,
+        "gols": null
+      },
+      "fora": {
+        "id": 1064,
+        "nome": "Platense",
+        "logo": "https://media.api-sports.io/football/teams/1064.png",
+        "vencedor": null,
+        "gols": null
+      },
+      "placar": {
+        "intervalo": {
+          "home": null,
+          "away": null
+        },
+        "final": {
+          "home": null,
+          "away": null
+        },
+        "prorrogacao": {
+          "home": null,
+          "away": null
+        },
+        "penaltis": {
+          "home": null,
+          "away": null
+        }
+      },
+      "estadio": {
+        "id": null,
+        "nome": null,
+        "cidade": "Coquimbo"
+      },
+      "transmissao": []
     },
     {
       "id": 1607200,
@@ -679,68 +531,6 @@
           "fonte": "DPF + Mantos"
         }
       ]
-    },
-    {
-      "id": 1548273,
-      "timestamp": 1787178600,
-      "inicio_utc": "2026-08-19T22:30:00Z",
-      "horario_referencia": {
-        "timezone": "America/Cuiaba",
-        "data": "2026-08-19",
-        "horario": "18:30"
-      },
-      "status": {
-        "codigo": "NS",
-        "descricao": "Not Started",
-        "minuto": null
-      },
-      "campeonato": {
-        "id": 1147,
-        "nome": "Capixaba B",
-        "pais": "Brazil",
-        "logo": "https://media.api-sports.io/football/leagues/1147.png",
-        "bandeira": "https://media.api-sports.io/flags/br.svg",
-        "temporada": 2027,
-        "rodada": "Regular Season - 8"
-      },
-      "casa": {
-        "id": 15608,
-        "nome": "Pinheiros",
-        "logo": "https://media.api-sports.io/football/teams/15608.png",
-        "vencedor": null,
-        "gols": null
-      },
-      "fora": {
-        "id": 12282,
-        "nome": "Estrela do Norte",
-        "logo": "https://media.api-sports.io/football/teams/12282.png",
-        "vencedor": null,
-        "gols": null
-      },
-      "placar": {
-        "intervalo": {
-          "home": null,
-          "away": null
-        },
-        "final": {
-          "home": null,
-          "away": null
-        },
-        "prorrogacao": {
-          "home": null,
-          "away": null
-        },
-        "penaltis": {
-          "home": null,
-          "away": null
-        }
-      },
-      "estadio": {
-        "id": null,
-        "nome": null,
-        "cidade": null
-      },
-      "transmissao": []
     },
     {
       "id": 1520823,
@@ -1017,6 +807,130 @@
           "fonte": "DPF + Mantos"
         }
       ]
+    },
+    {
+      "id": 1606079,
+      "timestamp": 1787185800,
+      "inicio_utc": "2026-08-20T00:30:00Z",
+      "horario_referencia": {
+        "timezone": "America/Cuiaba",
+        "data": "2026-08-19",
+        "horario": "20:30"
+      },
+      "status": {
+        "codigo": "NS",
+        "descricao": "Not Started",
+        "minuto": null
+      },
+      "campeonato": {
+        "id": 11,
+        "nome": "CONMEBOL Sudamericana",
+        "pais": "World",
+        "logo": "https://media.api-sports.io/football/leagues/11.png",
+        "bandeira": null,
+        "temporada": 2026,
+        "rodada": "Round of 16"
+      },
+      "casa": {
+        "id": 2365,
+        "nome": "Atletico Torque",
+        "logo": "https://media.api-sports.io/football/teams/2365.png",
+        "vencedor": null,
+        "gols": null
+      },
+      "fora": {
+        "id": 452,
+        "nome": "Tigre",
+        "logo": "https://media.api-sports.io/football/teams/452.png",
+        "vencedor": null,
+        "gols": null
+      },
+      "placar": {
+        "intervalo": {
+          "home": null,
+          "away": null
+        },
+        "final": {
+          "home": null,
+          "away": null
+        },
+        "prorrogacao": {
+          "home": null,
+          "away": null
+        },
+        "penaltis": {
+          "home": null,
+          "away": null
+        }
+      },
+      "estadio": {
+        "id": null,
+        "nome": "Estadio Centenario",
+        "cidade": "Montevideo"
+      },
+      "transmissao": []
+    },
+    {
+      "id": 1607650,
+      "timestamp": 1787185800,
+      "inicio_utc": "2026-08-20T00:30:00Z",
+      "horario_referencia": {
+        "timezone": "America/Cuiaba",
+        "data": "2026-08-19",
+        "horario": "20:30"
+      },
+      "status": {
+        "codigo": "NS",
+        "descricao": "Not Started",
+        "minuto": null
+      },
+      "campeonato": {
+        "id": 11,
+        "nome": "CONMEBOL Sudamericana",
+        "pais": "World",
+        "logo": "https://media.api-sports.io/football/leagues/11.png",
+        "bandeira": null,
+        "temporada": 2026,
+        "rodada": "Round of 16"
+      },
+      "casa": {
+        "id": 1139,
+        "nome": "Santa Fe",
+        "logo": "https://media.api-sports.io/football/teams/1139.png",
+        "vencedor": null,
+        "gols": null
+      },
+      "fora": {
+        "id": 435,
+        "nome": "River Plate",
+        "logo": "https://media.api-sports.io/football/teams/435.png",
+        "vencedor": null,
+        "gols": null
+      },
+      "placar": {
+        "intervalo": {
+          "home": null,
+          "away": null
+        },
+        "final": {
+          "home": null,
+          "away": null
+        },
+        "prorrogacao": {
+          "home": null,
+          "away": null
+        },
+        "penaltis": {
+          "home": null,
+          "away": null
+        }
+      },
+      "estadio": {
+        "id": null,
+        "nome": null,
+        "cidade": null
+      },
+      "transmissao": []
     }
   ]
 }
