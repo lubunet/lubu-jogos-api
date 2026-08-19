@@ -26,6 +26,11 @@ HEADERS = {
     "x-apisports-key": API_KEY
 }
 
+# Cache da consulta de times brasileiros.
+# Assim usamos no máximo UMA chamada /teams?country=Brazil por execução,
+# mesmo quando também precisamos corrigir os escudos do Sub-17.
+CACHE_TIMES_BRASIL = None
+
 
 # ============================================================
 # COMPETIÇÕES BRASILEIRAS PERMITIDAS
@@ -687,6 +692,46 @@ def chamar_api(
     )
 
 
+def buscar_times_brasil():
+    """
+    Busca os times cadastrados como Brazil uma única vez por execução.
+
+    Se a consulta falhar, retorna lista vazia. Nesse caso o script
+    continua mostrando as competições nacionais do Brasil e, por
+    segurança, não inclui partidas internacionais duvidosas.
+    """
+
+    global CACHE_TIMES_BRASIL
+
+    if CACHE_TIMES_BRASIL is not None:
+        return CACHE_TIMES_BRASIL
+
+    try:
+
+        CACHE_TIMES_BRASIL = chamar_api(
+            "teams",
+            {
+                "country": "Brazil"
+            }
+        )
+
+        print(
+            f"{len(CACHE_TIMES_BRASIL)} registros brasileiros "
+            "recebidos para o filtro."
+        )
+
+    except Exception:
+
+        CACHE_TIMES_BRASIL = []
+
+        print(
+            "Nao foi possivel carregar os times brasileiros. "
+            "Partidas internacionais serao ignoradas nesta execucao."
+        )
+
+    return CACHE_TIMES_BRASIL
+
+
 def contem_algum(
     texto,
     termos
@@ -748,7 +793,10 @@ def eh_brasileiro_u17(
 def competicao_relevante(
     nome,
     pais,
-    campeonato_id=None
+    campeonato_id=None,
+    time_casa_id=None,
+    time_fora_id=None,
+    ids_times_brasileiros=None
 ):
 
     nome_n = normalizar(
@@ -759,58 +807,106 @@ def competicao_relevante(
         pais
     )
 
+    ids_times_brasileiros = (
+        ids_times_brasileiros
+        or set()
+    )
 
-    # Brasileiro Sub-17 permitido.
-    if eh_brasileiro_u17(
-        nome,
-        pais,
-        campeonato_id
+
+    # ========================================================
+    # AMISTOSOS
+    # ========================================================
+    #
+    # O objetivo da grade e seguir campeonatos/categorias.
+    # Amistosos continuam fora para nao poluir a lista.
+    # ========================================================
+
+    if contem_algum(
+        nome_n,
+        (
+            "friendly",
+            "friendlies",
+            "amistoso",
+            "amistosos",
+        )
     ):
+
+        return False
+
+
+    # ========================================================
+    # 1. TODAS AS CATEGORIAS DO BRASIL
+    # ========================================================
+    #
+    # Se a propria API classifica a competicao como Brazil,
+    # entra automaticamente.
+    #
+    # Isso inclui:
+    #
+    # - Serie A / B / C / D
+    # - Copa do Brasil
+    # - feminino
+    # - Sub-20 / Sub-17 / outras bases
+    # - Copa Paulista
+    # - estaduais
+    # - A2 / A3 / A4 e outras divisoes estaduais
+    # - copas regionais
+    #
+    # Nao usamos mais uma whitelist curta, porque ela fazia
+    # categorias validas desaparecerem da grade.
+    # ========================================================
+
+    if pais_n == "brazil":
 
         return True
 
 
-    # Bloqueia outras bases etc.
-    if contem_algum(
-        nome_n,
-        BLOQUEADOS
+    # ========================================================
+    # 2. LIGAS ESTRANGEIRAS
+    # ========================================================
+    #
+    # Premier League, MLS, La Liga, Bundesliga etc. nao entram.
+    # ========================================================
+
+    if pais_n != "world":
+
+        return False
+
+
+    # ========================================================
+    # 3. COMPETICOES INTERNACIONAIS
+    # ========================================================
+    #
+    # Libertadores, Sul-Americana, Mundial etc. podem vir como
+    # "World" na API.
+    #
+    # Como a grade deve mostrar SOMENTE jogos entre times do
+    # Brasil, os DOIS participantes precisam estar cadastrados
+    # como brasileiros.
+    #
+    # Exemplos:
+    #
+    # Atletico-MG x Bragantino  -> entra
+    # Flamengo x Cruzeiro       -> entra
+    #
+    # Cerro Porteno x Palmeiras -> nao entra
+    # Flamengo x River Plate    -> nao entra
+    # Real Madrid x Liverpool   -> nao entra
+    # ========================================================
+
+    if (
+        time_casa_id not in ids_times_brasileiros
+        or
+        time_fora_id not in ids_times_brasileiros
     ):
 
         return False
 
 
-    # Divisões inferiores.
-    if contem_algum(
-        nome_n,
-        DIVISOES_INFERIORES
-    ):
-
-        return False
-
-
-    # Brasil.
-    if pais_n == "brazil":
-
-        return contem_algum(
-            nome_n,
-            COMPETICOES_BRASIL
-        )
-
-
-    # Exterior / internacional.
-    permitidas = (
-        COMPETICOES_EXATAS_POR_PAIS
-        .get(
-            pais_n,
-            set()
-        )
-    )
-
-    return (
-        nome_n
-        in
-        permitidas
-    )
+    # Nao restringimos o nome do campeonato internacional.
+    # Se for "World" e os dois times forem brasileiros,
+    # a categoria entra automaticamente.
+    return True
 
 
 # ============================================================
@@ -917,13 +1013,7 @@ def criar_indice_clubes_principais_brasil():
         "nomes e escudos do Brasileiro Sub-17..."
     )
 
-    resposta = chamar_api(
-        "teams",
-        {
-            "country":
-                "Brazil"
-        }
-    )
+    resposta = buscar_times_brasil()
 
     indice = {}
 
@@ -1023,6 +1113,42 @@ def criar_indice_clubes_principais_brasil():
     )
 
     return indice
+
+
+def criar_ids_times_brasileiros():
+    """
+    Conjunto de IDs de clubes/selecoes cadastrados como Brazil.
+
+    Usamos IDs em vez de apenas nomes para evitar falso positivo
+    na hora de decidir se uma partida internacional possui um
+    participante brasileiro.
+    """
+
+    ids = set()
+
+    for item in buscar_times_brasil():
+
+        team = item.get(
+            "team",
+            {}
+        )
+
+        time_id = team.get(
+            "id"
+        )
+
+        if time_id is not None:
+
+            ids.add(
+                time_id
+            )
+
+    print(
+        f"{len(ids)} IDs brasileiros carregados "
+        "para filtrar jogos internacionais."
+    )
+
+    return ids
 
 
 # ============================================================
@@ -1576,6 +1702,11 @@ tem_brasileiro_u17 = any(
 # SOMENTE QUANDO HOUVER SUB-17
 # ============================================================
 
+# Carregamos os IDs brasileiros para filtrar competicoes
+# internacionais e manter somente confrontos Brasil x Brasil.
+ids_times_brasileiros = criar_ids_times_brasileiros()
+
+
 indice_clubes_principais = {}
 
 
@@ -1652,7 +1783,23 @@ for item in fixtures:
 
         pais_campeonato,
 
-        campeonato_id
+        campeonato_id,
+
+        teams.get(
+            "home",
+            {}
+        ).get(
+            "id"
+        ),
+
+        teams.get(
+            "away",
+            {}
+        ).get(
+            "id"
+        ),
+
+        ids_times_brasileiros
 
     ):
 
@@ -2040,7 +2187,7 @@ lista_campeonatos.sort(
 saida = {
 
     "versao":
-        11,
+        14,
 
 
     "data":
