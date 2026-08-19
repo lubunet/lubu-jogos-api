@@ -395,6 +395,10 @@
       },
       "transmissao": [
         {
+          "canal": "Disney+",
+          "fonte": "Mantos"
+        },
+        {
           "canal": "ESPN",
           "fonte": "DPF + Mantos"
         }
@@ -528,6 +532,10 @@
         "cidade": "Fortaleza"
       },
       "transmissao": [
+        {
+          "canal": "Disney+",
+          "fonte": "Mantos"
+        },
         {
           "canal": "ESPN 4",
           "fonte": "DPF + Mantos"
@@ -738,6 +746,10 @@
       },
       "transmissao": [
         {
+          "canal": "Disney+",
+          "fonte": "Mantos"
+        },
+        {
           "canal": "ESPN 4",
           "fonte": "DPF + Mantos"
         }
@@ -878,7 +890,12 @@
         "nome": "Estadio Centenario",
         "cidade": "Montevideo"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Paramount+",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1607650,
@@ -940,7 +957,16 @@
         "nome": null,
         "cidade": null
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Disney+",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "ESPN",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     }
   ]
 }
