@@ -1423,6 +1423,87 @@ data_hoje = agora.strftime(
 )
 
 
+# ============================================================
+# PRESERVAR TRANSMISSOES JA ENCONTRADAS
+# ============================================================
+#
+# O script de transmissoes atualiza apenas o campo:
+#
+#     "transmissao": [...]
+#
+# Quando este script principal rodar novamente no mesmo dia,
+# ele reaproveita as transmissoes ja salvas para o mesmo ID
+# de partida. Assim a atualizacao da API-Football nao apaga
+# os canais encontrados pela segunda automacao.
+#
+# Em um novo dia, nenhuma transmissao antiga e reaproveitada.
+# ============================================================
+
+ARQUIVO_JSON = "data/jogos-hoje.json"
+
+transmissoes_anteriores = {}
+
+try:
+
+    with open(
+        ARQUIVO_JSON,
+        "r",
+        encoding="utf-8"
+    ) as arquivo:
+
+        json_anterior = json.load(
+            arquivo
+        )
+
+    # So preserva dados se o arquivo anterior for do mesmo dia.
+    if json_anterior.get("data") == data_hoje:
+
+        for jogo_anterior in json_anterior.get(
+            "jogos",
+            []
+        ):
+
+            if not isinstance(
+                jogo_anterior,
+                dict
+            ):
+                continue
+
+            jogo_id = jogo_anterior.get(
+                "id"
+            )
+
+            transmissao = jogo_anterior.get(
+                "transmissao",
+                []
+            )
+
+            # So aceita o formato esperado pelo app.
+            if (
+                jogo_id is not None
+                and isinstance(
+                    transmissao,
+                    list
+                )
+            ):
+
+                transmissoes_anteriores[
+                    str(jogo_id)
+                ] = transmissao
+
+except (
+    FileNotFoundError,
+    json.JSONDecodeError,
+    OSError,
+    TypeError
+):
+
+    # Se nao existir JSON anterior, estiver invalido ou
+    # acontecer algum problema de leitura, segue normalmente.
+    # O script principal nao deve falhar por causa disso.
+    transmissoes_anteriores = {}
+
+
 print(
     f"Buscando jogos de {data_hoje}..."
 )
@@ -1822,7 +1903,14 @@ for item in fixtures:
 
 
         "transmissao":
-            []
+            transmissoes_anteriores.get(
+                str(
+                    fixture.get(
+                        "id"
+                    )
+                ),
+                []
+            )
     }
 
 
@@ -1952,7 +2040,7 @@ lista_campeonatos.sort(
 saida = {
 
     "versao":
-        10,
+        11,
 
 
     "data":
@@ -2025,7 +2113,7 @@ os.makedirs(
 
 with open(
 
-    "data/jogos-hoje.json",
+    ARQUIVO_JSON,
 
     "w",
 
