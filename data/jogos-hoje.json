@@ -1,7 +1,7 @@
 {
   "versao": 11,
   "data": "2026-08-19",
-  "gerado_em": "2026-08-19T12:38:34.855452-04:00",
+  "gerado_em": "2026-08-19T12:39:02.667451-04:00",
   "timezone_referencia": "America/Cuiaba",
   "periodo": {
     "inicio": "00:00",
@@ -101,7 +101,7 @@
       "status": {
         "codigo": "1H",
         "descricao": "First Half",
-        "minuto": 23
+        "minuto": 24
       },
       "campeonato": {
         "id": 504,
