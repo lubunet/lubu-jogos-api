@@ -2,14 +2,16 @@ import json
 import os
 import re
 import unicodedata
-
 from collections import Counter
 from datetime import datetime
 from difflib import SequenceMatcher
+from urllib.parse import urlparse
 from zoneinfo import ZoneInfo
 
 import requests
 from bs4 import BeautifulSoup
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 
 
 # ============================================================
@@ -18,52 +20,36 @@ from bs4 import BeautifulSoup
 
 ARQUIVO_JSON = "data/jogos-hoje.json"
 
-URL_DPF = (
-    "https://doentesporfutebol.com.br/guiadejogos/"
-)
-
+URL_DPF = "https://doentesporfutebol.com.br/guiadejogos/"
 URL_MANTOS = (
     "https://mantosdofutebol.com.br/"
     "guia-de-jogos-tv-hoje-ao-vivo/"
 )
 
+TIMEZONE_FONTE = ZoneInfo("America/Sao_Paulo")
 
-# Os dois sites usam horario de Brasilia.
-TIMEZONE_FONTE = ZoneInfo(
-    "America/Sao_Paulo"
-)
-
-
-# SEGURANCA MAXIMA:
-# canal precisa aparecer nas DUAS fontes.
+# Canal so entra se for confirmado nas duas fontes.
 CONFIRMACOES_MINIMAS = 2
 
-
-# Horario dos sites pode ter um pequeno ajuste.
-TOLERANCIA_HORARIO_MINUTOS = 10
-
+# Aceita uma pequena diferenca de horario entre as fontes.
+TOLERANCIA_HORARIO_MINUTOS = 15
 
 TIMEOUT = 25
 
-
-HEADERS = {
-
+HEADERS_BASE = {
     "User-Agent": (
         "Mozilla/5.0 (X11; Linux x86_64) "
         "AppleWebKit/537.36 (KHTML, like Gecko) "
-        "Chrome/131.0 Safari/537.36"
+        "Chrome/131.0.0.0 Safari/537.36"
     ),
-
     "Accept": (
         "text/html,application/xhtml+xml,"
-        "application/xml;q=0.9,*/*;q=0.8"
+        "application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8"
     ),
-
-    "Accept-Language":
-        "pt-BR,pt;q=0.9,en;q=0.7",
-
-    "Cache-Control":
-        "no-cache",
+    "Accept-Language": "pt-BR,pt;q=0.9,en-US;q=0.7,en;q=0.6",
+    "Cache-Control": "no-cache",
+    "Pragma": "no-cache",
+    "Upgrade-Insecure-Requests": "1",
 }
 
 
@@ -72,295 +58,160 @@ HEADERS = {
 # ============================================================
 
 ALIASES_TIMES = {
+    "atletico": "atletico mg",
+    "atletico mg": "atletico mg",
+    "atletico mineiro": "atletico mg",
+    "clube atletico mineiro": "atletico mg",
 
-    "atletico":
-        "atletico mg",
+    "red bull bragantino": "bragantino",
+    "rb bragantino": "bragantino",
+    "bragantino": "bragantino",
 
-    "atletico mg":
-        "atletico mg",
+    "america mineiro": "america mg",
+    "america mg": "america mg",
 
-    "atletico mineiro":
-        "atletico mg",
+    "athletico paranaense": "athletico pr",
+    "athletico pr": "athletico pr",
 
-    "clube atletico mineiro":
-        "atletico mg",
+    "atletico goianiense": "atletico go",
+    "atletico go": "atletico go",
 
+    "sao paulo fc": "sao paulo",
+    "gremio fbpa": "gremio",
+    "sc internacional": "internacional",
+    "ec juventude": "juventude",
+    "ec bahia": "bahia",
+    "ec vitoria": "vitoria",
+    "sport recife": "sport",
+    "vasco da gama": "vasco",
+    "ceara sc": "ceara",
+    "fortaleza ec": "fortaleza",
 
-    "red bull bragantino":
-        "bragantino",
+    "botafogo de sao paulo": "botafogo sp",
+    "botafogo sp": "botafogo sp",
 
-    "rb bragantino":
-        "bragantino",
+    "operario ferroviario": "operario",
+    "operario pr": "operario",
+    "operario": "operario",
 
-    "bragantino":
-        "bragantino",
+    "nec nijmegen": "nijmegen",
+    "nijmegen": "nijmegen",
 
+    "lask linz": "lask",
+    "lask": "lask",
 
-    "america mineiro":
-        "america mg",
+    "slovan batislava": "slovan bratislava",
+    "slovan bratislava": "slovan bratislava",
 
-    "america mg":
-        "america mg",
+    "fc cincinnati": "cincinnati",
+    "cincinnati": "cincinnati",
 
+    "new england revolution": "new england revolution",
+    "ne revolution": "new england revolution",
 
-    "athletico paranaense":
-        "athletico pr",
+    "new york red bulls": "new york red bulls",
+    "ny red bulls": "new york red bulls",
 
-    "athletico pr":
-        "athletico pr",
+    "minnesota united": "minnesota",
+    "minnesota": "minnesota",
 
+    "los angeles galaxy": "la galaxy",
+    "la galaxy": "la galaxy",
 
-    "atletico goianiense":
-        "atletico go",
+    "san jose earthquakes": "san jose earthquakes",
+    "sj earthquakes": "san jose earthquakes",
 
-    "atletico go":
-        "atletico go",
+    "sporting kansas city": "sporting kc",
+    "sporting kc": "sporting kc",
 
+    "cf montreal": "montreal",
+    "montreal": "montreal",
 
-    "sao paulo fc":
-        "sao paulo",
+    "dc united": "dc united",
 
-
-    "gremio fbpa":
-        "gremio",
-
-
-    "sc internacional":
-        "internacional",
-
-
-    "ec juventude":
-        "juventude",
-
-
-    "ec bahia":
-        "bahia",
-
-
-    "ec vitoria":
-        "vitoria",
-
-
-    "sport recife":
-        "sport",
-
-
-    "vasco da gama":
-        "vasco",
-
-
-    "ceara sc":
-        "ceara",
-
-
-    "fortaleza ec":
-        "fortaleza",
-
-
-    "botafogo de sao paulo":
-        "botafogo sp",
-
-    "botafogo sp":
-        "botafogo sp",
-
-
-    "operario ferroviario":
-        "operario",
-
-    "operario pr":
-        "operario",
-
-    "operario":
-        "operario",
-
-
-    "nec nijmegen":
-        "nijmegen",
-
-    "nijmegen":
-        "nijmegen",
-
-
-    "lask linz":
-        "lask",
-
-    "lask":
-        "lask",
-
-
-    "slovan batislava":
-        "slovan bratislava",
-
-    "slovan bratislava":
-        "slovan bratislava",
-
-
-    "fc cincinnati":
-        "cincinnati",
-
-
-    "new england revolution":
-        "new england revolution",
-
-    "ne revolution":
-        "new england revolution",
-
-
-    "new york red bulls":
-        "new york red bulls",
-
-    "ny red bulls":
-        "new york red bulls",
-
-
-    "minnesota united":
-        "minnesota",
-
-    "minnesota":
-        "minnesota",
-
-
-    "los angeles galaxy":
-        "la galaxy",
-
-    "la galaxy":
-        "la galaxy",
-
-
-    "san jose earthquakes":
-        "san jose earthquakes",
-
-    "sj earthquakes":
-        "san jose earthquakes",
+    "los angeles fc": "los angeles fc",
 }
 
 
 # ============================================================
-# ALIASES DE CANAIS
+# CANAIS
 # ============================================================
 
 ALIASES_CANAIS = {
+    "espn": "espn",
+    "espn4": "espn 4",
+    "espn 4": "espn 4",
 
-    "espn4":
-        "espn 4",
+    "sportv": "sportv",
+    "sportv 2": "sportv 2",
+    "sportv2": "sportv 2",
+    "sportv 3": "sportv 3",
+    "sportv3": "sportv 3",
 
-    "espn 4":
-        "espn 4",
+    "globo": "globo",
 
-    "espn":
-        "espn",
+    "ge tv": "ge tv",
+    "getv": "ge tv",
 
-    "sportv":
-        "sportv",
+    "paramount+": "paramount+",
+    "paramount plus": "paramount+",
 
-    "globo":
-        "globo",
+    "disney+": "disney+",
+    "disney plus": "disney+",
 
-    "ge tv":
-        "ge tv",
+    "hbo max": "hbo max",
+    "max": "hbo max",
 
-    "getv":
-        "ge tv",
+    "tnt": "tnt",
+    "space": "space",
 
-    "paramount+":
-        "paramount+",
+    "xsports": "xsports",
+    "x sports": "xsports",
 
-    "paramount plus":
-        "paramount+",
+    "sportynet": "sportynet",
+    "sporty net": "sportynet",
 
-    "disney+":
-        "disney+",
+    "paulistao": "paulistao",
 
-    "disney plus":
-        "disney+",
+    "caze tv": "caze tv",
+    "cazetv": "caze tv",
 
-    "hbo max":
-        "hbo max",
+    "apple tv": "apple tv",
+    "appletv": "apple tv",
 
-    "tnt":
-        "tnt",
-
-    "space":
-        "space",
-
-    "xsports":
-        "xsports",
-
-    "x sports":
-        "xsports",
-
-    "sportynet":
-        "sportynet",
-
-    "paulistao":
-        "paulistao",
-
-    "caze tv":
-        "caze tv",
-
-    "cazetv":
-        "caze tv",
-
-    "apple tv":
-        "apple tv",
-
-    "appletv":
-        "apple tv",
-
-    "onefootball":
-        "onefootball",
+    "onefootball": "onefootball",
+    "prime video": "prime video",
+    "amazon prime video": "prime video",
 }
 
-
 EXIBICAO_CANAIS = {
+    "espn": "ESPN",
+    "espn 4": "ESPN 4",
+    "sportv": "SporTV",
+    "sportv 2": "SporTV 2",
+    "sportv 3": "SporTV 3",
+    "globo": "Globo",
+    "ge tv": "GE TV",
+    "paramount+": "Paramount+",
+    "disney+": "Disney+",
+    "hbo max": "HBO Max",
+    "tnt": "TNT",
+    "space": "Space",
+    "xsports": "XSports",
+    "sportynet": "SportyNet",
+    "paulistao": "Paulistão",
+    "caze tv": "CazéTV",
+    "apple tv": "Apple TV",
+    "onefootball": "OneFootball",
+    "prime video": "Prime Video",
+}
 
-    "espn":
-        "ESPN",
-
-    "espn 4":
-        "ESPN 4",
-
-    "sportv":
-        "SporTV",
-
-    "globo":
-        "Globo",
-
-    "ge tv":
-        "GE TV",
-
-    "paramount+":
-        "Paramount+",
-
-    "disney+":
-        "Disney+",
-
-    "hbo max":
-        "HBO Max",
-
-    "tnt":
-        "TNT",
-
-    "space":
-        "Space",
-
-    "xsports":
-        "XSports",
-
-    "sportynet":
-        "SportyNet",
-
-    "paulistao":
-        "Paulistao",
-
-    "caze tv":
-        "CazeTV",
-
-    "apple tv":
-        "Apple TV",
-
-    "onefootball":
-        "OneFootball",
+PERFIS_YOUTUBE = {
+    "tntsportsbr": "tnt",
+    "getv": "ge tv",
+    "cazetv": "caze tv",
+    "paulistao": "paulistao",
+    "sportynetbrasil": "sportynet",
 }
 
 
@@ -369,101 +220,55 @@ EXIBICAO_CANAIS = {
 # ============================================================
 
 def sem_acentos(texto):
-
     return unicodedata.normalize(
         "NFKD",
         str(texto or "")
     ).encode(
         "ascii",
         "ignore"
-    ).decode(
-        "ascii"
-    )
+    ).decode("ascii")
 
 
 def limpar_espacos(texto):
-
-    return re.sub(
-        r"\s+",
-        " ",
-        str(texto or "")
-    ).strip()
+    return re.sub(r"\s+", " ", str(texto or "")).strip()
 
 
 def normalizar_texto(texto):
-
-    texto = sem_acentos(
-        texto
-    ).lower()
-
-    texto = texto.replace(
-        "&",
-        " e "
-    )
-
-    texto = re.sub(
-        r"[^a-z0-9+]+",
-        " ",
-        texto
-    )
-
-    return limpar_espacos(
-        texto
-    )
+    texto = sem_acentos(texto).lower()
+    texto = texto.replace("&", " e ")
+    texto = re.sub(r"[^a-z0-9+]+", " ", texto)
+    return limpar_espacos(texto)
 
 
 def normalizar_time(nome):
+    nome = normalizar_texto(nome)
 
-    nome = normalizar_texto(
-        nome
-    )
-
+    # Remove sufixos pouco relevantes apenas quando sao palavras inteiras.
     tokens = [
-
         token
-
         for token in nome.split()
-
-        if token not in {
-            "fc",
-            "ec",
-            "sc",
-            "ac"
-        }
+        if token not in {"fc", "ec", "sc", "ac"}
     ]
+    nome = " ".join(tokens)
 
-    nome = " ".join(
-        tokens
-    )
+    return ALIASES_TIMES.get(nome, nome)
 
-    return ALIASES_TIMES.get(
-        nome,
-        nome
-    )
+
+def similaridade_time(a, b):
+    a = normalizar_time(a)
+    b = normalizar_time(b)
+
+    if not a or not b:
+        return 0.0
+
+    if a == b:
+        return 1.0
+
+    return SequenceMatcher(None, a, b).ratio()
 
 
 def times_batem(a, b):
-
-    a = normalizar_time(
-        a
-    )
-
-    b = normalizar_time(
-        b
-    )
-
-    if not a or not b:
-        return False
-
-    if a == b:
-        return True
-
-    # Apenas pequenas variacoes de escrita.
-    return SequenceMatcher(
-        None,
-        a,
-        b
-    ).ratio() >= 0.92
+    return similaridade_time(a, b) >= 0.92
 
 
 # ============================================================
@@ -471,107 +276,61 @@ def times_batem(a, b):
 # ============================================================
 
 def normalizar_competicao(nome):
+    nome = normalizar_texto(nome)
 
-    nome = normalizar_texto(
+    # Remove detalhes que normalmente aparecem so em uma das fontes.
+    nome = re.sub(r"\([^)]*\)", " ", nome)
+    nome = re.sub(
+        r"\b("
+        r"oitavas de final|oitavas|quartas de final|quartas|"
+        r"semifinal|semi final|final|"
+        r"ida|volta|qualificacao|qualificatoria|"
+        r"of|qf|sf"
+        r")\b",
+        " ",
         nome
     )
+    nome = limpar_espacos(nome)
 
     regras = (
-
+        (("sudamericana", "sul americana"), "sudamericana"),
+        (("libertadores",), "libertadores"),
         (
             (
-                "sudamericana",
-                "sul americana"
-            ),
-            "sudamericana"
-        ),
-
-        (
-            (
-                "libertadores",
-            ),
-            "libertadores"
-        ),
-
-        (
-            (
-                "serie b",
                 "brasileirao serie b",
-                "brasileiro serie b"
+                "brasileiro serie b",
+                "campeonato brasileiro serie b",
+                "serie b",
             ),
-            "serie b"
+            "serie b",
         ),
-
         (
             (
-                "sub 17",
-                "u17",
-                "u 17"
+                "brasileiro sub 17",
+                "brasileiro u17",
+                "brasileiro u 17",
+                "campeonato brasileiro sub 17",
+                "campeonato brasileiro u17",
             ),
-            "brasileiro u17"
+            "brasileiro u17",
         ),
-
-        (
-            (
-                "copa paulista",
-            ),
-            "copa paulista"
-        ),
-
-        (
-            (
-                "champions league",
-            ),
-            "champions league"
-        ),
-
-        (
-            (
-                "la liga",
-                "laliga",
-                "campeonato espanhol"
-            ),
-            "la liga"
-        ),
-
-        (
-            (
-                "major league soccer",
-                "mls"
-            ),
-            "mls"
-        ),
-
-        (
-            (
-                "king s cup",
-                "kings cup"
-            ),
-            "kings cup"
-        ),
+        (("copa paulista",), "copa paulista"),
+        (("champions league",), "champions league"),
+        (("la liga", "laliga", "campeonato espanhol"), "la liga"),
+        (("major league soccer", "mls"), "mls"),
+        (("king s cup", "kings cup"), "kings cup"),
     )
 
     for termos, canonico in regras:
-
-        if any(
-            termo in nome
-            for termo in termos
-        ):
-
+        if any(termo in nome for termo in termos):
             return canonico
 
     return nome
 
 
 def competicoes_batem(a, b):
-
-    a = normalizar_competicao(
-        a
-    )
-
-    b = normalizar_competicao(
-        b
-    )
+    a = normalizar_competicao(a)
+    b = normalizar_competicao(b)
 
     if not a or not b:
         return False
@@ -579,11 +338,18 @@ def competicoes_batem(a, b):
     if a == b:
         return True
 
-    return SequenceMatcher(
-        None,
-        a,
-        b
-    ).ratio() >= 0.88
+    # Comparacao por tokens para aguentar pequenas mudancas de descricao.
+    ta = set(a.split())
+    tb = set(b.split())
+
+    if ta and tb:
+        inter = len(ta & tb)
+        base = min(len(ta), len(tb))
+
+        if base > 0 and inter / base >= 0.75:
+            return True
+
+    return SequenceMatcher(None, a, b).ratio() >= 0.84
 
 
 # ============================================================
@@ -591,147 +357,75 @@ def competicoes_batem(a, b):
 # ============================================================
 
 def normalizar_canal(canal):
-
-    texto = limpar_espacos(
-        canal
-    )
-
-    if not texto:
+    original = limpar_espacos(canal)
+    if not original:
         return ""
 
-    texto = sem_acentos(
-        texto
-    ).lower().strip()
+    texto = sem_acentos(original).lower().strip()
 
-    texto = texto.replace(
-        "youtube.com/@",
-        ""
+    # URLs/perfis do YouTube.
+    match = re.search(
+        r"(?:youtube\.com/)?@([a-z0-9_.-]+)",
+        texto,
+        flags=re.IGNORECASE,
     )
 
-    texto = texto.replace(
-        "youtube.com/",
-        ""
-    )
+    if match:
+        perfil = normalizar_texto(match.group(1))
+        if perfil in PERFIS_YOUTUBE:
+            return PERFIS_YOUTUBE[perfil]
 
-    texto = texto.replace(
-        "www.",
-        ""
-    )
-
-    simples = normalizar_texto(
-        texto
-    )
-
-    perfis = {
-
-        "tntsportsbr":
-            "tnt",
-
-        "getv":
-            "ge tv",
-
-        "cazetv":
-            "caze tv",
-
-        "paulistao":
-            "paulistao",
-
-        "sportynetbrasil":
-            "sportynet",
-    }
-
-    if simples in perfis:
-
-        return perfis[
-            simples
-        ]
+    texto = texto.replace("www.", "")
+    simples = normalizar_texto(texto)
 
     if texto in ALIASES_CANAIS:
-
-        return ALIASES_CANAIS[
-            texto
-        ]
+        return ALIASES_CANAIS[texto]
 
     if simples in ALIASES_CANAIS:
+        return ALIASES_CANAIS[simples]
 
-        return ALIASES_CANAIS[
-            simples
-        ]
+    # Evita gravar lixo muito comprido como se fosse canal.
+    if len(simples) > 50:
+        return ""
 
     return simples
 
 
 def nome_exibicao_canal(chave):
-
     if chave in EXIBICAO_CANAIS:
-
-        return EXIBICAO_CANAIS[
-            chave
-        ]
+        return EXIBICAO_CANAIS[chave]
 
     return " ".join(
-
-        parte.upper()
-        if len(parte) <= 4
-
-        else
-        parte.title()
-
+        parte.upper() if len(parte) <= 4 else parte.title()
         for parte in chave.split()
     )
 
 
 def dividir_canais(texto):
-
-    texto = limpar_espacos(
-        texto
-    )
+    texto = limpar_espacos(texto)
 
     texto = re.sub(
-
-        r"^(?:📺\s*)?"
-        r"(?:canais?|transmissao)\s*:\s*",
-
+        r"^(?:📺\s*)?(?:canais?|transmiss[aã]o)\s*:\s*",
         "",
-
         texto,
-
-        flags=re.IGNORECASE
+        flags=re.IGNORECASE,
     )
 
-    texto = re.sub(
-        r"^📺\s*",
-        "",
-        texto
-    ).strip()
+    texto = re.sub(r"^📺\s*", "", texto).strip()
 
     partes = re.split(
-
-        r"\s*;\s*"
-        r"|\s*,\s*"
-        r"|\s+\be\b\s+",
-
+        r"\s*;\s*|\s*,\s*|\s+\be\b\s+",
         texto,
-
-        flags=re.IGNORECASE
+        flags=re.IGNORECASE,
     )
 
     resultado = []
 
     for parte in partes:
+        canal = normalizar_canal(parte)
 
-        canal = normalizar_canal(
-            parte
-        )
-
-        if (
-            canal
-            and canal not in resultado
-        ):
-
-            resultado.append(
-                canal
-            )
+        if canal and canal not in resultado:
+            resultado.append(canal)
 
     return resultado
 
@@ -740,502 +434,300 @@ def dividir_canais(texto):
 # DOWNLOAD
 # ============================================================
 
-def baixar_html(url):
+def criar_sessao():
+    sessao = requests.Session()
+
+    retry = Retry(
+        total=2,
+        connect=2,
+        read=2,
+        status=2,
+        backoff_factor=1,
+        status_forcelist=(429, 500, 502, 503, 504),
+        allowed_methods=frozenset(["GET"]),
+        raise_on_status=False,
+    )
+
+    sessao.mount(
+        "https://",
+        HTTPAdapter(max_retries=retry)
+    )
+
+    return sessao
+
+
+def baixar_html(sessao, nome_fonte, url):
+    headers = dict(HEADERS_BASE)
+
+    parsed = urlparse(url)
+    headers["Referer"] = f"{parsed.scheme}://{parsed.netloc}/"
 
     try:
-
-        resposta = requests.get(
-
+        resposta = sessao.get(
             url,
-
-            headers=HEADERS,
-
-            timeout=TIMEOUT
+            headers=headers,
+            timeout=TIMEOUT,
+            allow_redirects=True,
         )
-
-        if resposta.status_code != 200:
-            return None
-
-        tipo = resposta.headers.get(
-            "Content-Type",
-            ""
-        ).lower()
-
-        if "html" not in tipo:
-            return None
-
-        # Evita interpretar pagina vazia,
-        # bloqueio ou resposta incompleta.
-        if len(resposta.text) < 1500:
-            return None
-
-        return resposta.text
-
-    except requests.RequestException:
-
+    except requests.RequestException as erro:
+        print(
+            f"[{nome_fonte}] download: FALHOU "
+            f"({erro.__class__.__name__})"
+        )
         return None
 
+    tamanho = len(resposta.text or "")
+    tipo = resposta.headers.get("Content-Type", "").lower()
 
-# ============================================================
-# VALIDAR DATA
-# ============================================================
-
-def pagina_parece_ser_do_dia(
-    texto,
-    data_json
-):
-
-    # Tolera pequenas mudancas como:
-    # 19/08
-    # 19 / 08
-    # 19/0 8
-
-    texto = re.sub(
-        r"(?<=\d)\s+(?=\d)",
-        "",
-        texto
+    print(
+        f"[{nome_fonte}] HTTP {resposta.status_code} "
+        f"- {tamanho} caracteres"
     )
 
-    try:
+    if resposta.status_code != 200:
+        return None
 
-        data = datetime.strptime(
-            data_json,
-            "%Y-%m-%d"
-        )
+    texto = resposta.text or ""
 
-    except (
-        TypeError,
-        ValueError
-    ):
-
-        return False
-
-
-    # Formato 19/08/2026
-    completos = re.findall(
-
-        r"\b(\d{1,2})\s*/\s*"
-        r"(\d{1,2})\s*/\s*"
-        r"(\d{4})\b",
-
-        texto
+    # Alguns servidores enviam Content-Type impreciso.
+    # Aceitamos se o corpo claramente parecer HTML.
+    parece_html = (
+        "html" in tipo
+        or "<html" in texto.lower()
+        or "<!doctype" in texto.lower()
     )
 
-    for dia, mes, ano in completos:
+    if not parece_html or tamanho < 1000:
+        return None
 
-        if (
-            int(dia) == data.day
-            and
-            int(mes) == data.month
-            and
-            int(ano) == data.year
-        ):
-
-            return True
-
-
-    # Formato 19/08
-    curtos = re.findall(
-
-        r"\b(\d{1,2})\s*/\s*"
-        r"(\d{1,2})\b",
-
-        texto
-    )
-
-    for dia, mes in curtos:
-
-        if (
-            int(dia) == data.day
-            and
-            int(mes) == data.month
-        ):
-
-            return True
-
-    return False
+    return texto
 
 
 # ============================================================
-# TEXTO DA PAGINA
+# TEXTO E DATA DA PAGINA
 # ============================================================
 
 def linhas_da_pagina(html):
+    soup = BeautifulSoup(html, "html.parser")
 
-    soup = BeautifulSoup(
-        html,
-        "html.parser"
-    )
-
-    for tag in soup(
-        [
-            "script",
-            "style",
-            "noscript",
-            "svg"
-        ]
-    ):
-
+    for tag in soup(["script", "style", "noscript", "svg"]):
         tag.decompose()
 
     linhas = []
 
-    for linha in soup.get_text(
-        "\n"
-    ).splitlines():
-
+    for linha in soup.get_text("\n").splitlines():
         linha = limpar_espacos(
-            linha
+            linha.replace("\xa0", " ")
         )
 
         if linha:
-
-            linhas.append(
-                linha
-            )
+            linhas.append(linha)
 
     return linhas
 
 
+def pagina_parece_ser_do_dia(linhas, data_json):
+    try:
+        data = datetime.strptime(data_json, "%Y-%m-%d")
+    except (TypeError, ValueError):
+        return False
+
+    # A data principal deve aparecer perto do inicio do conteudo.
+    cabecalho = " ".join(linhas[:120])
+    cabecalho_compacto = re.sub(r"\s+", "", cabecalho)
+
+    data_curta = f"{data.day:02d}/{data.month:02d}"
+    data_curta_sem_zero = f"{data.day}/{data.month}"
+    data_completa = f"{data.day:02d}/{data.month:02d}/{data.year}"
+
+    return (
+        data_completa in cabecalho_compacto
+        or data_curta in cabecalho_compacto
+        or data_curta_sem_zero in cabecalho_compacto
+    )
+
+
+# ============================================================
+# FUNCOES DE PARSER
+# ============================================================
+
 def separar_times(texto):
-
     partes = re.split(
-
         r"\s+[xX×]\s+",
-
-        limpar_espacos(
-            texto
-        ),
-
-        maxsplit=1
+        limpar_espacos(texto),
+        maxsplit=1,
     )
 
     if len(partes) != 2:
         return None
 
-    casa = limpar_espacos(
-        partes[0]
-    )
-
-    fora = limpar_espacos(
-        partes[1]
-    )
+    casa = limpar_espacos(partes[0])
+    fora = limpar_espacos(partes[1])
 
     if not casa or not fora:
         return None
 
-    return (
-        casa,
-        fora
-    )
+    # Protecao contra capturar linhas enormes que nao sao partidas.
+    if len(casa) > 80 or len(fora) > 80:
+        return None
+
+    return casa, fora
 
 
-def minutos_do_dia(
-    hora,
-    minuto
-):
-
-    return (
-        int(hora) * 60
-        +
-        int(minuto)
-    )
+def minutos_do_dia(hora, minuto):
+    return int(hora) * 60 + int(minuto)
 
 
-# ============================================================
-# PARSER DPF
-# ============================================================
+def parse_dpf(html, data_json):
+    linhas = linhas_da_pagina(html)
 
-def parse_dpf(
-    html,
-    data_json
-):
-
-    linhas = linhas_da_pagina(
-        html
-    )
-
-    if not pagina_parece_ser_do_dia(
-
-        "\n".join(
-            linhas
-        ),
-
-        data_json
-    ):
-
+    if not pagina_parece_ser_do_dia(linhas, data_json):
+        print("[DPF] data da pagina nao foi confirmada.")
         return []
-
 
     eventos = []
 
-
     padrao_horario = re.compile(
-
-        r"^(?:🕗\s*)?"
-        r"(\d{1,2}):(\d{2})\s+(.+)$"
+        r"^(?:🕗\s*)?(\d{1,2}):(\d{2})\s+(.+)$"
     )
 
+    indices_eventos = []
 
-    for indice, linha in enumerate(
-        linhas
-    ):
+    for indice, linha in enumerate(linhas):
+        match = padrao_horario.match(linha)
 
-        resultado = padrao_horario.match(
-            linha
-        )
-
-        if not resultado:
+        if not match:
             continue
 
+        hora, minuto, competicao = match.groups()
 
-        hora, minuto, competicao = (
-            resultado.groups()
-        )
-
-
-        if (
-            int(hora) > 23
-            or
-            int(minuto) > 59
-        ):
-
+        if int(hora) > 23 or int(minuto) > 59:
             continue
 
+        indices_eventos.append(
+            (indice, hora, minuto, competicao)
+        )
+
+    for pos, (indice, hora, minuto, competicao) in enumerate(indices_eventos):
+        fim = (
+            indices_eventos[pos + 1][0]
+            if pos + 1 < len(indices_eventos)
+            else min(len(linhas), indice + 12)
+        )
+
+        bloco = linhas[indice + 1:fim]
 
         times = None
         canais = None
 
-
-        proximas = linhas[
-            indice + 1:
-            indice + 7
-        ]
-
-
-        for posicao, proxima in enumerate(
-            proximas
-        ):
-
+        for linha in bloco:
             if times is None:
-
-                tentativa = separar_times(
-                    proxima
-                )
+                tentativa = separar_times(linha)
 
                 if tentativa:
-
                     times = tentativa
+                    continue
 
-                continue
-
-
-            # So aceita transmissao quando a
-            # linha esta identificada como tal.
             if (
-                proxima.startswith("📺")
-                or
-                re.match(
-                    r"^(?:canais?|transmissao)\s*:",
-                    proxima,
-                    flags=re.IGNORECASE
+                linha.startswith("📺")
+                or re.match(
+                    r"^(?:canais?|transmiss[aã]o)\s*:",
+                    linha,
+                    flags=re.IGNORECASE,
                 )
             ):
+                tentativa_canais = dividir_canais(linha)
 
-                canais = dividir_canais(
-                    proxima
-                )
+                if tentativa_canais:
+                    canais = tentativa_canais
+                    break
 
-
-                # Caso o icone venha separado
-                # do texto depois de uma mudanca
-                # pequena no HTML.
-                if (
-                    not canais
-                    and
-                    posicao + 1
-                    < len(proximas)
-                ):
-
-                    seguinte = proximas[
-                        posicao + 1
-                    ]
-
-                    if (
-                        not padrao_horario.match(
-                            seguinte
-                        )
-                        and
-                        separar_times(
-                            seguinte
-                        ) is None
-                    ):
-
-                        canais = dividir_canais(
-                            seguinte
-                        )
-
-                break
-
-
-        if (
-            times
-            and
-            canais
-        ):
-
+        if times and canais:
             eventos.append({
-
-                "hora":
-                    minutos_do_dia(
-                        hora,
-                        minuto
-                    ),
-
-                "casa":
-                    times[0],
-
-                "fora":
-                    times[1],
-
-                "competicao":
-                    limpar_espacos(
-                        competicao
-                    ),
-
-                "canais":
-                    canais,
+                "hora": minutos_do_dia(hora, minuto),
+                "casa": times[0],
+                "fora": times[1],
+                "competicao": limpar_espacos(competicao),
+                "canais": canais,
             })
-
 
     return eventos
 
 
-# ============================================================
-# PARSER MANTOS
-# ============================================================
+def parse_mantos(html, data_json):
+    linhas = linhas_da_pagina(html)
 
-def parse_mantos(
-    html,
-    data_json
-):
-
-    linhas = linhas_da_pagina(
-        html
-    )
-
-
-    if not pagina_parece_ser_do_dia(
-
-        "\n".join(
-            linhas
-        ),
-
-        data_json
-    ):
-
+    if not pagina_parece_ser_do_dia(linhas, data_json):
+        print("[Mantos] data da pagina nao foi confirmada.")
         return []
-
 
     eventos = []
 
-
+    # Aceita 19h00, 19:00 e varios tipos de traco.
     padrao_evento = re.compile(
-
-        r"^(\d{1,2})h(\d{2})"
-        r"\s*[–—-]\s*"
+        r"^(\d{1,2})(?:h|:)(\d{2})\s*[–—-]\s*"
         r"(.+?)\s+[xX×]\s+"
-        r"(.+?)\s*[–—-]\s*"
-        r"(.+)$",
-
-        flags=re.IGNORECASE
+        r"(.+?)\s*[–—-]\s*(.+)$",
+        flags=re.IGNORECASE,
     )
 
+    indices_eventos = []
 
-    for indice, linha in enumerate(
-        linhas
-    ):
+    for indice, linha in enumerate(linhas):
+        match = padrao_evento.match(linha)
 
-        resultado = padrao_evento.match(
-            linha
+        if not match:
+            continue
+
+        hora, minuto, casa, fora, competicao = match.groups()
+
+        if int(hora) > 23 or int(minuto) > 59:
+            continue
+
+        indices_eventos.append(
+            (
+                indice,
+                hora,
+                minuto,
+                limpar_espacos(casa),
+                limpar_espacos(fora),
+                limpar_espacos(competicao),
+            )
         )
 
-        if not resultado:
-            continue
+    for pos, evento in enumerate(indices_eventos):
+        indice, hora, minuto, casa, fora, competicao = evento
 
+        fim = (
+            indices_eventos[pos + 1][0]
+            if pos + 1 < len(indices_eventos)
+            else min(len(linhas), indice + 10)
+        )
 
-        (
-            hora,
-            minuto,
-            casa,
-            fora,
-            competicao
-
-        ) = resultado.groups()
-
-
-        if (
-            int(hora) > 23
-            or
-            int(minuto) > 59
-        ):
-
-            continue
-
+        bloco = linhas[indice + 1:fim]
 
         canais = None
 
-
-        for proxima in linhas[
-            indice + 1:
-            indice + 5
-        ]:
-
+        for linha in bloco:
             if re.match(
-
-                r"^(?:canais?|transmissao)\s*:",
-
-                proxima,
-
-                flags=re.IGNORECASE
+                r"^(?:canais?|transmiss[aã]o)\s*:",
+                linha,
+                flags=re.IGNORECASE,
             ):
+                tentativa = dividir_canais(linha)
 
-                canais = dividir_canais(
-                    proxima
-                )
-
-                break
-
+                if tentativa:
+                    canais = tentativa
+                    break
 
         if canais:
-
             eventos.append({
-
-                "hora":
-                    minutos_do_dia(
-                        hora,
-                        minuto
-                    ),
-
-                "casa":
-                    limpar_espacos(
-                        casa
-                    ),
-
-                "fora":
-                    limpar_espacos(
-                        fora
-                    ),
-
-                "competicao":
-                    limpar_espacos(
-                        competicao
-                    ),
-
-                "canais":
-                    canais,
+                "hora": minutos_do_dia(hora, minuto),
+                "casa": casa,
+                "fora": fora,
+                "competicao": competicao,
+                "canais": canais,
             })
-
 
     return eventos
 
@@ -1244,280 +736,180 @@ def parse_mantos(
 # HORARIO DO JSON -> BRASILIA
 # ============================================================
 
-def horario_brasilia_do_jogo(
-    jogo
-):
+def horario_brasilia_do_jogo(jogo):
+    timestamp = jogo.get("timestamp")
 
-    timestamp = jogo.get(
-        "timestamp"
-    )
-
-    if not isinstance(
-        timestamp,
-        (int, float)
-    ):
-
+    if not isinstance(timestamp, (int, float)):
         return None
-
 
     try:
-
         data = datetime.fromtimestamp(
-
             timestamp,
+            tz=ZoneInfo("UTC"),
+        ).astimezone(TIMEZONE_FONTE)
 
-            tz=ZoneInfo(
-                "UTC"
-            )
+        return data.hour * 60 + data.minute
 
-        ).astimezone(
-            TIMEZONE_FONTE
-        )
-
-
-        return (
-            data.hour * 60
-            +
-            data.minute
-        )
-
-    except (
-        OverflowError,
-        OSError,
-        ValueError
-    ):
-
+    except (OverflowError, OSError, ValueError):
         return None
 
 
-def diferenca_minutos(
-    a,
-    b
-):
-
-    diferenca = abs(
-        a - b
-    )
-
-    return min(
-        diferenca,
-        1440 - diferenca
-    )
+def diferenca_minutos(a, b):
+    diferenca = abs(a - b)
+    return min(diferenca, 1440 - diferenca)
 
 
 # ============================================================
-# LOCALIZAR MESMO JOGO
+# MATCH DE JOGOS
 # ============================================================
 
-def encontrar_evento(
-    jogo,
-    eventos
-):
+def encontrar_evento(jogo, eventos):
+    casa = jogo.get("casa", {}).get("nome", "")
+    fora = jogo.get("fora", {}).get("nome", "")
+    competicao = jogo.get("campeonato", {}).get("nome", "")
+    hora = horario_brasilia_do_jogo(jogo)
 
-    casa = jogo.get(
-        "casa",
-        {}
-    ).get(
-        "nome",
-        ""
-    )
-
-
-    fora = jogo.get(
-        "fora",
-        {}
-    ).get(
-        "nome",
-        ""
-    )
-
-
-    competicao = jogo.get(
-        "campeonato",
-        {}
-    ).get(
-        "nome",
-        ""
-    )
-
-
-    hora = horario_brasilia_do_jogo(
-        jogo
-    )
-
-
-    if (
-        not casa
-        or
-        not fora
-        or
-        not competicao
-        or
-        hora is None
-    ):
-
+    if not casa or not fora or not competicao or hora is None:
         return None
-
 
     candidatos = []
 
-
     for evento in eventos:
-
-
-        # HORARIO
-        if diferenca_minutos(
-
-            hora,
-
-            evento[
-                "hora"
-            ]
-
-        ) > TOLERANCIA_HORARIO_MINUTOS:
-
+        if diferenca_minutos(hora, evento["hora"]) > TOLERANCIA_HORARIO_MINUTOS:
             continue
 
-
-        # TIME DA CASA
-        if not times_batem(
-
-            casa,
-
-            evento[
-                "casa"
-            ]
-        ):
-
+        if not times_batem(casa, evento["casa"]):
             continue
 
-
-        # TIME VISITANTE
-        if not times_batem(
-
-            fora,
-
-            evento[
-                "fora"
-            ]
-        ):
-
+        if not times_batem(fora, evento["fora"]):
             continue
 
-
-        # COMPETICAO
-        if not competicoes_batem(
-
-            competicao,
-
-            evento[
-                "competicao"
-            ]
-        ):
-
+        if not competicoes_batem(competicao, evento["competicao"]):
             continue
 
-
-        candidatos.append(
-            evento
+        score = (
+            similaridade_time(casa, evento["casa"])
+            + similaridade_time(fora, evento["fora"])
         )
 
+        candidatos.append((score, evento))
 
-    # Se encontrou mais de uma possibilidade,
-    # nao adivinha.
-    if len(candidatos) != 1:
-
+    # Se houver mais de um candidato, so aceita se o melhor
+    # estiver claramente acima do segundo.
+    if not candidatos:
         return None
 
+    candidatos.sort(key=lambda item: item[0], reverse=True)
 
-    return candidatos[
-        0
-    ]
+    if len(candidatos) > 1:
+        diferenca_score = candidatos[0][0] - candidatos[1][0]
+
+        if diferenca_score < 0.08:
+            return None
+
+    return candidatos[0][1]
 
 
 # ============================================================
-# CONFIRMAR CANAIS NAS DUAS FONTES
+# CONFIRMACAO ENTRE AS DUAS FONTES
 # ============================================================
 
-def transmissoes_confirmadas(
-    jogo,
-    fontes
-):
+def confirmar_transmissao(jogo, fontes):
+    encontrados = {}
 
-    encontrados = []
-
-
-    for eventos in fontes.values():
-
-        evento = encontrar_evento(
-            jogo,
-            eventos
-        )
+    for nome_fonte, eventos in fontes.items():
+        evento = encontrar_evento(jogo, eventos)
 
         if evento:
+            encontrados[nome_fonte] = evento
 
-            encontrados.append(
-                evento
-            )
-
-
-    if len(
-        encontrados
-    ) < CONFIRMACOES_MINIMAS:
-
-        return None
-
+    if len(encontrados) < CONFIRMACOES_MINIMAS:
+        return {
+            "status": "insuficiente",
+            "transmissao": None,
+            "fontes": encontrados,
+        }
 
     votos = Counter()
 
-
-    for evento in encontrados:
-
-        # Cada site conta apenas uma vez.
-        for canal in set(
-            evento[
-                "canais"
-            ]
-        ):
-
-            votos[
-                canal
-            ] += 1
-
+    for evento in encontrados.values():
+        for canal in set(evento["canais"]):
+            votos[canal] += 1
 
     canais_confirmados = sorted(
-
         canal
-
-        for canal, quantidade
-        in votos.items()
-
-        if quantidade
-        >=
-        CONFIRMACOES_MINIMAS
+        for canal, quantidade in votos.items()
+        if quantidade >= CONFIRMACOES_MINIMAS
     )
 
-
     if not canais_confirmados:
-
-        return None
-
-
-    return [
-
-        {
-            "canal":
-                nome_exibicao_canal(
-                    canal
-                ),
-
-            "fonte":
-                "DPF + Mantos"
+        return {
+            "status": "conflito",
+            "transmissao": [],
+            "fontes": encontrados,
         }
 
-        for canal
-        in canais_confirmados
+    transmissao = [
+        {
+            "canal": nome_exibicao_canal(canal),
+            "fonte": "DPF + Mantos",
+        }
+        for canal in canais_confirmados
     ]
+
+    return {
+        "status": "confirmado",
+        "transmissao": transmissao,
+        "fontes": encontrados,
+    }
+
+
+# ============================================================
+# LOG
+# ============================================================
+
+def nome_jogo(jogo):
+    casa = jogo.get("casa", {}).get("nome", "?")
+    fora = jogo.get("fora", {}).get("nome", "?")
+    return f"{casa} x {fora}"
+
+
+# ============================================================
+# SALVAR
+# ============================================================
+
+def salvar_atomico(dados):
+    temporario = ARQUIVO_JSON + ".tmp"
+
+    try:
+        with open(
+            temporario,
+            "w",
+            encoding="utf-8"
+        ) as arquivo:
+            json.dump(
+                dados,
+                arquivo,
+                ensure_ascii=False,
+                indent=2,
+            )
+            arquivo.write("\n")
+
+        os.replace(
+            temporario,
+            ARQUIVO_JSON
+        )
+
+        return True
+
+    except OSError:
+        try:
+            if os.path.exists(temporario):
+                os.remove(temporario)
+        except OSError:
+            pass
+
+        return False
 
 
 # ============================================================
@@ -1525,280 +917,185 @@ def transmissoes_confirmadas(
 # ============================================================
 
 def main():
-
-    # --------------------------------------------------------
-    # ABRIR JSON
-    # --------------------------------------------------------
+    print("=== LUBU - Atualizacao de transmissoes ===")
 
     try:
-
         with open(
-
             ARQUIVO_JSON,
-
             "r",
-
-            encoding="utf-8"
-
+            encoding="utf-8",
         ) as arquivo:
-
-            dados = json.load(
-                arquivo
-            )
-
-    except (
-        OSError,
-        json.JSONDecodeError
-    ):
-
+            dados = json.load(arquivo)
+    except (OSError, json.JSONDecodeError):
+        print("[JSON] Nao foi possivel ler o arquivo. Nada alterado.")
         return 0
 
+    data_json = dados.get("data")
+    jogos = dados.get("jogos")
 
-    data_json = dados.get(
-        "data"
-    )
-
-    jogos = dados.get(
-        "jogos"
-    )
-
-
-    if (
-        not data_json
-        or
-        not isinstance(
-            jogos,
-            list
-        )
-    ):
-
+    if not data_json or not isinstance(jogos, list):
+        print("[JSON] Estrutura inesperada. Nada alterado.")
         return 0
 
+    print(f"[JSON] Data: {data_json}")
+    print(f"[JSON] Jogos: {len(jogos)}")
 
-    # --------------------------------------------------------
-    # FONTES
-    # --------------------------------------------------------
-
+    sessao = criar_sessao()
     fontes = {}
 
-
     html_dpf = baixar_html(
-        URL_DPF
+        sessao,
+        "DPF",
+        URL_DPF,
     )
-
 
     if html_dpf:
+        try:
+            eventos_dpf = parse_dpf(
+                html_dpf,
+                data_json,
+            )
+        except Exception as erro:
+            print(
+                "[DPF] parser: FALHOU "
+                f"({erro.__class__.__name__})"
+            )
+            eventos_dpf = []
 
-        eventos_dpf = parse_dpf(
-
-            html_dpf,
-
-            data_json
-        )
-
+        print(f"[DPF] eventos validos: {len(eventos_dpf)}")
 
         if eventos_dpf:
-
-            fontes[
-                "DPF"
-            ] = eventos_dpf
-
+            fontes["DPF"] = eventos_dpf
 
     html_mantos = baixar_html(
-        URL_MANTOS
+        sessao,
+        "Mantos",
+        URL_MANTOS,
     )
 
-
     if html_mantos:
+        try:
+            eventos_mantos = parse_mantos(
+                html_mantos,
+                data_json,
+            )
+        except Exception as erro:
+            print(
+                "[Mantos] parser: FALHOU "
+                f"({erro.__class__.__name__})"
+            )
+            eventos_mantos = []
 
-        eventos_mantos = parse_mantos(
-
-            html_mantos,
-
-            data_json
-        )
-
+        print(f"[Mantos] eventos validos: {len(eventos_mantos)}")
 
         if eventos_mantos:
+            fontes["Mantos"] = eventos_mantos
 
-            fontes[
-                "Mantos"
-            ] = eventos_mantos
-
-
-    # --------------------------------------------------------
-    # SE UMA DAS FONTES FALHOU:
-    # NAO ALTERA ABSOLUTAMENTE NADA
-    # --------------------------------------------------------
-
-    if len(
-        fontes
-    ) < CONFIRMACOES_MINIMAS:
-
+    # Se uma das duas fontes nao estiver valida, nao toca no JSON.
+    if len(fontes) < CONFIRMACOES_MINIMAS:
         print(
-            "Nenhuma transmissao atualizada."
+            "[SEGURANCA] Menos de duas fontes validas. "
+            "Nenhuma transmissao foi alterada."
         )
-
         return 0
 
-
-    # --------------------------------------------------------
-    # COMPARAR JOGOS
-    # --------------------------------------------------------
-
     alterados = 0
-
+    confirmados = 0
+    conflitos = 0
+    insuficientes = 0
+    limpos_por_conflito = 0
 
     for jogo in jogos:
-
-        nova_transmissao = (
-            transmissoes_confirmadas(
-
-                jogo,
-
-                fontes
-            )
+        resultado = confirmar_transmissao(
+            jogo,
+            fontes,
         )
 
+        status = resultado["status"]
 
-        # Nao encontrou confirmacao segura.
-        # Mantem exatamente como estava.
-        if not nova_transmissao:
+        if status == "insuficiente":
+            insuficientes += 1
+            continue
+
+        if status == "conflito":
+            conflitos += 1
+
+            # As duas fontes encontraram o MESMO jogo de forma segura,
+            # mas nao concordaram em nenhum canal.
+            # Nesse caso, removemos uma transmissao antiga para nao
+            # exibir um canal que deixou de estar confirmado.
+            atual = jogo.get("transmissao", [])
+
+            if atual:
+                jogo["transmissao"] = []
+                alterados += 1
+                limpos_por_conflito += 1
+
+                print(
+                    f"[CONFLITO] {nome_jogo(jogo)} "
+                    "- transmissao antiga removida."
+                )
 
             continue
 
+        nova_transmissao = resultado["transmissao"]
+        confirmados += 1
 
-        transmissao_atual = jogo.get(
-            "transmissao",
-            []
-        )
+        atual = jogo.get("transmissao", [])
 
-
-        if (
-            transmissao_atual
-            !=
-            nova_transmissao
-        ):
-
-            jogo[
-                "transmissao"
-            ] = nova_transmissao
-
+        if atual != nova_transmissao:
+            jogo["transmissao"] = nova_transmissao
             alterados += 1
 
-
-    # --------------------------------------------------------
-    # NADA MUDOU
-    # --------------------------------------------------------
-
-    if alterados == 0:
+        canais_log = ", ".join(
+            item["canal"]
+            for item in nova_transmissao
+        )
 
         print(
-            "Nenhuma transmissao atualizada."
+            f"[OK] {nome_jogo(jogo)} -> {canais_log}"
         )
 
-        return 0
+    print("")
+    print("=== RESUMO ===")
+    print(f"Confirmados nas duas fontes: {confirmados}")
+    print(f"Conflitos entre fontes: {conflitos}")
+    print(f"Sem confirmacao dupla: {insuficientes}")
+    print(f"Campos alterados: {alterados}")
 
-
-    # --------------------------------------------------------
-    # SALVAR DE FORMA ATOMICA
-    # --------------------------------------------------------
-
-    temporario = (
-        ARQUIVO_JSON
-        +
-        ".tmp"
-    )
-
-
-    try:
-
-        with open(
-
-            temporario,
-
-            "w",
-
-            encoding="utf-8"
-
-        ) as arquivo:
-
-            json.dump(
-
-                dados,
-
-                arquivo,
-
-                ensure_ascii=False,
-
-                indent=2
-            )
-
-            arquivo.write(
-                "\n"
-            )
-
-
-        os.replace(
-
-            temporario,
-
-            ARQUIVO_JSON
+    if limpos_por_conflito:
+        print(
+            "Transmissoes antigas removidas por conflito: "
+            f"{limpos_por_conflito}"
         )
 
-
-    except OSError:
-
-        try:
-
-            if os.path.exists(
-                temporario
-            ):
-
-                os.remove(
-                    temporario
-                )
-
-        except OSError:
-
-            pass
-
-
+    if alterados == 0:
+        print("Nenhuma mudanca no JSON.")
         return 0
 
+    if not salvar_atomico(dados):
+        print(
+            "[JSON] Falha ao salvar. "
+            "Arquivo original mantido."
+        )
+        return 0
 
-    print(
-
-        f"Transmissoes atualizadas "
-        f"em {alterados} jogo(s)."
-    )
-
-
+    print("JSON atualizado com seguranca.")
     return 0
 
 
 # ============================================================
-# NUNCA QUEBRAR POR CAUSA DAS FONTES EXTERNAS
+# PROTECAO FINAL
 # ============================================================
 
 if __name__ == "__main__":
-
     try:
-
-        raise SystemExit(
-            main()
-        )
-
-    except Exception:
-
-        # Sem traceback.
-        # Sem JSON quebrado.
-        # Sem erro para o aplicativo.
-
+        raise SystemExit(main())
+    except Exception as erro:
+        # O app nunca recebe erro nem JSON parcial.
+        # O log do GitHub mostra apenas o tipo geral para diagnostico.
         print(
-            "Nenhuma transmissao atualizada."
+            "[SEGURANCA] Execucao interrompida sem alterar o JSON "
+            f"({erro.__class__.__name__})."
         )
-
-        raise SystemExit(
-            0
-        )
+        raise SystemExit(0)
