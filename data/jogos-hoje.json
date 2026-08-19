@@ -397,7 +397,12 @@
         "nome": null,
         "cidade": null
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "SporTV",
+          "fonte": "DPF"
+        }
+      ]
     },
     {
       "id": 1546108,
