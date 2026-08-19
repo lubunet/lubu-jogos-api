@@ -578,81 +578,351 @@ def minutos_do_dia(hora, minuto):
     return int(hora) * 60 + int(minuto)
 
 
+def tokens_da_pagina(html):
+    """
+    Retorna os textos visiveis preservando melhor os blocos do HTML.
+
+    O DPF pode separar no HTML:
+        🕗
+        19:00
+        Copa Sul-Americana
+        Atletico x Red Bull Bragantino
+        📺
+        ESPN
+
+    ou pode juntar alguns desses itens na mesma tag.
+
+    Por isso nao dependemos de classe CSS nem de uma estrutura HTML exata.
+    """
+    soup = BeautifulSoup(html, "html.parser")
+
+    for tag in soup(["script", "style", "noscript", "svg"]):
+        tag.decompose()
+
+    tokens = []
+
+    for item in soup.stripped_strings:
+        for pedaco in str(item).splitlines():
+            pedaco = limpar_espacos(
+                pedaco.replace("\xa0", " ")
+            )
+
+            if pedaco:
+                tokens.append(pedaco)
+
+    return tokens
+
+
+def token_tem_horario(token):
+    return re.search(
+        r"\b([01]?\d|2[0-3]):([0-5]\d)\b",
+        token
+    ) is not None
+
+
+def token_parece_inicio_evento(token):
+    """
+    O DPF normalmente usa o relogio antes de cada jogo.
+    Tambem aceitamos um token que contenha horario + texto, caso
+    o emoji seja removido ou separado por alguma mudanca pequena.
+    """
+    token = limpar_espacos(token)
+
+    if "🕗" in token:
+        return True
+
+    return bool(
+        re.match(
+            r"^([01]?\d|2[0-3]):([0-5]\d)\b",
+            token
+        )
+    )
+
+
+def extrair_horario_e_competicao(bloco):
+    """
+    Procura o horario e tenta obter o campeonato sem depender
+    de o horario e a competicao estarem na mesma tag.
+    """
+    hora = None
+    minuto = None
+    indice_horario = None
+    competicao_na_mesma_linha = ""
+
+    for i, token in enumerate(bloco):
+        resultado = re.search(
+            r"\b([01]?\d|2[0-3]):([0-5]\d)\b",
+            token
+        )
+
+        if not resultado:
+            continue
+
+        hora = resultado.group(1)
+        minuto = resultado.group(2)
+        indice_horario = i
+
+        resto = limpar_espacos(
+            token[resultado.end():]
+        )
+
+        resto = re.sub(
+            r"^[\s\-–—:|]+",
+            "",
+            resto
+        ).strip()
+
+        if resto:
+            competicao_na_mesma_linha = resto
+
+        break
+
+    if hora is None:
+        return None
+
+    return {
+        "hora": hora,
+        "minuto": minuto,
+        "indice_horario": indice_horario,
+        "competicao_mesma_linha": competicao_na_mesma_linha,
+    }
+
+
 def parse_dpf(html, data_json):
+    """
+    Parser tolerante do Doentes por Futebol.
+
+    Nao depende de classes CSS.
+    Aceita tanto HTML em que os dados estejam juntos quanto HTML
+    em que icone, horario, campeonato, jogo e canal estejam em tags
+    separadas.
+
+    Se nao for possivel identificar com seguranca:
+        simplesmente nao retorna aquele evento.
+    """
     linhas = linhas_da_pagina(html)
 
     if not pagina_parece_ser_do_dia(linhas, data_json):
         print("[DPF] data da pagina nao foi confirmada.")
         return []
 
-    eventos = []
+    tokens = tokens_da_pagina(html)
 
-    padrao_horario = re.compile(
-        r"^(?:🕗\s*)?(\d{1,2}):(\d{2})\s+(.+)$"
-    )
+    # Localiza todos os possiveis inicios de evento.
+    inicios = []
 
-    indices_eventos = []
+    for i, token in enumerate(tokens):
+        if token_parece_inicio_evento(token):
+            # Se o token for apenas o emoji, o horario deve aparecer
+            # logo depois. Isso evita interpretar icones soltos.
+            if token.strip() == "🕗":
+                janela = tokens[i + 1:i + 4]
 
-    for indice, linha in enumerate(linhas):
-        match = padrao_horario.match(linha)
-
-        if not match:
-            continue
-
-        hora, minuto, competicao = match.groups()
-
-        if int(hora) > 23 or int(minuto) > 59:
-            continue
-
-        indices_eventos.append(
-            (indice, hora, minuto, competicao)
-        )
-
-    for pos, (indice, hora, minuto, competicao) in enumerate(indices_eventos):
-        fim = (
-            indices_eventos[pos + 1][0]
-            if pos + 1 < len(indices_eventos)
-            else min(len(linhas), indice + 12)
-        )
-
-        bloco = linhas[indice + 1:fim]
-
-        times = None
-        canais = None
-
-        for linha in bloco:
-            if times is None:
-                tentativa = separar_times(linha)
-
-                if tentativa:
-                    times = tentativa
+                if not any(
+                    token_tem_horario(item)
+                    for item in janela
+                ):
                     continue
 
-            if (
-                linha.startswith("📺")
+            inicios.append(i)
+
+    eventos = []
+    chaves_vistas = set()
+
+    for posicao, inicio_bloco in enumerate(inicios):
+        fim_bloco = (
+            inicios[posicao + 1]
+            if posicao + 1 < len(inicios)
+            else min(
+                len(tokens),
+                inicio_bloco + 18
+            )
+        )
+
+        bloco = tokens[
+            inicio_bloco:fim_bloco
+        ]
+
+        dados_horario = extrair_horario_e_competicao(
+            bloco
+        )
+
+        if not dados_horario:
+            continue
+
+        hora = dados_horario["hora"]
+        minuto = dados_horario["minuto"]
+        indice_horario = dados_horario["indice_horario"]
+
+        # --------------------------------------------------------
+        # LOCALIZAR A LINHA DOS TIMES
+        # --------------------------------------------------------
+
+        indice_times = None
+        times = None
+
+        for i in range(
+            indice_horario,
+            len(bloco)
+        ):
+            tentativa = separar_times(
+                bloco[i]
+            )
+
+            if tentativa:
+                indice_times = i
+                times = tentativa
+                break
+
+        if not times:
+            continue
+
+        # --------------------------------------------------------
+        # COMPETICAO
+        # --------------------------------------------------------
+
+        competicao = dados_horario[
+            "competicao_mesma_linha"
+        ]
+
+        if not competicao:
+            candidatos_competicao = []
+
+            for token in bloco[
+                indice_horario + 1:
+                indice_times
+            ]:
+                token_limpo = limpar_espacos(
+                    token.replace("🕗", "")
+                )
+
+                if (
+                    token_limpo
+                    and not token_tem_horario(
+                        token_limpo
+                    )
+                    and "📺" not in token_limpo
+                ):
+                    candidatos_competicao.append(
+                        token_limpo
+                    )
+
+            # Em geral existe exatamente um token entre horario e jogo.
+            # Se houver mais, juntamos apenas os pequenos fragmentos
+            # imediatamente anteriores ao nome dos times.
+            if candidatos_competicao:
+                competicao = limpar_espacos(
+                    " ".join(
+                        candidatos_competicao[-3:]
+                    )
+                )
+
+        if not competicao:
+            continue
+
+        # --------------------------------------------------------
+        # CANAIS
+        # --------------------------------------------------------
+
+        canais = None
+
+        for i in range(
+            indice_times + 1,
+            len(bloco)
+        ):
+            token = bloco[i]
+
+            eh_linha_tv = (
+                "📺" in token
                 or re.match(
                     r"^(?:canais?|transmiss[aã]o)\s*:",
-                    linha,
+                    token,
                     flags=re.IGNORECASE,
                 )
-            ):
-                tentativa_canais = dividir_canais(linha)
+            )
 
-                if tentativa_canais:
-                    canais = tentativa_canais
-                    break
+            if not eh_linha_tv:
+                continue
 
-        if times and canais:
-            eventos.append({
-                "hora": minutos_do_dia(hora, minuto),
-                "casa": times[0],
-                "fora": times[1],
-                "competicao": limpar_espacos(competicao),
-                "canais": canais,
-            })
+            # Pode ser:
+            #   "📺 ESPN"
+            # ou
+            #   "📺"
+            #   "ESPN"
+            tentativa = dividir_canais(
+                token
+            )
+
+            if not tentativa:
+                proximos = []
+
+                for seguinte in bloco[
+                    i + 1:i + 4
+                ]:
+                    if token_parece_inicio_evento(
+                        seguinte
+                    ):
+                        break
+
+                    if separar_times(
+                        seguinte
+                    ):
+                        break
+
+                    if seguinte.strip() == "📺":
+                        continue
+
+                    proximos.append(
+                        seguinte
+                    )
+
+                if proximos:
+                    tentativa = dividir_canais(
+                        " ".join(
+                            proximos
+                        )
+                    )
+
+            if tentativa:
+                canais = tentativa
+                break
+
+        if not canais:
+            continue
+
+        evento = {
+            "hora": minutos_do_dia(
+                hora,
+                minuto
+            ),
+            "casa": times[0],
+            "fora": times[1],
+            "competicao": competicao,
+            "canais": canais,
+        }
+
+        # Evita duplicatas caso o HTML contenha a mesma informacao
+        # em versao desktop e mobile.
+        chave = (
+            evento["hora"],
+            normalizar_time(
+                evento["casa"]
+            ),
+            normalizar_time(
+                evento["fora"]
+            ),
+            normalizar_competicao(
+                evento["competicao"]
+            ),
+        )
+
+        if chave in chaves_vistas:
+            continue
+
+        chaves_vistas.add(chave)
+        eventos.append(evento)
 
     return eventos
-
 
 def parse_mantos(html, data_json):
     linhas = linhas_da_pagina(html)
@@ -917,7 +1187,7 @@ def salvar_atomico(dados):
 # ============================================================
 
 def main():
-    print("=== LUBU - Atualizacao de transmissoes ===")
+    print("=== LUBU - Atualizacao de transmissoes v2 ===")
 
     try:
         with open(
