@@ -130,6 +130,13 @@ ALIASES_TIMES = {
     "dc united": "dc united",
 
     "los angeles fc": "los angeles fc",
+
+    # Sul-Americana / Libertadores
+    "atletico torque": "montevideo city torque",
+    "montevideo city torque": "montevideo city torque",
+
+    "independiente santa fe": "santa fe",
+    "santa fe": "santa fe",
 }
 
 
@@ -1081,6 +1088,100 @@ def encontrar_evento(jogo, eventos):
 
 
 # ============================================================
+# MATCH EXATO SEM HORARIO
+# ============================================================
+
+def encontrar_evento_exato_sem_horario(
+    jogo,
+    eventos
+):
+    """
+    Fallback usado SOMENTE quando as duas fontes estao saudaveis.
+
+    Serve para casos em que uma fonte publicou horario incorreto,
+    mas time da casa + visitante + competicao batem exatamente.
+
+    Regras:
+      - casa exata apos normalizacao/aliases;
+      - visitante exato;
+      - competicao exata;
+      - precisa existir exatamente UM candidato na fonte.
+
+    Nunca e usado sozinho para aceitar uma transmissao.
+    """
+
+    casa = normalizar_time(
+        jogo.get(
+            "casa",
+            {}
+        ).get(
+            "nome",
+            ""
+        )
+    )
+
+    fora = normalizar_time(
+        jogo.get(
+            "fora",
+            {}
+        ).get(
+            "nome",
+            ""
+        )
+    )
+
+    competicao = normalizar_competicao(
+        jogo.get(
+            "campeonato",
+            {}
+        ).get(
+            "nome",
+            ""
+        )
+    )
+
+    if not casa or not fora or not competicao:
+        return None
+
+    candidatos = []
+
+    for evento in eventos:
+
+        if normalizar_time(
+            evento.get(
+                "casa",
+                ""
+            )
+        ) != casa:
+            continue
+
+        if normalizar_time(
+            evento.get(
+                "fora",
+                ""
+            )
+        ) != fora:
+            continue
+
+        if normalizar_competicao(
+            evento.get(
+                "competicao",
+                ""
+            )
+        ) != competicao:
+            continue
+
+        candidatos.append(
+            evento
+        )
+
+    if len(candidatos) != 1:
+        return None
+
+    return candidatos[0]
+
+
+# ============================================================
 # CONFIRMACAO ENTRE AS DUAS FONTES
 # ============================================================
 
@@ -1218,27 +1319,27 @@ def montar_transmissao(
 
 def confirmar_transmissao(jogo, fontes):
     """
-    Regras:
+    Versao 4 - cobertura maxima com protecao contra falso positivo.
 
-    1) Se DPF E Mantos encontrarem o jogo:
-       grava somente os canais presentes nas DUAS fontes.
+    REGRA A - jogo encontrado nas DUAS fontes:
+      - usamos a UNIAO dos canais.
+      - se um canal aparece nas duas, fonte = "DPF + Mantos".
+      - se aparece so em uma, guardamos a fonte correspondente.
 
-    2) Se apenas UMA fonte encontrar o jogo:
-       aceita somente se a correspondencia for ESTRITA:
-       times + competicao + horario praticamente exatos.
+    REGRA B - horario diverge em uma fonte:
+      - tentamos casar por times + competicao EXATOS.
+      - isso so vale quando as DUAS fontes reconhecem o mesmo jogo.
+      - se os horarios divergem, exigimos pelo menos UM canal em comum
+        antes de aceitar a uniao.
 
-    3) Se as duas encontrarem, mas nao concordarem em nenhum canal:
-       conflito -> nao inventa nada.
-
-    Importante:
-    o main() continua exigindo que as DUAS fontes estejam online
-    e tenham sido parseadas com sucesso antes de modificar o JSON.
-    Portanto fonte unica significa "uma fonte nao listou esse jogo",
-    e nao "um dos sites esta fora do ar".
+    REGRA C - apenas UMA fonte possui o jogo:
+      - mantemos a regra rigorosa da v3:
+        times + competicao + horario (max. 5 min) exatos.
     """
 
     encontrados = {}
 
+    # Match normal com horario.
     for nome_fonte, eventos in fontes.items():
 
         evento = encontrar_evento(
@@ -1253,9 +1354,29 @@ def confirmar_transmissao(jogo, fontes):
             ] = evento
 
 
-    # ========================================================
-    # NENHUMA FONTE ENCONTROU
-    # ========================================================
+    # Fallback exato sem horario.
+    if (
+        len(fontes) >= 2
+        and
+        len(encontrados) < 2
+    ):
+
+        for nome_fonte, eventos in fontes.items():
+
+            if nome_fonte in encontrados:
+                continue
+
+            evento = encontrar_evento_exato_sem_horario(
+                jogo,
+                eventos
+            )
+
+            if evento:
+
+                encontrados[
+                    nome_fonte
+                ] = evento
+
 
     if not encontrados:
 
@@ -1271,14 +1392,7 @@ def confirmar_transmissao(jogo, fontes):
         }
 
 
-    # ========================================================
-    # APENAS UMA FONTE ENCONTROU
-    # ========================================================
-    #
-    # Antes o script parava aqui.
-    # Agora usamos um fallback MUITO rigoroso.
-    # ========================================================
-
+    # Apenas uma fonte -> regra estrita com horario.
     if len(
         encontrados
     ) == 1:
@@ -1338,40 +1452,70 @@ def confirmar_transmissao(jogo, fontes):
         }
 
 
-    # ========================================================
-    # DUAS FONTES ENCONTRARAM O JOGO
-    # ========================================================
+    # Duas fontes.
+    canais_por_fonte = {}
 
-    votos = Counter()
+    for nome_fonte, evento in encontrados.items():
 
-    for evento in encontrados.values():
-
-        for canal in set(
-            evento[
-                "canais"
-            ]
-        ):
-
-            votos[
-                canal
-            ] += 1
+        canais_por_fonte[
+            nome_fonte
+        ] = set(
+            evento.get(
+                "canais",
+                []
+            )
+        )
 
 
-    canais_confirmados = sorted(
+    nomes_fontes = list(
+        canais_por_fonte.keys()
+    )
 
-        canal
+    primeira = canais_por_fonte[
+        nomes_fontes[0]
+    ]
 
-        for canal, quantidade
-        in votos.items()
+    segunda = canais_por_fonte[
+        nomes_fontes[1]
+    ]
 
-        if quantidade
-        >=
-        CONFIRMACOES_MINIMAS
+    comuns = (
+        primeira
+        &
+        segunda
     )
 
 
-    # As duas acharam a partida, mas nao concordaram em canal.
-    if not canais_confirmados:
+    # Verifica se alguma fonte divergiu bastante do horario do JSON.
+    horario_json = horario_brasilia_do_jogo(
+        jogo
+    )
+
+    horarios_divergentes = False
+
+    if horario_json is not None:
+
+        for evento in encontrados.values():
+
+            if diferenca_minutos(
+                horario_json,
+                evento.get(
+                    "hora",
+                    horario_json
+                )
+            ) > TOLERANCIA_HORARIO_MINUTOS:
+
+                horarios_divergentes = True
+                break
+
+
+    # Se houve divergencia forte de horario, so aceita se as fontes
+    # concordarem em pelo menos um canal.
+    if (
+        horarios_divergentes
+        and
+        not comuns
+    ):
 
         return {
             "status":
@@ -1385,10 +1529,66 @@ def confirmar_transmissao(jogo, fontes):
         }
 
 
-    transmissao = montar_transmissao(
-        canais_confirmados,
-        "DPF + Mantos"
+    # Uniao dos canais.
+    todos_canais = sorted(
+        set().union(
+            *canais_por_fonte.values()
+        )
     )
+
+    transmissao = []
+
+    for canal in todos_canais:
+
+        fontes_canal = [
+
+            nome_fonte
+
+            for nome_fonte, canais
+            in canais_por_fonte.items()
+
+            if canal in canais
+        ]
+
+
+        if len(
+            fontes_canal
+        ) >= 2:
+
+            fonte_canal = "DPF + Mantos"
+
+        else:
+
+            fonte_canal = fontes_canal[
+                0
+            ]
+
+
+        transmissao.append(
+            {
+                "canal":
+                    nome_exibicao_canal(
+                        canal
+                    ),
+
+                "fonte":
+                    fonte_canal,
+            }
+        )
+
+
+    if not transmissao:
+
+        return {
+            "status":
+                "conflito",
+
+            "transmissao":
+                [],
+
+            "fontes":
+                encontrados,
+        }
 
 
     return {
@@ -1456,7 +1656,7 @@ def salvar_atomico(dados):
 # ============================================================
 
 def main():
-    print("=== LUBU - Atualizacao de transmissoes v3 ===")
+    print("=== LUBU - Atualizacao de transmissoes v4 ===")
 
     try:
         with open(
