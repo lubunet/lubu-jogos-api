@@ -1,7 +1,7 @@
 {
   "versao": 11,
   "data": "2026-08-19",
-  "gerado_em": "2026-08-19T11:46:29.265187-04:00",
+  "gerado_em": "2026-08-19T12:38:34.855452-04:00",
   "timezone_referencia": "America/Cuiaba",
   "periodo": {
     "inicio": "00:00",
@@ -99,9 +99,9 @@
         "horario": "12:15"
       },
       "status": {
-        "codigo": "NS",
-        "descricao": "Not Started",
-        "minuto": null
+        "codigo": "1H",
+        "descricao": "First Half",
+        "minuto": 23
       },
       "campeonato": {
         "id": 504,
@@ -117,19 +117,19 @@
         "nome": "Damac",
         "logo": "https://media.api-sports.io/football/teams/2956.png",
         "vencedor": null,
-        "gols": null
+        "gols": 0
       },
       "fora": {
         "id": 2936,
         "nome": "Al Taawon",
         "logo": "https://media.api-sports.io/football/teams/2936.png",
         "vencedor": null,
-        "gols": null
+        "gols": 0
       },
       "placar": {
         "intervalo": {
-          "home": null,
-          "away": null
+          "home": 0,
+          "away": 0
         },
         "final": {
           "home": null,
@@ -161,9 +161,9 @@
         "horario": "12:30"
       },
       "status": {
-        "codigo": "NS",
-        "descricao": "Not Started",
-        "minuto": null
+        "codigo": "1H",
+        "descricao": "First Half",
+        "minuto": 8
       },
       "campeonato": {
         "id": 504,
@@ -178,20 +178,20 @@
         "id": 2947,
         "nome": "Jeddah Club",
         "logo": "https://media.api-sports.io/football/teams/2947.png",
-        "vencedor": null,
-        "gols": null
+        "vencedor": false,
+        "gols": 0
       },
       "fora": {
         "id": 10509,
         "nome": "Al Kholood",
         "logo": "https://media.api-sports.io/football/teams/10509.png",
-        "vencedor": null,
-        "gols": null
+        "vencedor": true,
+        "gols": 1
       },
       "placar": {
         "intervalo": {
-          "home": null,
-          "away": null
+          "home": 0,
+          "away": 1
         },
         "final": {
           "home": null,
