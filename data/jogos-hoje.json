@@ -397,7 +397,16 @@
         "nome": "Celtic Park",
         "cidade": "Glasgow"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "HBO Max",
+          "fonte": "DPF + Mantos"
+        },
+        {
+          "canal": "Space",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1622623,
@@ -521,7 +530,16 @@
         "nome": "Goffertstadion",
         "cidade": "Nijmegen"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "HBO Max",
+          "fonte": "DPF + Mantos"
+        },
+        {
+          "canal": "TNT",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1622625,
@@ -583,7 +601,12 @@
         "nome": null,
         "cidade": "Bratislava"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "HBO Max",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1543986,
@@ -715,7 +738,12 @@
         "nome": null,
         "cidade": null
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Paulistão",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1547765,
@@ -777,7 +805,12 @@
         "nome": "Estadio General Pablo Rojas",
         "cidade": null
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Paramount+",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1547766,
@@ -839,7 +872,12 @@
         "nome": null,
         "cidade": "Coquimbo"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Paramount+",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1607200,
@@ -901,7 +939,12 @@
         "nome": "MRV Arena",
         "cidade": "Belo Horizonte"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "ESPN",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1520821,
@@ -963,7 +1006,12 @@
         "nome": "Ressacada",
         "cidade": null
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Disney+",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1520824,
@@ -1025,7 +1073,20 @@
         "nome": null,
         "cidade": "Fortaleza"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "ESPN 4",
+          "fonte": "DPF + Mantos"
+        },
+        {
+          "canal": "SportyNet",
+          "fonte": "DPF + Mantos"
+        },
+        {
+          "canal": "XSports",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1490391,
@@ -1087,7 +1148,12 @@
         "nome": "Subaru Park",
         "cidade": "Philadelphia"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Apple TV",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1490392,
@@ -1149,7 +1215,12 @@
         "nome": "TQL Stadium",
         "cidade": "Cincinnati"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Apple TV",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1490393,
@@ -1211,7 +1282,12 @@
         "nome": "ScottsMiracle-Gro Field",
         "cidade": "Columbus"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Apple TV",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1490394,
@@ -1273,7 +1349,12 @@
         "nome": "Sports Illustrated Stadium",
         "cidade": "Harrison"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Apple TV",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1490395,
@@ -1335,7 +1416,12 @@
         "nome": "Exploria Stadium",
         "cidade": "Orlando"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Apple TV",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1490396,
@@ -1459,7 +1545,12 @@
         "nome": "Audi Field",
         "cidade": "Washington"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Apple TV",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1520823,
@@ -1521,7 +1612,12 @@
         "nome": "Arena Pantanal",
         "cidade": null
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Disney+",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1520829,
@@ -1583,7 +1679,12 @@
         "nome": null,
         "cidade": null
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Disney+",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1490398,
@@ -1645,7 +1746,12 @@
         "nome": "Children's Mercy Park",
         "cidade": "Kansas City"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Apple TV",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1490399,
@@ -1707,7 +1813,12 @@
         "nome": "Allianz Field",
         "cidade": "Saint Paul"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Apple TV",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1520822,
@@ -1769,7 +1880,12 @@
         "nome": "Estadio Santa Cruz",
         "cidade": "Ribeirao Preto"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "ESPN 4",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1547768,
@@ -1831,7 +1947,20 @@
         "nome": null,
         "cidade": "Rio de Janeiro"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "GE TV",
+          "fonte": "DPF + Mantos"
+        },
+        {
+          "canal": "Globo",
+          "fonte": "DPF + Mantos"
+        },
+        {
+          "canal": "Paramount+",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1606079,
@@ -2017,7 +2146,12 @@
         "nome": "Dick's Sporting Goods Park",
         "cidade": "Trade City"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Apple TV",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1490401,
@@ -2079,7 +2213,12 @@
         "nome": "Lumen Field",
         "cidade": "Seattle"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Apple TV",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1490402,
@@ -2203,7 +2342,12 @@
         "nome": "Dignity Health Sports Park",
         "cidade": "Los Angeles"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Apple TV",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1490404,
@@ -2327,7 +2471,12 @@
         "nome": "Providence Park",
         "cidade": "Portland"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Apple TV",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     }
   ]
 }
