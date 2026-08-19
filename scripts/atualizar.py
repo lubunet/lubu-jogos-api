@@ -199,6 +199,34 @@ COMPETICOES_EXATAS_POR_PAIS = {
 
 
 # ============================================================
+# INTERNACIONAIS QUE ENTRAM NA GRADE "ESTILO GE BRASIL"
+# ============================================================
+#
+# A regra aqui é proposital:
+# - Libertadores e Sul-Americana entram com TODOS os jogos,
+#   mesmo quando nenhum dos dois times é brasileiro.
+# - Recopa e torneios mundiais de clubes também entram.
+# - Ligas estrangeiras (MLS, La Liga, Premier League etc.) não entram.
+# - Competições UEFA também ficam fora desta grade focada no Brasil.
+#
+# Isso evita a "gringaiada" da MLS/Apple TV, mas mantém a rodada
+# COMPLETA da Libertadores/Sul-Americana, igual ao comportamento
+# que você mostrou no ge.
+# ============================================================
+
+COMPETICOES_INTERNACIONAIS_GE_BRASIL = {
+    "conmebol libertadores",
+    "conmebol sudamericana",
+    "conmebol recopa",
+    "recopa sudamericana",
+    "fifa club world cup",
+    "club world cup",
+    "fifa intercontinental cup",
+    "intercontinental cup",
+}
+
+
+# ============================================================
 # BRASILEIRO SUB-17
 # ============================================================
 
@@ -807,106 +835,112 @@ def competicao_relevante(
         pais
     )
 
-    ids_times_brasileiros = (
-        ids_times_brasileiros
-        or set()
-    )
-
 
     # ========================================================
-    # AMISTOSOS
-    # ========================================================
-    #
-    # O objetivo da grade e seguir campeonatos/categorias.
-    # Amistosos continuam fora para nao poluir a lista.
+    # EXCECAO QUE VOCE JA TINHA PEDIDO:
+    # BRASILEIRO SUB-17
     # ========================================================
 
-    if contem_algum(
-        nome_n,
-        (
-            "friendly",
-            "friendlies",
-            "amistoso",
-            "amistosos",
-        )
+    if eh_brasileiro_u17(
+        nome,
+        pais,
+        campeonato_id
     ):
-
-        return False
-
-
-    # ========================================================
-    # 1. TODAS AS CATEGORIAS DO BRASIL
-    # ========================================================
-    #
-    # Se a propria API classifica a competicao como Brazil,
-    # entra automaticamente.
-    #
-    # Isso inclui:
-    #
-    # - Serie A / B / C / D
-    # - Copa do Brasil
-    # - feminino
-    # - Sub-20 / Sub-17 / outras bases
-    # - Copa Paulista
-    # - estaduais
-    # - A2 / A3 / A4 e outras divisoes estaduais
-    # - copas regionais
-    #
-    # Nao usamos mais uma whitelist curta, porque ela fazia
-    # categorias validas desaparecerem da grade.
-    # ========================================================
-
-    if pais_n == "brazil":
 
         return True
 
 
     # ========================================================
-    # 2. LIGAS ESTRANGEIRAS
+    # NAO QUEREMOS OUTRAS CATEGORIAS DE BASE
     # ========================================================
     #
-    # Premier League, MLS, La Liga, Bundesliga etc. nao entram.
+    # Ex.:
+    # Cearense U20
+    # Pernambucano U20
+    # U19 / U21 / reservas etc.
+    #
+    # O Brasileiro Sub-17 acima continua sendo a excecao.
     # ========================================================
 
-    if pais_n != "world":
-
-        return False
-
-
-    # ========================================================
-    # 3. COMPETICOES INTERNACIONAIS
-    # ========================================================
-    #
-    # Libertadores, Sul-Americana, Mundial etc. podem vir como
-    # "World" na API.
-    #
-    # Como a grade deve mostrar SOMENTE jogos entre times do
-    # Brasil, os DOIS participantes precisam estar cadastrados
-    # como brasileiros.
-    #
-    # Exemplos:
-    #
-    # Atletico-MG x Bragantino  -> entra
-    # Flamengo x Cruzeiro       -> entra
-    #
-    # Cerro Porteno x Palmeiras -> nao entra
-    # Flamengo x River Plate    -> nao entra
-    # Real Madrid x Liverpool   -> nao entra
-    # ========================================================
-
-    if (
-        time_casa_id not in ids_times_brasileiros
-        or
-        time_fora_id not in ids_times_brasileiros
+    if contem_algum(
+        nome_n,
+        BLOQUEADOS
     ):
 
         return False
 
 
-    # Nao restringimos o nome do campeonato internacional.
-    # Se for "World" e os dois times forem brasileiros,
-    # a categoria entra automaticamente.
-    return True
+    # ========================================================
+    # NAO QUEREMOS DIVISOES ESTADUAIS MENORES
+    # ========================================================
+    #
+    # Ex.: Capixaba B, Paulista A2/A3/A4 etc.
+    # ========================================================
+
+    if contem_algum(
+        nome_n,
+        DIVISOES_INFERIORES
+    ):
+
+        return False
+
+
+    # ========================================================
+    # COMPETICOES BRASILEIRAS PRINCIPAIS
+    # ========================================================
+    #
+    # Serie A/B/C/D, Copa do Brasil, Copa do Nordeste,
+    # Copa Verde, estaduais principais e Copa Paulista.
+    # ========================================================
+
+    if pais_n == "brazil":
+
+        return contem_algum(
+            nome_n,
+            COMPETICOES_BRASIL
+        )
+
+
+    # ========================================================
+    # INTERNACIONAIS RELEVANTES PARA A GRADE BRASILEIRA
+    # ========================================================
+    #
+    # IMPORTANTE:
+    # Aqui NAO filtramos pelos times.
+    #
+    # Portanto entram TODOS os jogos da Libertadores e
+    # Sul-Americana do dia:
+    #
+    # Coquimbo Unido x Platense       -> entra
+    # Cerro Porteno x Palmeiras       -> entra
+    # Flamengo x Cruzeiro             -> entra
+    #
+    # Atletico-MG x Bragantino        -> entra
+    # Montevideo City Torque x Tigre  -> entra
+    # Santa Fe x River Plate          -> entra
+    #
+    # Isso corrige o erro da versao anterior, que exigia
+    # dois times brasileiros e deixava apenas alguns jogos.
+    # ========================================================
+
+    if pais_n == "world":
+
+        return (
+            nome_n
+            in
+            COMPETICOES_INTERNACIONAIS_GE_BRASIL
+        )
+
+
+    # ========================================================
+    # LIGAS DE OUTROS PAISES
+    # ========================================================
+    #
+    # MLS, La Liga, Premier League, Serie A italiana etc.
+    # nao entram nesta grade.
+    # ========================================================
+
+    return False
 
 
 # ============================================================
@@ -2187,7 +2221,7 @@ lista_campeonatos.sort(
 saida = {
 
     "versao":
-        14,
+        15,
 
 
     "data":
@@ -2301,6 +2335,20 @@ print(
 print(
     f"{len(lista_campeonatos)} campeonatos."
 )
+
+
+if lista_campeonatos:
+
+    print(
+        "Campeonatos incluidos:"
+    )
+
+    for campeonato_log in lista_campeonatos:
+
+        print(
+            f" - {campeonato_log.get('nome')} "
+            f"({campeonato_log.get('quantidade_jogos')} jogo(s))"
+        )
 
 
 if tem_brasileiro_u17:
