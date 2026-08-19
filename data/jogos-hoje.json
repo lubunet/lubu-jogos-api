@@ -259,7 +259,12 @@
         "nome": "Estadio General Pablo Rojas",
         "cidade": null
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Paramount+",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1547766,
@@ -321,7 +326,12 @@
         "nome": null,
         "cidade": "Coquimbo"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Paramount+",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1607200,
