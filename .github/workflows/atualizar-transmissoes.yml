@@ -1,0 +1,63 @@
+name: Atualizar transmissoes
+
+on:
+
+  workflow_dispatch:
+
+  schedule:
+
+    - cron: "10 1,13,18 * * *"
+      timezone: "America/Cuiaba"
+
+
+permissions:
+  contents: write
+
+
+jobs:
+
+  atualizar:
+
+    runs-on: ubuntu-latest
+
+
+    steps:
+
+      - name: Baixar repositorio
+        uses: actions/checkout@v4
+
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+
+      - name: Instalar dependencias
+        run: |
+          pip install requests beautifulsoup4
+
+
+      - name: Buscar transmissoes
+        run: |
+          python scripts/atualizar_transmissoes.py
+
+
+      - name: Salvar transmissoes no GitHub
+        run: |
+
+          git config user.name "LUBU Bot"
+          git config user.email "lubu-bot@users.noreply.github.com"
+
+          git add data/jogos-hoje.json
+
+          if git diff --cached --quiet; then
+
+            echo "Nenhuma alteracao encontrada."
+
+          else
+
+            git commit -m "Atualizar transmissoes"
+            git push
+
+          fi
