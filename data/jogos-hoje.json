@@ -241,7 +241,16 @@
         "nome": "Estadio Bellavista",
         "cidade": "Ambato"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Disney+",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "ESPN",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1607202,
@@ -303,7 +312,12 @@
         "nome": "Estadio Osvaldo Dominguez Dibb",
         "cidade": null
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Paramount+",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1520820,
@@ -365,7 +379,12 @@
         "nome": null,
         "cidade": "Minas Gerais"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Disney+",
+          "fonte": "DPF"
+        }
+      ]
     },
     {
       "id": 1520828,
@@ -489,7 +508,16 @@
         "nome": "Neo Quimica Arena",
         "cidade": "Sao Paulo"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Disney+",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "ESPN",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1607201,
@@ -551,7 +579,12 @@
         "nome": "Estadio Olimpico Nilton Santos",
         "cidade": "Rio de Janeiro"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Paramount+",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     }
   ]
 }
