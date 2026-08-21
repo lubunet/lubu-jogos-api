@@ -85,7 +85,20 @@
         "nome": "Prince Faisal bin Fahd Stadium",
         "cidade": "Riyadh"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "GOAT",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "SporTV 2",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "XSports",
+          "fonte": "DPF"
+        }
+      ]
     },
     {
       "id": 1602983,
@@ -209,7 +222,20 @@
         "nome": "Al Majma'ah Sport City",
         "cidade": "Al Majmaah"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "BandSports",
+          "fonte": "DPF + Mantos"
+        },
+        {
+          "canal": "Esporte na Band",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "GOAT",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1602985,
@@ -271,7 +297,16 @@
         "nome": "EGO Stadium",
         "cidade": "Dammam"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "GOAT",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "SporTV",
+          "fonte": "DPF"
+        }
+      ]
     }
   ]
 }
