@@ -1,7 +1,7 @@
 {
-  "versao": 15,
+  "versao": 16,
   "data": "2026-08-21",
-  "gerado_em": "2026-08-21T12:47:19.410261-04:00",
+  "gerado_em": "2026-08-21T14:37:31.118971-04:00",
   "timezone_referencia": "America/Cuiaba",
   "periodo": {
     "inicio": "00:00",
@@ -12,8 +12,266 @@
     "formato": "Unix timestamp",
     "observacao": "Converter usando o mesmo timezone/offset configurado para o EPG."
   },
-  "quantidade_campeonatos": 0,
-  "quantidade_jogos": 0,
-  "campeonatos": [],
-  "jogos": []
+  "quantidade_campeonatos": 1,
+  "quantidade_jogos": 4,
+  "campeonatos": [
+    {
+      "id": 307,
+      "nome": "Pro League",
+      "pais": "Saudi-Arabia",
+      "logo": "https://media.api-sports.io/football/leagues/307.png",
+      "bandeira": "https://media.api-sports.io/flags/sa.svg",
+      "quantidade_jogos": 4
+    }
+  ],
+  "jogos": [
+    {
+      "id": 1602982,
+      "timestamp": 1787328000,
+      "inicio_utc": "2026-08-21T16:00:00Z",
+      "horario_referencia": {
+        "timezone": "America/Cuiaba",
+        "data": "2026-08-21",
+        "horario": "12:00"
+      },
+      "status": {
+        "codigo": "FT",
+        "descricao": "Match Finished",
+        "minuto": 90
+      },
+      "campeonato": {
+        "id": 307,
+        "nome": "Pro League",
+        "pais": "Saudi-Arabia",
+        "logo": "https://media.api-sports.io/football/leagues/307.png",
+        "bandeira": "https://media.api-sports.io/flags/sa.svg",
+        "temporada": 2026,
+        "rodada": "Regular Season - 2"
+      },
+      "casa": {
+        "id": 10511,
+        "nome": "Al Riyadh",
+        "logo": "https://media.api-sports.io/football/teams/10511.png",
+        "vencedor": false,
+        "gols": 0
+      },
+      "fora": {
+        "id": 2939,
+        "nome": "Al-Nassr",
+        "logo": "https://media.api-sports.io/football/teams/2939.png",
+        "vencedor": true,
+        "gols": 4
+      },
+      "placar": {
+        "intervalo": {
+          "home": 0,
+          "away": 2
+        },
+        "final": {
+          "home": 0,
+          "away": 4
+        },
+        "prorrogacao": {
+          "home": null,
+          "away": null
+        },
+        "penaltis": {
+          "home": null,
+          "away": null
+        }
+      },
+      "estadio": {
+        "id": 1374,
+        "nome": "Prince Faisal bin Fahd Stadium",
+        "cidade": "Riyadh"
+      },
+      "transmissao": []
+    },
+    {
+      "id": 1602983,
+      "timestamp": 1787328900,
+      "inicio_utc": "2026-08-21T16:15:00Z",
+      "horario_referencia": {
+        "timezone": "America/Cuiaba",
+        "data": "2026-08-21",
+        "horario": "12:15"
+      },
+      "status": {
+        "codigo": "FT",
+        "descricao": "Match Finished",
+        "minuto": 90
+      },
+      "campeonato": {
+        "id": 307,
+        "nome": "Pro League",
+        "pais": "Saudi-Arabia",
+        "logo": "https://media.api-sports.io/football/leagues/307.png",
+        "bandeira": "https://media.api-sports.io/flags/sa.svg",
+        "temporada": 2026,
+        "rodada": "Regular Season - 2"
+      },
+      "casa": {
+        "id": 2945,
+        "nome": "Al-Hazm",
+        "logo": "https://media.api-sports.io/football/teams/2945.png",
+        "vencedor": false,
+        "gols": 0
+      },
+      "fora": {
+        "id": 26738,
+        "nome": "Al Diriyah",
+        "logo": "https://media.api-sports.io/football/teams/26738.png",
+        "vencedor": true,
+        "gols": 1
+      },
+      "placar": {
+        "intervalo": {
+          "home": 0,
+          "away": 1
+        },
+        "final": {
+          "home": 0,
+          "away": 1
+        },
+        "prorrogacao": {
+          "home": null,
+          "away": null
+        },
+        "penaltis": {
+          "home": null,
+          "away": null
+        }
+      },
+      "estadio": {
+        "id": null,
+        "nome": "Al-Hazem Club Stadium",
+        "cidade": "Ar Rass"
+      },
+      "transmissao": []
+    },
+    {
+      "id": 1602984,
+      "timestamp": 1787335200,
+      "inicio_utc": "2026-08-21T18:00:00Z",
+      "horario_referencia": {
+        "timezone": "America/Cuiaba",
+        "data": "2026-08-21",
+        "horario": "14:00"
+      },
+      "status": {
+        "codigo": "1H",
+        "descricao": "First Half",
+        "minuto": 37
+      },
+      "campeonato": {
+        "id": 307,
+        "nome": "Pro League",
+        "pais": "Saudi-Arabia",
+        "logo": "https://media.api-sports.io/football/leagues/307.png",
+        "bandeira": "https://media.api-sports.io/flags/sa.svg",
+        "temporada": 2026,
+        "rodada": "Regular Season - 2"
+      },
+      "casa": {
+        "id": 2930,
+        "nome": "Al-Faisaly FC",
+        "logo": "https://media.api-sports.io/football/teams/2930.png",
+        "vencedor": null,
+        "gols": 0
+      },
+      "fora": {
+        "id": 10513,
+        "nome": "NEOM",
+        "logo": "https://media.api-sports.io/football/teams/10513.png",
+        "vencedor": null,
+        "gols": 0
+      },
+      "placar": {
+        "intervalo": {
+          "home": 0,
+          "away": 0
+        },
+        "final": {
+          "home": null,
+          "away": null
+        },
+        "prorrogacao": {
+          "home": null,
+          "away": null
+        },
+        "penaltis": {
+          "home": null,
+          "away": null
+        }
+      },
+      "estadio": {
+        "id": null,
+        "nome": "Al Majma'ah Sport City",
+        "cidade": "Al Majmaah"
+      },
+      "transmissao": []
+    },
+    {
+      "id": 1602985,
+      "timestamp": 1787335200,
+      "inicio_utc": "2026-08-21T18:00:00Z",
+      "horario_referencia": {
+        "timezone": "America/Cuiaba",
+        "data": "2026-08-21",
+        "horario": "14:00"
+      },
+      "status": {
+        "codigo": "1H",
+        "descricao": "First Half",
+        "minuto": 37
+      },
+      "campeonato": {
+        "id": 307,
+        "nome": "Pro League",
+        "pais": "Saudi-Arabia",
+        "logo": "https://media.api-sports.io/football/leagues/307.png",
+        "bandeira": "https://media.api-sports.io/flags/sa.svg",
+        "temporada": 2026,
+        "rodada": "Regular Season - 2"
+      },
+      "casa": {
+        "id": 2933,
+        "nome": "Al-Qadisiyah FC",
+        "logo": "https://media.api-sports.io/football/teams/2933.png",
+        "vencedor": null,
+        "gols": 0
+      },
+      "fora": {
+        "id": 2938,
+        "nome": "Al-Ittihad FC",
+        "logo": "https://media.api-sports.io/football/teams/2938.png",
+        "vencedor": null,
+        "gols": 0
+      },
+      "placar": {
+        "intervalo": {
+          "home": 0,
+          "away": 0
+        },
+        "final": {
+          "home": null,
+          "away": null
+        },
+        "prorrogacao": {
+          "home": null,
+          "away": null
+        },
+        "penaltis": {
+          "home": null,
+          "away": null
+        }
+      },
+      "estadio": {
+        "id": null,
+        "nome": "EGO Stadium",
+        "cidade": "Dammam"
+      },
+      "transmissao": []
+    }
+  ]
 }
