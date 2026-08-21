@@ -137,6 +137,22 @@ ALIASES_TIMES = {
 
     "independiente santa fe": "santa fe",
     "santa fe": "santa fe",
+
+    # Saudi Pro League
+    "al faisaly": "al faisaly",
+    "al faysaly": "al faisaly",
+
+    "al qadisiyah": "al qadsiah",
+    "al qadsiah": "al qadsiah",
+
+    "al riyadh": "al riyadh",
+    "al nassr": "al nassr",
+
+    "al ittihad": "al ittihad",
+    "neom": "neom",
+
+    "al hazm": "al hazm",
+    "al diriyah": "al diriyah",
 }
 
 
@@ -189,6 +205,12 @@ ALIASES_CANAIS = {
     "onefootball": "onefootball",
     "prime video": "prime video",
     "amazon prime video": "prime video",
+
+    # Canais usados na cobertura da Liga Saudita
+    "goat": "goat",
+    "bandsports": "bandsports",
+    "band sports": "bandsports",
+    "esporte na band": "esporte na band",
 }
 
 EXIBICAO_CANAIS = {
@@ -211,6 +233,9 @@ EXIBICAO_CANAIS = {
     "apple tv": "Apple TV",
     "onefootball": "OneFootball",
     "prime video": "Prime Video",
+    "goat": "GOAT",
+    "bandsports": "BandSports",
+    "esporte na band": "Esporte na Band",
 }
 
 PERFIS_YOUTUBE = {
@@ -219,6 +244,10 @@ PERFIS_YOUTUBE = {
     "cazetv": "caze tv",
     "paulistao": "paulistao",
     "sportynetbrasil": "sportynet",
+
+    # GOAT
+    "canalgoatbr": "goat",
+    "maiscanalgoatbr": "goat",
 }
 
 
@@ -326,6 +355,16 @@ def normalizar_competicao(nome):
         (("la liga", "laliga", "campeonato espanhol"), "la liga"),
         (("major league soccer", "mls"), "mls"),
         (("king s cup", "kings cup"), "kings cup"),
+
+        (
+            (
+                "pro league",
+                "saudi pro league",
+                "liga saudita",
+                "campeonato saudita",
+            ),
+            "saudi pro league",
+        ),
     )
 
     for termos, canonico in regras:
@@ -1656,7 +1695,7 @@ def salvar_atomico(dados):
 # ============================================================
 
 def main():
-    print("=== LUBU - Atualizacao de transmissoes v4 ===")
+    print("=== LUBU - Atualizacao de transmissoes v5 ===")
 
     try:
         with open(
