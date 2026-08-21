@@ -902,6 +902,24 @@ def competicao_relevante(
 
 
     # ========================================================
+    # CAMPEONATO SAUDITA
+    # ========================================================
+    #
+    # Inclui SOMENTE a Saudi Pro League.
+    # Nao inclui Copa do Rei Saudita nem outras competicoes
+    # da Arabia Saudita.
+    # ========================================================
+
+    if pais_n == "saudi-arabia":
+
+        return (
+            nome_n
+            ==
+            "pro league"
+        )
+
+
+    # ========================================================
     # INTERNACIONAIS RELEVANTES PARA A GRADE BRASILEIRA
     # ========================================================
     #
@@ -2221,7 +2239,7 @@ lista_campeonatos.sort(
 saida = {
 
     "versao":
-        15,
+        16,
 
 
     "data":
