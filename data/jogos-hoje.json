@@ -225,7 +225,7 @@
       "transmissao": [
         {
           "canal": "BandSports",
-          "fonte": "DPF + Mantos"
+          "fonte": "DPF"
         },
         {
           "canal": "Esporte na Band",
@@ -233,7 +233,7 @@
         },
         {
           "canal": "GOAT",
-          "fonte": "DPF + Mantos"
+          "fonte": "DPF"
         }
       ]
     },
