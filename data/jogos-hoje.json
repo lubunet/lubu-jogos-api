@@ -249,7 +249,16 @@
         "nome": "Estadio Paulo Constantino",
         "cidade": "Presidente Prudente"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Metropoles Esportes",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "Paulistão",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1546110,
@@ -435,7 +444,16 @@
         "nome": "Estadio Alfredo de Castilho",
         "cidade": "Bauru"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Metropoles Esportes",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "Youtube COM Metropolesesportes",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1546113,
@@ -497,7 +515,16 @@
         "nome": "Estadio Municipal Barao de Serra Negra",
         "cidade": "Piracicaba"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Metropoles Esportes",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "Youtube COM Metropolesesportes",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1546114,
@@ -621,7 +648,16 @@
         "nome": null,
         "cidade": null
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Metropoles Esportes",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "Youtube COM Metropolesesportes",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1546116,
@@ -683,7 +719,16 @@
         "nome": "Estadio Martins Pereira",
         "cidade": "Sao Jose dos Campos"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Metropoles Esportes",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "Paulistão",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1602988,
@@ -993,7 +1038,24 @@
         "nome": null,
         "cidade": "Itu"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "BAND Norte",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "BAND Regioes Norte",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "Nordeste",
+          "fonte": "DPF + Mantos"
+        },
+        {
+          "canal": "SportyNet",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1526933,
@@ -1055,7 +1117,12 @@
         "nome": "Raulino de Oliveira",
         "cidade": "Volta Redonda"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "SportyNet",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1628949,
@@ -1117,7 +1184,16 @@
         "nome": null,
         "cidade": null
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Metropoles Esportes",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "Youtube COM Metropolesesportes",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1520832,
@@ -1179,7 +1255,16 @@
         "nome": null,
         "cidade": "Fortaleza"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Disney+",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "ESPN",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1492346,
@@ -1303,7 +1388,12 @@
         "nome": "Arena Pantanal",
         "cidade": null
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Disney+",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1526927,
@@ -1365,7 +1455,12 @@
         "nome": null,
         "cidade": "Aracaju"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "SportyNet",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1526932,
@@ -1427,7 +1522,12 @@
         "nome": null,
         "cidade": "Recife"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "SportyNet",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1492344,
