@@ -295,7 +295,12 @@
         "nome": null,
         "cidade": "Campinas"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Disney+",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1520838,
@@ -481,7 +486,20 @@
         "nome": null,
         "cidade": "Limeira"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Canal DO Benja",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "SportyNet",
+          "fonte": "DPF + Mantos"
+        },
+        {
+          "canal": "Youtube COM Canaldobenjaoficial",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1526931,
@@ -543,7 +561,12 @@
         "nome": null,
         "cidade": null
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "SportyNet",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1628948,
@@ -605,7 +628,16 @@
         "nome": null,
         "cidade": "Arapiraca"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Metropoles Esportes",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "Youtube COM Metropolesesportes",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1520836,
@@ -667,7 +699,24 @@
         "nome": null,
         "cidade": "Ponta Grossa"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Disney+",
+          "fonte": "DPF + Mantos"
+        },
+        {
+          "canal": "GOAT",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "Redetv",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "Redetv GOAT",
+          "fonte": "DPF"
+        }
+      ]
     },
     {
       "id": 1492342,
@@ -853,7 +902,24 @@
         "nome": null,
         "cidade": null
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Disney+",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "ESPN",
+          "fonte": "DPF + Mantos"
+        },
+        {
+          "canal": "SportyNet",
+          "fonte": "DPF + Mantos"
+        },
+        {
+          "canal": "XSports",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1526930,
