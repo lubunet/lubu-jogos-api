@@ -32,7 +32,7 @@ TIMEZONE_FONTE = ZoneInfo("America/Sao_Paulo")
 CONFIRMACOES_MINIMAS = 2
 
 # Aceita uma pequena diferenca de horario entre as fontes.
-TOLERANCIA_HORARIO_MINUTOS = 15
+TOLERANCIA_HORARIO_MINUTOS = 20
 
 TIMEOUT = 25
 
@@ -153,6 +153,13 @@ ALIASES_TIMES = {
 
     "al hazm": "al hazm",
     "al diriyah": "al diriyah",
+
+    # Variacoes extras
+    "palmeiras sp": "palmeiras",
+    "se palmeiras": "palmeiras",
+    "cerro porteno": "cerro porteno",
+    "cerro porteno fc": "cerro porteno",
+    "independiente del valle": "independiente del valle",
 }
 
 
@@ -211,6 +218,10 @@ ALIASES_CANAIS = {
     "bandsports": "bandsports",
     "band sports": "bandsports",
     "esporte na band": "esporte na band",
+    "sportv hd": "sportv",
+    "sportv 2 hd": "sportv 2",
+    "globo sp": "globo",
+    "globo rj": "globo",
 }
 
 EXIBICAO_CANAIS = {
@@ -362,8 +373,27 @@ def normalizar_competicao(nome):
                 "saudi pro league",
                 "liga saudita",
                 "campeonato saudita",
+                "saudi arabia pro league",
             ),
             "saudi pro league",
+        ),
+
+        (
+            (
+                "copa libertadores",
+                "conmebol libertadores",
+                "copa libertadores da america",
+            ),
+            "libertadores",
+        ),
+
+        (
+            (
+                "copa sul americana",
+                "conmebol sudamericana",
+                "copa sudamericana",
+            ),
+            "sudamericana",
         ),
     )
 
@@ -1358,7 +1388,7 @@ def montar_transmissao(
 
 def confirmar_transmissao(jogo, fontes):
     """
-    Versao 4 - cobertura maxima com protecao contra falso positivo.
+    Versao 6 - cobertura maxima com aliases aprimorados e protecao contra falso positivo.
 
     REGRA A - jogo encontrado nas DUAS fontes:
       - usamos a UNIAO dos canais.
@@ -1695,7 +1725,7 @@ def salvar_atomico(dados):
 # ============================================================
 
 def main():
-    print("=== LUBU - Atualizacao de transmissoes v5 ===")
+    print("=== LUBU - Atualizacao de transmissoes v6 ===")
 
     try:
         with open(
