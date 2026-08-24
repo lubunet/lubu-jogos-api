@@ -163,7 +163,20 @@
         "nome": "King Abdullah Sports City",
         "cidade": "Jeddah"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "BandSports",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "Esporte na Band",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "GOAT",
+          "fonte": "DPF"
+        }
+      ]
     },
     {
       "id": 1520830,
@@ -228,7 +241,7 @@
       "transmissao": [
         {
           "canal": "Disney+",
-          "fonte": "DPF"
+          "fonte": "DPF + Mantos"
         }
       ]
     },
@@ -292,7 +305,12 @@
         "nome": "Estadio Adelmar da Costa Carvalho",
         "cidade": "Recife"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Disney+",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1492340,
