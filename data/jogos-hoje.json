@@ -1,7 +1,7 @@
 {
   "versao": 16,
   "data": "2026-08-24",
-  "gerado_em": "2026-08-24T00:56:35.724917-04:00",
+  "gerado_em": "2026-08-24T12:51:39.865889-04:00",
   "timezone_referencia": "America/Cuiaba",
   "periodo": {
     "inicio": "00:00",
@@ -51,9 +51,9 @@
         "horario": "12:40"
       },
       "status": {
-        "codigo": "NS",
-        "descricao": "Not Started",
-        "minuto": null
+        "codigo": "1H",
+        "descricao": "First Half",
+        "minuto": 12
       },
       "campeonato": {
         "id": 307,
@@ -69,19 +69,19 @@
         "nome": "NEOM",
         "logo": "https://media.api-sports.io/football/teams/10513.png",
         "vencedor": null,
-        "gols": null
+        "gols": 0
       },
       "fora": {
         "id": 2933,
         "nome": "Al-Qadisiyah FC",
         "logo": "https://media.api-sports.io/football/teams/2933.png",
         "vencedor": null,
-        "gols": null
+        "gols": 0
       },
       "placar": {
         "intervalo": {
-          "home": null,
-          "away": null
+          "home": 0,
+          "away": 0
         },
         "final": {
           "home": null,
