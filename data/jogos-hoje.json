@@ -225,7 +225,12 @@
         "nome": null,
         "cidade": "Minas Gerais"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Disney+",
+          "fonte": "DPF"
+        }
+      ]
     },
     {
       "id": 1520839,
