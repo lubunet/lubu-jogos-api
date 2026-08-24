@@ -28,8 +28,10 @@ URL_MANTOS = (
 
 TIMEZONE_FONTE = ZoneInfo("America/Sao_Paulo")
 
-# Canal so entra se for confirmado nas duas fontes.
-CONFIRMACOES_MINIMAS = 2
+# A automacao pode continuar com UMA fonte valida.
+# Quando houver apenas uma fonte, o jogo so e aceito pelo matcher
+# estrito (times + competicao + horario), evitando falso positivo.
+FONTES_MINIMAS_PARA_EXECUTAR = 1
 
 # Aceita uma pequena diferenca de horario entre as fontes.
 TOLERANCIA_HORARIO_MINUTOS = 20
@@ -160,6 +162,15 @@ ALIASES_TIMES = {
     "cerro porteno": "cerro porteno",
     "cerro porteno fc": "cerro porteno",
     "independiente del valle": "independiente del valle",
+
+    # Variacoes importantes para os jogos brasileiros
+    "america": "america mg",
+    "athletic": "athletic",
+    "athletic club": "athletic",
+    "athletico": "athletico pr",
+
+    # Variacao encontrada na Liga Saudita
+    "al hazem": "al hazm",
 }
 
 
@@ -222,6 +233,9 @@ ALIASES_CANAIS = {
     "sportv 2 hd": "sportv 2",
     "globo sp": "globo",
     "globo rj": "globo",
+
+    "premiere": "premiere",
+    "bansports": "bandsports",
 }
 
 EXIBICAO_CANAIS = {
@@ -247,6 +261,7 @@ EXIBICAO_CANAIS = {
     "goat": "GOAT",
     "bandsports": "BandSports",
     "esporte na band": "Esporte na Band",
+    "premiere": "Premiere",
 }
 
 PERFIS_YOUTUBE = {
@@ -342,6 +357,17 @@ def normalizar_competicao(nome):
     regras = (
         (("sudamericana", "sul americana"), "sudamericana"),
         (("libertadores",), "libertadores"),
+        (
+            (
+                "brasileirao serie a",
+                "brasileiro serie a",
+                "campeonato brasileiro serie a",
+                "brasileirao",
+                "serie a",
+            ),
+            "serie a",
+        ),
+
         (
             (
                 "brasileirao serie b",
@@ -1388,7 +1414,7 @@ def montar_transmissao(
 
 def confirmar_transmissao(jogo, fontes):
     """
-    Versao 6 - cobertura maxima com aliases aprimorados e protecao contra falso positivo.
+    Versao 7 - fontes resilientes, aliases atualizados e protecao contra falso positivo.
 
     REGRA A - jogo encontrado nas DUAS fontes:
       - usamos a UNIAO dos canais.
@@ -1725,7 +1751,7 @@ def salvar_atomico(dados):
 # ============================================================
 
 def main():
-    print("=== LUBU - Atualizacao de transmissoes v6 ===")
+    print("=== LUBU - Atualizacao de transmissoes v7 ===")
 
     try:
         with open(
@@ -1799,13 +1825,21 @@ def main():
         if eventos_mantos:
             fontes["Mantos"] = eventos_mantos
 
-    # Se uma das duas fontes nao estiver valida, nao toca no JSON.
-    if len(fontes) < CONFIRMACOES_MINIMAS:
+    # Se nenhuma fonte estiver valida, nao toca no JSON.
+    # Com uma fonte valida o script continua, mas somente o matcher
+    # estrito de fonte unica pode confirmar uma transmissao.
+    if len(fontes) < FONTES_MINIMAS_PARA_EXECUTAR:
         print(
-            "[SEGURANCA] Menos de duas fontes validas. "
+            "[SEGURANCA] Nenhuma fonte valida. "
             "Nenhuma transmissao foi alterada."
         )
         return 0
+
+    if len(fontes) == 1:
+        print(
+            "[AVISO] Apenas uma fonte valida nesta execucao. "
+            "Sera usado somente o match estrito por jogo."
+        )
 
     alterados = 0
     confirmados = 0
@@ -1823,6 +1857,12 @@ def main():
 
         if status == "insuficiente":
             insuficientes += 1
+
+            print(
+                f"[SEM-MATCH] {nome_jogo(jogo)} "
+                f"- {jogo.get('campeonato', {}).get('nome', '?')}"
+            )
+
             continue
 
         if status == "conflito":
