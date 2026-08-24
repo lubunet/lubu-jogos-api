@@ -101,7 +101,12 @@
         "nome": "King Khalid Sports City",
         "cidade": "Tabuk"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "GOAT",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1602991,
@@ -174,7 +179,7 @@
         },
         {
           "canal": "GOAT",
-          "fonte": "DPF"
+          "fonte": "DPF + Mantos"
         }
       ]
     },
@@ -372,7 +377,16 @@
         "nome": "Estadio Olimpico Nilton Santos",
         "cidade": "Rio de Janeiro"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Premiere",
+          "fonte": "DPF + Mantos"
+        },
+        {
+          "canal": "SporTV",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     }
   ]
 }
