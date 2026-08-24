@@ -29,12 +29,11 @@ URL_MANTOS = (
 TIMEZONE_FONTE = ZoneInfo("America/Sao_Paulo")
 
 # A automacao pode continuar com UMA fonte valida.
-# Quando houver apenas uma fonte, o jogo so e aceito pelo matcher
-# estrito (times + competicao + horario), evitando falso positivo.
+# Com apenas uma fonte, o jogo so entra se o match for muito seguro.
 FONTES_MINIMAS_PARA_EXECUTAR = 1
 
 # Aceita uma pequena diferenca de horario entre as fontes.
-TOLERANCIA_HORARIO_MINUTOS = 20
+TOLERANCIA_HORARIO_MINUTOS = 45
 
 TIMEOUT = 25
 
@@ -163,13 +162,24 @@ ALIASES_TIMES = {
     "cerro porteno fc": "cerro porteno",
     "independiente del valle": "independiente del valle",
 
-    # Variacoes importantes para os jogos brasileiros
+    # Variacoes brasileiras importantes
     "america": "america mg",
+    "america mg": "america mg",
+    "america mineiro": "america mg",
+
     "athletic": "athletic",
     "athletic club": "athletic",
+
+    # API-Football costuma usar Atletico Paranaense,
+    # enquanto os guias usam Athletico / Athletico-PR.
+    "atletico paranaense": "athletico pr",
+    "athletico paranaense": "athletico pr",
+    "athletico pr": "athletico pr",
     "athletico": "athletico pr",
 
-    # Variacao encontrada na Liga Saudita
+    "botafogo rj": "botafogo",
+
+    # Liga Saudita
     "al hazem": "al hazm",
 }
 
@@ -235,7 +245,14 @@ ALIASES_CANAIS = {
     "globo rj": "globo",
 
     "premiere": "premiere",
+    "premiere clubes": "premiere",
+
+    # typo encontrado no DPF
     "bansports": "bandsports",
+
+    "dazn": "dazn",
+    "dazb": "dazn",
+    "tv brasil": "tv brasil",
 }
 
 EXIBICAO_CANAIS = {
@@ -262,6 +279,8 @@ EXIBICAO_CANAIS = {
     "bandsports": "BandSports",
     "esporte na band": "Esporte na Band",
     "premiere": "Premiere",
+    "dazn": "DAZN",
+    "tv brasil": "TV Brasil",
 }
 
 PERFIS_YOUTUBE = {
@@ -340,8 +359,7 @@ def times_batem(a, b):
 def normalizar_competicao(nome):
     nome = normalizar_texto(nome)
 
-    # Remove detalhes que normalmente aparecem so em uma das fontes.
-    nome = re.sub(r"\([^)]*\)", " ", nome)
+    # Remove detalhes de fase sem mudar a competicao.
     nome = re.sub(
         r"\b("
         r"oitavas de final|oitavas|quartas de final|quartas|"
@@ -352,80 +370,88 @@ def normalizar_competicao(nome):
         " ",
         nome
     )
+
     nome = limpar_espacos(nome)
 
-    regras = (
-        (("sudamericana", "sul americana"), "sudamericana"),
-        (("libertadores",), "libertadores"),
-        (
-            (
-                "brasileirao serie a",
-                "brasileiro serie a",
-                "campeonato brasileiro serie a",
-                "brasileirao",
-                "serie a",
-            ),
-            "serie a",
-        ),
+    # IMPORTANTE:
+    # competicoes especificas primeiro.
+    # Assim "Brasileirao Serie B" nunca vira Serie A por engano.
 
-        (
-            (
-                "brasileirao serie b",
-                "brasileiro serie b",
-                "campeonato brasileiro serie b",
-                "serie b",
-            ),
-            "serie b",
-        ),
-        (
-            (
-                "brasileiro sub 17",
-                "brasileiro u17",
-                "brasileiro u 17",
-                "campeonato brasileiro sub 17",
-                "campeonato brasileiro u17",
-            ),
-            "brasileiro u17",
-        ),
-        (("copa paulista",), "copa paulista"),
-        (("champions league",), "champions league"),
-        (("la liga", "laliga", "campeonato espanhol"), "la liga"),
-        (("major league soccer", "mls"), "mls"),
-        (("king s cup", "kings cup"), "kings cup"),
+    if "serie b" in nome:
+        return "serie b"
 
-        (
-            (
-                "pro league",
-                "saudi pro league",
-                "liga saudita",
-                "campeonato saudita",
-                "saudi arabia pro league",
-            ),
-            "saudi pro league",
-        ),
+    if "serie c" in nome:
+        return "serie c"
 
-        (
-            (
-                "copa libertadores",
-                "conmebol libertadores",
-                "copa libertadores da america",
-            ),
-            "libertadores",
-        ),
+    if "serie d" in nome:
+        return "serie d"
 
-        (
-            (
-                "copa sul americana",
-                "conmebol sudamericana",
-                "copa sudamericana",
-            ),
-            "sudamericana",
-        ),
-    )
+    if (
+        "serie a" in nome
+        or nome == "brasileirao"
+        or nome == "campeonato brasileiro"
+    ):
+        return "serie a"
 
-    for termos, canonico in regras:
-        if any(termo in nome for termo in termos):
-            return canonico
+    if "libertadores" in nome:
+        return "libertadores"
+
+    if (
+        "sudamericana" in nome
+        or "sul americana" in nome
+    ):
+        return "sudamericana"
+
+    if "copa do brasil" in nome:
+        return "copa do brasil"
+
+    if (
+        "brasileiro sub 17" in nome
+        or "brasileiro u17" in nome
+        or "brasileiro u 17" in nome
+        or "campeonato brasileiro sub 17" in nome
+    ):
+        return "brasileiro u17"
+
+    if "copa paulista" in nome:
+        return "copa paulista"
+
+    if (
+        "pro league" in nome
+        or "saudi pro league" in nome
+        or "saudi arabia pro league" in nome
+        or "liga saudita" in nome
+        or "campeonato saudita" in nome
+    ):
+        return "saudi pro league"
+
+    if "champions league" in nome:
+        return "champions league"
+
+    if (
+        "la liga" in nome
+        or "laliga" in nome
+        or "campeonato espanhol" in nome
+    ):
+        return "la liga"
+
+    if (
+        "premier league" in nome
+        or "campeonato ingles" in nome
+    ):
+        return "premier league"
+
+    if (
+        "major league soccer" in nome
+        or nome == "mls"
+    ):
+        return "mls"
+
+    if (
+        "king s cup" in nome
+        or "kings cup" in nome
+    ):
+        return "kings cup"
 
     return nome
 
@@ -1036,10 +1062,22 @@ def parse_mantos(html, data_json):
     eventos = []
 
     # Aceita 19h00, 19:00 e varios tipos de traco.
+    # Separador entre campos:
+    # - en dash/em dash podem vir sem espaco;
+    # - hifen ASCII so vale como separador se houver espacos.
+    #
+    # Isso evita o bug que cortava:
+    #   Athletico-PR
+    #   Al-Hazem
+    #   Atletico-MG
+    #
+    # e fazia o jogo nao casar com o JSON.
+    separador = r"(?:\s*[–—]\s*|\s+-\s+)"
+
     padrao_evento = re.compile(
-        r"^(\d{1,2})(?:h|:)(\d{2})\s*[–—-]\s*"
-        r"(.+?)\s+[xX×]\s+"
-        r"(.+?)\s*[–—-]\s*(.+)$",
+        rf"^(\d{{1,2}})(?:h|:)(\d{{2}}){separador}"
+        rf"(.+?)\s+[xX×]\s+"
+        rf"(.+?){separador}(.+)$",
         flags=re.IGNORECASE,
     )
 
@@ -1336,7 +1374,7 @@ def evento_bate_estritamente(jogo, evento):
             "hora",
             -9999
         )
-    ) > 5:
+    ) > 20:
         return False
 
     if normalizar_time(
@@ -1414,7 +1452,7 @@ def montar_transmissao(
 
 def confirmar_transmissao(jogo, fontes):
     """
-    Versao 7 - fontes resilientes, aliases atualizados e protecao contra falso positivo.
+    Versao 8 - parser corrigido, aliases robustos e protecao contra falso positivo.
 
     REGRA A - jogo encontrado nas DUAS fontes:
       - usamos a UNIAO dos canais.
@@ -1751,7 +1789,7 @@ def salvar_atomico(dados):
 # ============================================================
 
 def main():
-    print("=== LUBU - Atualizacao de transmissoes v7 ===")
+    print("=== LUBU - Atualizacao de transmissoes v8 ===")
 
     try:
         with open(
@@ -1826,8 +1864,6 @@ def main():
             fontes["Mantos"] = eventos_mantos
 
     # Se nenhuma fonte estiver valida, nao toca no JSON.
-    # Com uma fonte valida o script continua, mas somente o matcher
-    # estrito de fonte unica pode confirmar uma transmissao.
     if len(fontes) < FONTES_MINIMAS_PARA_EXECUTAR:
         print(
             "[SEGURANCA] Nenhuma fonte valida. "
@@ -1838,7 +1874,7 @@ def main():
     if len(fontes) == 1:
         print(
             "[AVISO] Apenas uma fonte valida nesta execucao. "
-            "Sera usado somente o match estrito por jogo."
+            "Sera usado somente o match estrito."
         )
 
     alterados = 0
@@ -1860,7 +1896,8 @@ def main():
 
             print(
                 f"[SEM-MATCH] {nome_jogo(jogo)} "
-                f"- {jogo.get('campeonato', {}).get('nome', '?')}"
+                f"| {jogo.get('campeonato', {}).get('nome', '?')} "
+                f"| Brasilia={horario_brasilia_do_jogo(jogo)}min"
             )
 
             continue
