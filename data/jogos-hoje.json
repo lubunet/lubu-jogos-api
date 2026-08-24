@@ -1,7 +1,7 @@
 {
   "versao": 16,
   "data": "2026-08-24",
-  "gerado_em": "2026-08-24T12:51:39.865889-04:00",
+  "gerado_em": "2026-08-24T14:26:55.202478-04:00",
   "timezone_referencia": "America/Cuiaba",
   "periodo": {
     "inicio": "00:00",
@@ -51,9 +51,9 @@
         "horario": "12:40"
       },
       "status": {
-        "codigo": "1H",
-        "descricao": "First Half",
-        "minuto": 12
+        "codigo": "2H",
+        "descricao": "Second Half",
+        "minuto": 87
       },
       "campeonato": {
         "id": 307,
@@ -68,20 +68,20 @@
         "id": 10513,
         "nome": "NEOM",
         "logo": "https://media.api-sports.io/football/teams/10513.png",
-        "vencedor": null,
+        "vencedor": false,
         "gols": 0
       },
       "fora": {
         "id": 2933,
         "nome": "Al-Qadisiyah FC",
         "logo": "https://media.api-sports.io/football/teams/2933.png",
-        "vencedor": null,
-        "gols": 0
+        "vencedor": true,
+        "gols": 2
       },
       "placar": {
         "intervalo": {
           "home": 0,
-          "away": 0
+          "away": 1
         },
         "final": {
           "home": null,
@@ -98,7 +98,7 @@
       },
       "estadio": {
         "id": null,
-        "nome": "King Khalid Sports City",
+        "nome": "King Khalid Sport City Stadium",
         "cidade": "Tabuk"
       },
       "transmissao": [
@@ -118,9 +118,9 @@
         "horario": "14:00"
       },
       "status": {
-        "codigo": "NS",
-        "descricao": "Not Started",
-        "minuto": null
+        "codigo": "1H",
+        "descricao": "First Half",
+        "minuto": 26
       },
       "campeonato": {
         "id": 307,
@@ -135,20 +135,20 @@
         "id": 2938,
         "nome": "Al-Ittihad FC",
         "logo": "https://media.api-sports.io/football/teams/2938.png",
-        "vencedor": null,
-        "gols": null
+        "vencedor": false,
+        "gols": 0
       },
       "fora": {
         "id": 2945,
         "nome": "Al-Hazm",
         "logo": "https://media.api-sports.io/football/teams/2945.png",
-        "vencedor": null,
-        "gols": null
+        "vencedor": true,
+        "gols": 1
       },
       "placar": {
         "intervalo": {
-          "home": null,
-          "away": null
+          "home": 0,
+          "away": 1
         },
         "final": {
           "home": null,
