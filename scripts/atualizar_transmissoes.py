@@ -35,6 +35,12 @@ FONTES_MINIMAS_PARA_EXECUTAR = 1
 # Aceita uma pequena diferenca de horario entre as fontes.
 TOLERANCIA_HORARIO_MINUTOS = 45
 
+# Quando existe apenas uma fonte, o primeiro caminho continua exigindo
+# horario muito proximo. Se o horario estiver errado na pagina, existe um
+# segundo caminho mais conservador: casa + visitante + competicao precisam
+# bater EXATAMENTE e formar uma identidade unica naquela fonte.
+TOLERANCIA_FONTE_UNICA_MINUTOS = 20
+
 TIMEOUT = 25
 
 HEADERS_BASE = {
@@ -206,6 +212,8 @@ ALIASES_CANAIS = {
 
     "paramount+": "paramount+",
     "paramount plus": "paramount+",
+    "paramont+": "paramount+",
+    "paramont plus": "paramount+",
 
     "disney+": "disney+",
     "disney plus": "disney+",
@@ -253,6 +261,18 @@ ALIASES_CANAIS = {
     "dazn": "dazn",
     "dazb": "dazn",
     "tv brasil": "tv brasil",
+    "globoplay": "globoplay",
+    "rede globo": "globo",
+    "band": "band",
+    "rede bandeirantes": "band",
+    "sbt": "sbt",
+    "record": "record",
+    "record tv": "record",
+    "recordtv": "record",
+    "nsports": "nsports",
+    "n sports": "nsports",
+    "fifa+": "fifa+",
+    "fifa plus": "fifa+",
 }
 
 EXIBICAO_CANAIS = {
@@ -281,6 +301,13 @@ EXIBICAO_CANAIS = {
     "premiere": "Premiere",
     "dazn": "DAZN",
     "tv brasil": "TV Brasil",
+    "youtube": "YouTube",
+    "globoplay": "Globoplay",
+    "band": "Band",
+    "sbt": "SBT",
+    "record": "Record",
+    "nsports": "NSports",
+    "fifa+": "FIFA+",
 }
 
 PERFIS_YOUTUBE = {
@@ -529,20 +556,160 @@ def nome_exibicao_canal(chave):
     )
 
 
+PADRAO_MARCADOR_CANAIS = re.compile(
+    r"^(?:📺\s*)?"
+    r"(?:canais?|transmiss[aã]o|onde assistir(?:\s+ao vivo)?)\s*:\s*",
+    flags=re.IGNORECASE,
+)
+
+
+TERMOS_RUIDO_CANAIS = (
+    "horario de brasilia",
+    "onde assistir futebol",
+    "jogos de hoje",
+    "jogos de amanha",
+    "jogos de ontem",
+    "mais jogos",
+    "veja tambem",
+    "confira os jogos",
+    "clique aqui",
+    "saiba mais",
+    "assista aqui",
+    "segunda feira",
+    "terca feira",
+    "quarta feira",
+    "quinta feira",
+    "sexta feira",
+    "sabado",
+    "domingo",
+)
+
+
+def eh_marcador_canais(texto):
+    texto = limpar_espacos(texto)
+
+    return (
+        texto.startswith("📺")
+        or PADRAO_MARCADOR_CANAIS.match(texto) is not None
+    )
+
+
+def canais_conhecidos_no_texto(texto):
+    """
+    Encontra mais de um canal mesmo quando o HTML separa os nomes em
+    tags, mas o texto visivel chega sem virgula ou ponto e virgula.
+
+    Exemplo recebido do HTML:
+        "ESPN Disney+"
+
+    A busca usa limites de palavra e resolve sobreposicoes preferindo
+    o alias mais comprido ("SporTV 2" antes de "SporTV").
+    """
+
+    texto_n = normalizar_texto(texto)
+
+    if not texto_n:
+        return []
+
+    ocorrencias = []
+
+    for alias, chave in ALIASES_CANAIS.items():
+        alias_n = normalizar_texto(alias)
+
+        if not alias_n:
+            continue
+
+        padrao = re.compile(
+            rf"(?<![a-z0-9]){re.escape(alias_n)}(?![a-z0-9])"
+        )
+
+        for match in padrao.finditer(texto_n):
+            ocorrencias.append(
+                (
+                    match.start(),
+                    match.end(),
+                    chave,
+                )
+            )
+
+    ocorrencias.sort(
+        key=lambda item: (
+            item[0],
+            -(item[1] - item[0]),
+        )
+    )
+
+    escolhidas = []
+    fim_anterior = -1
+
+    for inicio, fim, chave in ocorrencias:
+        if inicio < fim_anterior:
+            continue
+
+        escolhidas.append(
+            (
+                inicio,
+                chave,
+            )
+        )
+        fim_anterior = fim
+
+    resultado = []
+
+    for _, chave in escolhidas:
+        if chave not in resultado:
+            resultado.append(chave)
+
+    return resultado
+
+
+def canal_desconhecido_parece_valido(original, chave):
+    """
+    Canais novos continuam permitidos quando aparecem dentro de um bloco
+    explicitamente marcado como transmissao. Textos de navegacao, datas e
+    cabecalhos nunca sao aceitos como nome de canal.
+    """
+
+    original = limpar_espacos(original)
+    chave = normalizar_texto(chave)
+
+    if not original or not chave:
+        return False
+
+    if len(chave) > 50 or len(chave.split()) > 6:
+        return False
+
+    if re.search(
+        r"\b(?:[0-3]?\d)[/.-](?:[01]?\d)(?:[/.-]\d{2,4})?\b",
+        original,
+    ):
+        return False
+
+    if re.search(r"\b(?:[01]?\d|2[0-3]):[0-5]\d\b", original):
+        return False
+
+    if any(
+        termo in chave
+        for termo in TERMOS_RUIDO_CANAIS
+    ):
+        return False
+
+    if re.search(r"\s+[xX×]\s+", original):
+        return False
+
+    return True
+
+
 def dividir_canais(texto):
     texto = limpar_espacos(texto)
 
-    texto = re.sub(
-        r"^(?:📺\s*)?(?:canais?|transmiss[aã]o)\s*:\s*",
-        "",
-        texto,
-        flags=re.IGNORECASE,
-    )
+    texto = PADRAO_MARCADOR_CANAIS.sub("", texto)
 
     texto = re.sub(r"^📺\s*", "", texto).strip()
 
     partes = re.split(
-        r"\s*;\s*|\s*,\s*|\s+\be\b\s+",
+        r"\s*;\s*|\s*,\s*|\s*\|\s*|\s*•\s*|"
+        r"\s+/\s+|\s+\be\b\s+",
         texto,
         flags=re.IGNORECASE,
     )
@@ -550,10 +717,83 @@ def dividir_canais(texto):
     resultado = []
 
     for parte in partes:
+        conhecidos = canais_conhecidos_no_texto(parte)
+
+        if conhecidos:
+            for canal in conhecidos:
+                if canal not in resultado:
+                    resultado.append(canal)
+
+            continue
+
         canal = normalizar_canal(parte)
 
-        if canal and canal not in resultado:
+        if (
+            canal
+            and canal_desconhecido_parece_valido(
+                parte,
+                canal,
+            )
+            and canal not in resultado
+        ):
             resultado.append(canal)
+
+    return resultado
+
+
+def extrair_canais_de_bloco(
+    bloco,
+    indice_marcador,
+    limite_tokens=6,
+):
+    """
+    Le o marcador de TV e tambem os tokens imediatamente seguintes.
+
+    Isso cobre tanto:
+        "📺 ESPN; Disney+"
+
+    quanto HTML fragmentado:
+        "📺"
+        "ESPN"
+        "Disney+"
+    """
+
+    resultado = []
+    fim = min(
+        len(bloco),
+        indice_marcador + limite_tokens,
+    )
+
+    for indice in range(indice_marcador, fim):
+        token = limpar_espacos(bloco[indice])
+
+        if not token:
+            continue
+
+        if indice > indice_marcador:
+            if eh_marcador_canais(token):
+                break
+
+            if token_parece_inicio_evento(token):
+                break
+
+            if separar_times(token):
+                break
+
+            if data_mencionada_na_linha(token) is not None:
+                break
+
+        canais = dividir_canais(token)
+
+        if canais:
+            for canal in canais:
+                if canal not in resultado:
+                    resultado.append(canal)
+
+            continue
+
+        if resultado:
+            break
 
     return resultado
 
@@ -654,6 +894,156 @@ def linhas_da_pagina(html):
     return linhas
 
 
+MESES_PORTUGUES = {
+    "janeiro": 1,
+    "fevereiro": 2,
+    "marco": 3,
+    "abril": 4,
+    "maio": 5,
+    "junho": 6,
+    "julho": 7,
+    "agosto": 8,
+    "setembro": 9,
+    "outubro": 10,
+    "novembro": 11,
+    "dezembro": 12,
+}
+
+
+def data_mencionada_na_linha(
+    texto,
+    ano_referencia=None,
+):
+    """Extrai uma data explicita de uma linha curta de cabecalho."""
+
+    texto = limpar_espacos(texto)
+
+    if not texto or len(texto) > 100:
+        return None
+
+    if ano_referencia is None:
+        ano_referencia = datetime.now().year
+
+    match = re.search(
+        r"(?<!\d)([0-3]?\d)[/.-]([01]?\d)"
+        r"(?:[/.-](\d{2,4}))?(?!\d)",
+        texto,
+    )
+
+    if match:
+        dia = int(match.group(1))
+        mes = int(match.group(2))
+        ano_texto = match.group(3)
+
+        if ano_texto:
+            ano = int(ano_texto)
+            if ano < 100:
+                ano += 2000
+        else:
+            ano = int(ano_referencia)
+
+        try:
+            return datetime(
+                ano,
+                mes,
+                dia,
+            ).date()
+        except ValueError:
+            return None
+
+    texto_n = normalizar_texto(texto)
+
+    match = re.search(
+        r"\b([0-3]?\d)\s+de\s+([a-z]+)"
+        r"(?:\s+de\s+(\d{4}))?\b",
+        texto_n,
+    )
+
+    if not match:
+        return None
+
+    mes = MESES_PORTUGUES.get(
+        match.group(2)
+    )
+
+    if mes is None:
+        return None
+
+    dia = int(match.group(1))
+    ano = int(
+        match.group(3)
+        or ano_referencia
+    )
+
+    try:
+        return datetime(
+            ano,
+            mes,
+            dia,
+        ).date()
+    except ValueError:
+        return None
+
+
+def recortar_itens_da_data(
+    itens,
+    data_json,
+):
+    """
+    Isola apenas o trecho da data do JSON quando uma fonte publica varios
+    dias na mesma pagina. Se nao houver marcadores de data confiaveis, o
+    conteudo original e mantido e as demais validacoes continuam valendo.
+    """
+
+    try:
+        data_alvo = datetime.strptime(
+            data_json,
+            "%Y-%m-%d",
+        ).date()
+    except (TypeError, ValueError):
+        return []
+
+    marcadores = []
+
+    for indice, item in enumerate(itens):
+        data_item = data_mencionada_na_linha(
+            item,
+            data_alvo.year,
+        )
+
+        if data_item is not None:
+            marcadores.append(
+                (
+                    indice,
+                    data_item,
+                )
+            )
+
+    inicios = [
+        indice
+        for indice, data_item in marcadores
+        if data_item == data_alvo
+    ]
+
+    if not inicios:
+        return list(itens)
+
+    inicio = inicios[0] + 1
+    fim = len(itens)
+
+    for indice, data_item in marcadores:
+        if indice < inicio:
+            continue
+
+        if data_item != data_alvo:
+            fim = indice
+            break
+
+    return list(
+        itens[inicio:fim]
+    )
+
+
 def pagina_parece_ser_do_dia(linhas, data_json):
     try:
         data = datetime.strptime(data_json, "%Y-%m-%d")
@@ -661,6 +1051,15 @@ def pagina_parece_ser_do_dia(linhas, data_json):
         return False
 
     # A data principal deve aparecer perto do inicio do conteudo.
+    for linha in linhas[:160]:
+        data_linha = data_mencionada_na_linha(
+            linha,
+            data.year,
+        )
+
+        if data_linha == data.date():
+            return True
+
     cabecalho = " ".join(linhas[:120])
     cabecalho_compacto = re.sub(r"\s+", "", cabecalho)
 
@@ -816,6 +1215,70 @@ def extrair_horario_e_competicao(bloco):
     }
 
 
+def chave_evento_fonte(evento):
+    return (
+        evento.get("hora"),
+        normalizar_time(
+            evento.get("casa", "")
+        ),
+        normalizar_time(
+            evento.get("fora", "")
+        ),
+        normalizar_competicao(
+            evento.get("competicao", "")
+        ),
+    )
+
+
+def consolidar_eventos(eventos):
+    """
+    Une copias identicas do mesmo evento publicadas no HTML desktop/mobile.
+
+    Antes, o DPF descartava a segunda copia e podia perder canais; no Mantos,
+    duas copias iguais podiam ser tratadas como candidatos ambiguos. Agora os
+    canais sao unidos somente quando horario, times e competicao coincidem.
+    """
+
+    consolidados = {}
+
+    for evento in eventos:
+        chave = chave_evento_fonte(evento)
+
+        if (
+            chave[0] is None
+            or not chave[1]
+            or not chave[2]
+            or not chave[3]
+        ):
+            continue
+
+        if chave not in consolidados:
+            copia = dict(evento)
+            copia["canais"] = list(
+                dict.fromkeys(
+                    evento.get(
+                        "canais",
+                        [],
+                    )
+                )
+            )
+            consolidados[chave] = copia
+            continue
+
+        destino = consolidados[chave]
+
+        for canal in evento.get(
+            "canais",
+            [],
+        ):
+            if canal not in destino["canais"]:
+                destino["canais"].append(canal)
+
+    return list(
+        consolidados.values()
+    )
+
+
 def parse_dpf(html, data_json):
     """
     Parser tolerante do Doentes por Futebol.
@@ -834,7 +1297,10 @@ def parse_dpf(html, data_json):
         print("[DPF] data da pagina nao foi confirmada.")
         return []
 
-    tokens = tokens_da_pagina(html)
+    tokens = recortar_itens_da_data(
+        tokens_da_pagina(html),
+        data_json,
+    )
 
     # Localiza todos os possiveis inicios de evento.
     inicios = []
@@ -855,7 +1321,6 @@ def parse_dpf(html, data_json):
             inicios.append(i)
 
     eventos = []
-    chaves_vistas = set()
 
     for posicao, inicio_bloco in enumerate(inicios):
         fim_bloco = (
@@ -960,56 +1425,17 @@ def parse_dpf(html, data_json):
         ):
             token = bloco[i]
 
-            eh_linha_tv = (
-                "📺" in token
-                or re.match(
-                    r"^(?:canais?|transmiss[aã]o)\s*:",
-                    token,
-                    flags=re.IGNORECASE,
-                )
+            eh_linha_tv = eh_marcador_canais(
+                token
             )
 
             if not eh_linha_tv:
                 continue
 
-            # Pode ser:
-            #   "📺 ESPN"
-            # ou
-            #   "📺"
-            #   "ESPN"
-            tentativa = dividir_canais(
-                token
+            tentativa = extrair_canais_de_bloco(
+                bloco,
+                i,
             )
-
-            if not tentativa:
-                proximos = []
-
-                for seguinte in bloco[
-                    i + 1:i + 4
-                ]:
-                    if token_parece_inicio_evento(
-                        seguinte
-                    ):
-                        break
-
-                    if separar_times(
-                        seguinte
-                    ):
-                        break
-
-                    if seguinte.strip() == "📺":
-                        continue
-
-                    proximos.append(
-                        seguinte
-                    )
-
-                if proximos:
-                    tentativa = dividir_canais(
-                        " ".join(
-                            proximos
-                        )
-                    )
 
             if tentativa:
                 canais = tentativa
@@ -1029,28 +1455,11 @@ def parse_dpf(html, data_json):
             "canais": canais,
         }
 
-        # Evita duplicatas caso o HTML contenha a mesma informacao
-        # em versao desktop e mobile.
-        chave = (
-            evento["hora"],
-            normalizar_time(
-                evento["casa"]
-            ),
-            normalizar_time(
-                evento["fora"]
-            ),
-            normalizar_competicao(
-                evento["competicao"]
-            ),
-        )
-
-        if chave in chaves_vistas:
-            continue
-
-        chaves_vistas.add(chave)
         eventos.append(evento)
 
-    return eventos
+    return consolidar_eventos(
+        eventos
+    )
 
 def parse_mantos(html, data_json):
     linhas = linhas_da_pagina(html)
@@ -1070,76 +1479,143 @@ def parse_mantos(html, data_json):
     #   Athletico-PR
     #   Al-Hazem
     #   Atletico-MG
-    #
-    # e fazia o jogo nao casar com o JSON.
     separador = r"(?:\s*[–—]\s*|\s+-\s+)"
 
     padrao_evento = re.compile(
         rf"^(\d{{1,2}})(?:h|:)(\d{{2}}){separador}"
         rf"(.+?)\s+[xX×]\s+"
-        rf"(.+?){separador}(.+)$",
+        rf"(.+?){separador}(.+?)$",
+        flags=re.IGNORECASE,
+    )
+
+    padrao_inicio_horario = re.compile(
+        r"^(\d{1,2})(?:h|:)(\d{2})\b",
         flags=re.IGNORECASE,
     )
 
     indices_eventos = []
+    indice = 0
 
-    for indice, linha in enumerate(linhas):
-        match = padrao_evento.match(linha)
+    while indice < len(linhas):
+        linha = linhas[indice]
+
+        if not padrao_inicio_horario.match(linha):
+            indice += 1
+            continue
+
+        match = None
+        fim_cabecalho = indice
+
+        # O WordPress pode quebrar horario, times e competicao em tags
+        # separadas. Juntamos uma janela pequena e paramos assim que o
+        # cabecalho completo for reconhecido.
+        for fim_tentativa in range(
+            indice,
+            min(len(linhas), indice + 6),
+        ):
+            if (
+                fim_tentativa > indice
+                and eh_marcador_canais(
+                    linhas[fim_tentativa]
+                )
+            ):
+                break
+
+            if (
+                fim_tentativa > indice
+                and padrao_inicio_horario.match(
+                    linhas[fim_tentativa]
+                )
+            ):
+                break
+
+            candidato = limpar_espacos(
+                " ".join(
+                    linhas[
+                        indice:fim_tentativa + 1
+                    ]
+                )
+            )
+
+            tentativa = padrao_evento.match(
+                candidato
+            )
+
+            if tentativa:
+                match = tentativa
+                fim_cabecalho = fim_tentativa
+                break
 
         if not match:
+            indice += 1
             continue
 
         hora, minuto, casa, fora, competicao = match.groups()
 
         if int(hora) > 23 or int(minuto) > 59:
+            indice += 1
             continue
 
         indices_eventos.append(
-            (
-                indice,
-                hora,
-                minuto,
-                limpar_espacos(casa),
-                limpar_espacos(fora),
-                limpar_espacos(competicao),
+            {
+                "inicio": indice,
+                "fim_cabecalho": fim_cabecalho,
+                "hora": hora,
+                "minuto": minuto,
+                "casa": limpar_espacos(casa),
+                "fora": limpar_espacos(fora),
+                "competicao": limpar_espacos(competicao),
+            }
+        )
+
+        indice = fim_cabecalho + 1
+
+    for posicao, evento in enumerate(indices_eventos):
+        fim = (
+            indices_eventos[posicao + 1]["inicio"]
+            if posicao + 1 < len(indices_eventos)
+            else min(
+                len(linhas),
+                evento["fim_cabecalho"] + 12,
             )
         )
 
-    for pos, evento in enumerate(indices_eventos):
-        indice, hora, minuto, casa, fora, competicao = evento
-
-        fim = (
-            indices_eventos[pos + 1][0]
-            if pos + 1 < len(indices_eventos)
-            else min(len(linhas), indice + 10)
-        )
-
-        bloco = linhas[indice + 1:fim]
+        bloco = linhas[
+            evento["fim_cabecalho"] + 1:fim
+        ]
 
         canais = None
 
-        for linha in bloco:
-            if re.match(
-                r"^(?:canais?|transmiss[aã]o)\s*:",
-                linha,
-                flags=re.IGNORECASE,
-            ):
-                tentativa = dividir_canais(linha)
+        for indice_bloco, linha in enumerate(bloco):
+            if not eh_marcador_canais(linha):
+                continue
 
-                if tentativa:
-                    canais = tentativa
-                    break
+            tentativa = extrair_canais_de_bloco(
+                bloco,
+                indice_bloco,
+            )
+
+            if tentativa:
+                canais = tentativa
+                break
 
         if canais:
-            eventos.append({
-                "hora": minutos_do_dia(hora, minuto),
-                "casa": casa,
-                "fora": fora,
-                "competicao": competicao,
-                "canais": canais,
-            })
+            eventos.append(
+                {
+                    "hora": minutos_do_dia(
+                        evento["hora"],
+                        evento["minuto"],
+                    ),
+                    "casa": evento["casa"],
+                    "fora": evento["fora"],
+                    "competicao": evento["competicao"],
+                    "canais": canais,
+                }
+            )
 
-    return eventos
+    return consolidar_eventos(
+        eventos
+    )
 
 
 # ============================================================
@@ -1184,7 +1660,9 @@ def encontrar_evento(jogo, eventos):
 
     candidatos = []
 
-    for evento in eventos:
+    for evento in consolidar_eventos(
+        eventos
+    ):
         if diferenca_minutos(hora, evento["hora"]) > TOLERANCIA_HORARIO_MINUTOS:
             continue
 
@@ -1229,7 +1707,7 @@ def encontrar_evento_exato_sem_horario(
     eventos
 ):
     """
-    Fallback usado SOMENTE quando as duas fontes estao saudaveis.
+    Fallback de identidade usado quando uma fonte publicou horario errado.
 
     Serve para casos em que uma fonte publicou horario incorreto,
     mas time da casa + visitante + competicao batem exatamente.
@@ -1240,7 +1718,7 @@ def encontrar_evento_exato_sem_horario(
       - competicao exata;
       - precisa existir exatamente UM candidato na fonte.
 
-    Nunca e usado sozinho para aceitar uma transmissao.
+    Com fonte unica, so e aceito depois de confirmar que o candidato e unico.
     """
 
     casa = normalizar_time(
@@ -1278,7 +1756,9 @@ def encontrar_evento_exato_sem_horario(
 
     candidatos = []
 
-    for evento in eventos:
+    for evento in consolidar_eventos(
+        eventos
+    ):
 
         if normalizar_time(
             evento.get(
@@ -1326,7 +1806,7 @@ def evento_bate_estritamente(jogo, evento):
       - time da casa bate exatamente apos aliases/normalizacao;
       - visitante bate exatamente apos aliases/normalizacao;
       - competicao bate exatamente apos normalizacao;
-      - horario difere no maximo 5 minutos.
+      - horario difere no maximo 20 minutos.
 
     Isso permite aproveitar uma transmissao real que exista apenas
     no DPF ou apenas no Mantos sem aceitar correspondencias vagas.
@@ -1374,7 +1854,7 @@ def evento_bate_estritamente(jogo, evento):
             "hora",
             -9999
         )
-    ) > 20:
+    ) > TOLERANCIA_FONTE_UNICA_MINUTOS:
         return False
 
     if normalizar_time(
@@ -1466,8 +1946,9 @@ def confirmar_transmissao(jogo, fontes):
         antes de aceitar a uniao.
 
     REGRA C - apenas UMA fonte possui o jogo:
-      - mantemos a regra rigorosa da v3:
-        times + competicao + horario (max. 5 min) exatos.
+      - primeiro exigimos times + competicao exatos e horario proximo;
+      - se a fonte errou o horario, aceitamos somente uma identidade unica
+        de casa + visitante + competicao, todos exatos apos normalizacao.
     """
 
     encontrados = {}
@@ -1488,11 +1969,7 @@ def confirmar_transmissao(jogo, fontes):
 
 
     # Fallback exato sem horario.
-    if (
-        len(fontes) >= 2
-        and
-        len(encontrados) < 2
-    ):
+    if len(encontrados) < len(fontes):
 
         for nome_fonte, eventos in fontes.items():
 
@@ -1536,10 +2013,31 @@ def confirmar_transmissao(jogo, fontes):
             )
         )
 
-        if not evento_bate_estritamente(
+        fonte_unica_segura = evento_bate_estritamente(
             jogo,
             evento
-        ):
+        )
+
+        if not fonte_unica_segura:
+
+            # A pagina pode publicar o horario errado. Para nao perder um
+            # canal correto, aceitamos sem horario apenas quando existe UM
+            # unico evento com casa + visitante + competicao exatos.
+            evento_exato = encontrar_evento_exato_sem_horario(
+                jogo,
+                fontes.get(
+                    nome_fonte,
+                    [],
+                ),
+            )
+
+            if evento_exato is not None:
+                evento = evento_exato
+                encontrados[nome_fonte] = evento
+
+                fonte_unica_segura = True
+
+        if not fonte_unica_segura:
 
             return {
                 "status":
@@ -1878,7 +2376,8 @@ def main():
         )
 
     alterados = 0
-    confirmados = 0
+    confirmados_duas_fontes = 0
+    confirmados_fonte_unica = 0
     conflitos = 0
     insuficientes = 0
     limpos_por_conflito = 0
@@ -1924,7 +2423,6 @@ def main():
             continue
 
         nova_transmissao = resultado["transmissao"]
-        confirmados += 1
 
         atual = jogo.get("transmissao", [])
 
@@ -1938,6 +2436,8 @@ def main():
         )
 
         if status == "confirmado_fonte_unica":
+
+            confirmados_fonte_unica += 1
 
             fonte_log = nova_transmissao[
                 0
@@ -1953,13 +2453,22 @@ def main():
 
         else:
 
+            confirmados_duas_fontes += 1
+
             print(
                 f"[OK] {nome_jogo(jogo)} -> {canais_log}"
             )
 
     print("")
     print("=== RESUMO ===")
-    print(f"Confirmados nas duas fontes: {confirmados}")
+    print(
+        "Confirmados nas duas fontes: "
+        f"{confirmados_duas_fontes}"
+    )
+    print(
+        "Confirmados por fonte unica: "
+        f"{confirmados_fonte_unica}"
+    )
     print(f"Conflitos entre fontes: {conflitos}")
     print(f"Sem confirmacao dupla: {insuficientes}")
     print(f"Campos alterados: {alterados}")
