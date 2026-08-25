@@ -801,7 +801,20 @@
         "nome": "Abdullah Al Dabil Stadium",
         "cidade": null
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "GOAT",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "SporTV",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "XSports",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1602995,
@@ -925,7 +938,12 @@
         "nome": null,
         "cidade": null
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Disney+",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1520835,
@@ -987,7 +1005,24 @@
         "nome": "Estadio Alfredo Jaconi",
         "cidade": "Caxias do Sul"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Disney+",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "ESPN",
+          "fonte": "DPF + Mantos"
+        },
+        {
+          "canal": "SportyNet",
+          "fonte": "DPF + Mantos"
+        },
+        {
+          "canal": "XSports",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1623069,
@@ -1049,7 +1084,16 @@
         "nome": null,
         "cidade": "Belo Horizonte"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Premiere",
+          "fonte": "DPF + Mantos"
+        },
+        {
+          "canal": "SporTV",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1547769,
