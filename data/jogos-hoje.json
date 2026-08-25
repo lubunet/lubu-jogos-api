@@ -179,7 +179,12 @@
         "nome": "Al Taawon Arena",
         "cidade": "Buraidah"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "GOAT",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1543991,
@@ -804,15 +809,15 @@
       "transmissao": [
         {
           "canal": "GOAT",
-          "fonte": "Mantos"
+          "fonte": "DPF + Mantos"
         },
         {
           "canal": "SporTV",
-          "fonte": "Mantos"
+          "fonte": "DPF + Mantos"
         },
         {
           "canal": "XSports",
-          "fonte": "Mantos"
+          "fonte": "DPF + Mantos"
         }
       ]
     },
@@ -1155,7 +1160,12 @@
         "nome": "Estadio Banco Guayaquil",
         "cidade": "Quito"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Paramount+",
+          "fonte": "DPF"
+        }
+      ]
     }
   ]
 }
