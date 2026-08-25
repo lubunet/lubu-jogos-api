@@ -1,7 +1,7 @@
 {
   "versao": 16,
   "data": "2026-08-25",
-  "gerado_em": "2026-08-25T00:49:23.431743-04:00",
+  "gerado_em": "2026-08-25T12:50:56.745083-04:00",
   "timezone_referencia": "America/Cuiaba",
   "periodo": {
     "inicio": "00:00",
@@ -67,9 +67,9 @@
         "horario": "12:05"
       },
       "status": {
-        "codigo": "NS",
-        "descricao": "Not Started",
-        "minuto": null
+        "codigo": "1H",
+        "descricao": "First Half",
+        "minuto": 45
       },
       "campeonato": {
         "id": 307,
@@ -85,19 +85,19 @@
         "nome": "Abha",
         "logo": "https://media.api-sports.io/football/teams/2951.png",
         "vencedor": null,
-        "gols": null
+        "gols": 1
       },
       "fora": {
         "id": 2928,
         "nome": "Al Khaleej Saihat",
         "logo": "https://media.api-sports.io/football/teams/2928.png",
         "vencedor": null,
-        "gols": null
+        "gols": 1
       },
       "placar": {
         "intervalo": {
-          "home": null,
-          "away": null
+          "home": 1,
+          "away": 1
         },
         "final": {
           "home": null,
@@ -129,9 +129,9 @@
         "horario": "12:10"
       },
       "status": {
-        "codigo": "NS",
-        "descricao": "Not Started",
-        "minuto": null
+        "codigo": "1H",
+        "descricao": "First Half",
+        "minuto": 41
       },
       "campeonato": {
         "id": 307,
@@ -147,19 +147,19 @@
         "nome": "Al Taawon",
         "logo": "https://media.api-sports.io/football/teams/2936.png",
         "vencedor": null,
-        "gols": null
+        "gols": 0
       },
       "fora": {
         "id": 2944,
         "nome": "Al-Fayha",
         "logo": "https://media.api-sports.io/football/teams/2944.png",
         "vencedor": null,
-        "gols": null
+        "gols": 0
       },
       "placar": {
         "intervalo": {
-          "home": null,
-          "away": null
+          "home": 0,
+          "away": 0
         },
         "final": {
           "home": null,
@@ -176,7 +176,7 @@
       },
       "estadio": {
         "id": null,
-        "nome": "Al Taawon Arena",
+        "nome": "Wolves Park Stadium",
         "cidade": "Buraidah"
       },
       "transmissao": [
