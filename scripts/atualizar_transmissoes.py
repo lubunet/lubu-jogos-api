@@ -161,6 +161,14 @@ ALIASES_TIMES = {
     "al hazm": "al hazm",
     "al diriyah": "al diriyah",
 
+    # A API usa Taawon; o Mantos publica Taawoun.
+    "al taawon": "al taawon",
+    "al taawoun": "al taawon",
+
+    # A API usa Deportes Tolima; os guias normalmente abreviam para Tolima.
+    "deportes tolima": "tolima",
+    "tolima": "tolima",
+
     # Variacoes extras
     "palmeiras sp": "palmeiras",
     "se palmeiras": "palmeiras",
@@ -385,6 +393,13 @@ def times_batem(a, b):
 
 def normalizar_competicao(nome):
     nome = normalizar_texto(nome)
+
+    # Erro recorrente encontrado no DPF: "Camponato".
+    nome = re.sub(
+        r"\bcamponato\b",
+        "campeonato",
+        nome,
+    )
 
     # Remove detalhes de fase sem mudar a competicao.
     nome = re.sub(
@@ -1900,6 +1915,118 @@ def evento_bate_estritamente(jogo, evento):
     return True
 
 
+def evento_bate_com_variacao_segura(jogo, evento):
+    """
+    Aceita uma pequena grafia diferente em apenas UM dos times.
+
+    Esta regra existe para casos como Taawon/Taawoun. Para evitar falso
+    positivo, exige simultaneamente:
+      - horario dentro da tolerancia estrita de fonte unica;
+      - competicao exatamente igual apos normalizacao;
+      - um dos times exatamente igual;
+      - o outro time com similaridade minima de 92%;
+      - lista de canais valida.
+
+    O candidato ja passou pela verificacao de ambiguidade de
+    encontrar_evento antes de chegar aqui.
+    """
+
+    casa = jogo.get(
+        "casa",
+        {},
+    ).get(
+        "nome",
+        "",
+    )
+
+    fora = jogo.get(
+        "fora",
+        {},
+    ).get(
+        "nome",
+        "",
+    )
+
+    competicao = jogo.get(
+        "campeonato",
+        {},
+    ).get(
+        "nome",
+        "",
+    )
+
+    hora = horario_brasilia_do_jogo(
+        jogo
+    )
+
+    if (
+        not casa
+        or not fora
+        or not competicao
+        or hora is None
+    ):
+        return False
+
+    if diferenca_minutos(
+        hora,
+        evento.get(
+            "hora",
+            -9999,
+        ),
+    ) > TOLERANCIA_FONTE_UNICA_MINUTOS:
+        return False
+
+    if normalizar_competicao(
+        competicao
+    ) != normalizar_competicao(
+        evento.get(
+            "competicao",
+            "",
+        )
+    ):
+        return False
+
+    similaridade_casa = similaridade_time(
+        casa,
+        evento.get(
+            "casa",
+            "",
+        ),
+    )
+
+    similaridade_fora = similaridade_time(
+        fora,
+        evento.get(
+            "fora",
+            "",
+        ),
+    )
+
+    if min(
+        similaridade_casa,
+        similaridade_fora,
+    ) < 0.92:
+        return False
+
+    if max(
+        similaridade_casa,
+        similaridade_fora,
+    ) < 1.0:
+        return False
+
+    canais = evento.get(
+        "canais"
+    )
+
+    return (
+        isinstance(
+            canais,
+            list,
+        )
+        and bool(canais)
+    )
+
+
 def montar_transmissao(
     canais,
     fonte
@@ -1932,7 +2059,7 @@ def montar_transmissao(
 
 def confirmar_transmissao(jogo, fontes):
     """
-    Versao 8 - parser corrigido, aliases robustos e protecao contra falso positivo.
+    Versao 9 - parser resiliente, aliases robustos e protecao contra falso positivo.
 
     REGRA A - jogo encontrado nas DUAS fontes:
       - usamos a UNIAO dos canais.
@@ -2017,6 +2144,12 @@ def confirmar_transmissao(jogo, fontes):
             jogo,
             evento
         )
+
+        if not fonte_unica_segura:
+            fonte_unica_segura = evento_bate_com_variacao_segura(
+                jogo,
+                evento,
+            )
 
         if not fonte_unica_segura:
 
@@ -2287,7 +2420,7 @@ def salvar_atomico(dados):
 # ============================================================
 
 def main():
-    print("=== LUBU - Atualizacao de transmissoes v8 ===")
+    print("=== LUBU - Atualizacao de transmissoes v9 ===")
 
     try:
         with open(
