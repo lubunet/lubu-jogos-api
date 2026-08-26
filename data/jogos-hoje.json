@@ -1,7 +1,7 @@
 {
   "versao": 16,
   "data": "2026-08-26",
-  "gerado_em": "2026-08-26T00:51:15.521283-04:00",
+  "gerado_em": "2026-08-26T12:55:31.671799-04:00",
   "timezone_referencia": "America/Cuiaba",
   "periodo": {
     "inicio": "00:00",
@@ -91,9 +91,9 @@
         "horario": "12:00"
       },
       "status": {
-        "codigo": "NS",
-        "descricao": "Not Started",
-        "minuto": null
+        "codigo": "HT",
+        "descricao": "Halftime",
+        "minuto": 45
       },
       "campeonato": {
         "id": 307,
@@ -109,19 +109,19 @@
         "nome": "Al-Faisaly FC",
         "logo": "https://media.api-sports.io/football/teams/2930.png",
         "vencedor": null,
-        "gols": null
+        "gols": 1
       },
       "fora": {
         "id": 2931,
         "nome": "Al-Fateh",
         "logo": "https://media.api-sports.io/football/teams/2931.png",
         "vencedor": null,
-        "gols": null
+        "gols": 1
       },
       "placar": {
         "intervalo": {
-          "home": null,
-          "away": null
+          "home": 1,
+          "away": 1
         },
         "final": {
           "home": null,
@@ -138,8 +138,8 @@
       },
       "estadio": {
         "id": null,
-        "nome": null,
-        "cidade": null
+        "nome": "Al Majma'ah Sport City",
+        "cidade": "Al Majmaah"
       },
       "transmissao": []
     },
