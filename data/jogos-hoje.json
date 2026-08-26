@@ -335,7 +335,20 @@
         "nome": "Prince Turki bin Abdul Aziz Stadium",
         "cidade": "Riyadh"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "BandSports",
+          "fonte": "DPF + Mantos"
+        },
+        {
+          "canal": "Esporte na Band",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "GOAT",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1628892,
@@ -645,7 +658,12 @@
         "nome": "Francisco Novelletto Neto",
         "cidade": "Porto Alegre"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Metropoles Esportes",
+          "fonte": "DPF"
+        }
+      ]
     },
     {
       "id": 1607652,
@@ -707,7 +725,16 @@
         "nome": "Estadio Monumental",
         "cidade": "Buenos Aires"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Disney+",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "ESPN",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1623071,
@@ -769,7 +796,104 @@
         "nome": null,
         "cidade": null
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "AC",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "AL",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "AM",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "AP",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "CE",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "DF",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "GE TV",
+          "fonte": "DPF + Mantos"
+        },
+        {
+          "canal": "Globo",
+          "fonte": "DPF + Mantos"
+        },
+        {
+          "canal": "GO",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "MG Exceto JUIZ DE FORA",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "MS",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "MT",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "PA Exceto Santarem",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "PE",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "PI",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "PR",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "Premiere",
+          "fonte": "DPF + Mantos"
+        },
+        {
+          "canal": "Prime Video",
+          "fonte": "DPF + Mantos"
+        },
+        {
+          "canal": "RO",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "RR",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "RS",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "SC",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "SporTV",
+          "fonte": "DPF + Mantos"
+        },
+        {
+          "canal": "TO",
+          "fonte": "DPF"
+        }
+      ]
     },
     {
       "id": 1623072,
@@ -831,7 +955,60 @@
         "nome": null,
         "cidade": "Rio de Janeiro"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "BA",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "ES",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "GE TV",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "Globo",
+          "fonte": "DPF + Mantos"
+        },
+        {
+          "canal": "MA",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "MG JUIZ DE FORA",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "PA Santarem",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "PB",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "Premiere",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "Prime Video",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "RN",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "SE",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "SporTV 2",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1632398,
