@@ -109,7 +109,16 @@
         "nome": null,
         "cidade": null
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "SporTV",
+          "fonte": "DPF + Mantos"
+        },
+        {
+          "canal": "UOL PLAY",
+          "fonte": "DPF"
+        }
+      ]
     },
     {
       "id": 1623070,
@@ -171,7 +180,12 @@
         "nome": null,
         "cidade": "Porto Alegre"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Prime Video",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1629822,
