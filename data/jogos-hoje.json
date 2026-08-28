@@ -279,7 +279,16 @@
         "nome": "King Saud University Stadium",
         "cidade": "Riyadh"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "GOAT",
+          "fonte": "DPF + Mantos"
+        },
+        {
+          "canal": "SporTV 2",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1520845,
@@ -341,7 +350,16 @@
         "nome": null,
         "cidade": "Goiania"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Disney+",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "ESPN",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1520847,
@@ -465,7 +483,12 @@
         "nome": "Estadio Dr. Jorge Ismael de Biasi",
         "cidade": "Novo Horizonte"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Disney+",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     }
   ]
 }
