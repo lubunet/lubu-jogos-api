@@ -1,7 +1,7 @@
 {
   "versao": 16,
-  "data": "2026-08-27",
-  "gerado_em": "2026-08-27T20:50:34.353972-04:00",
+  "data": "2026-08-28",
+  "gerado_em": "2026-08-28T12:33:12.609951-04:00",
   "timezone_referencia": "America/Cuiaba",
   "periodo": {
     "inicio": "00:00",
@@ -12,148 +12,61 @@
     "formato": "Unix timestamp",
     "observacao": "Converter usando o mesmo timezone/offset configurado para o EPG."
   },
-  "quantidade_campeonatos": 3,
-  "quantidade_jogos": 3,
+  "quantidade_campeonatos": 2,
+  "quantidade_jogos": 7,
   "campeonatos": [
     {
-      "id": 1128,
-      "nome": "Brasileiro U17",
+      "id": 72,
+      "nome": "Serie B",
       "pais": "Brazil",
-      "logo": "https://media.api-sports.io/football/leagues/1128.png",
+      "logo": "https://media.api-sports.io/football/leagues/72.png",
       "bandeira": "https://media.api-sports.io/flags/br.svg",
-      "quantidade_jogos": 1
+      "quantidade_jogos": 3
     },
     {
-      "id": 73,
-      "nome": "Copa Do Brasil",
-      "pais": "Brazil",
-      "logo": "https://media.api-sports.io/football/leagues/73.png",
-      "bandeira": "https://media.api-sports.io/flags/br.svg",
-      "quantidade_jogos": 1
-    },
-    {
-      "id": 76,
-      "nome": "Serie D",
-      "pais": "Brazil",
-      "logo": "https://media.api-sports.io/football/leagues/76.png",
-      "bandeira": "https://media.api-sports.io/flags/br.svg",
-      "quantidade_jogos": 1
+      "id": 307,
+      "nome": "Pro League",
+      "pais": "Saudi-Arabia",
+      "logo": "https://media.api-sports.io/football/leagues/307.png",
+      "bandeira": "https://media.api-sports.io/flags/sa.svg",
+      "quantidade_jogos": 4
     }
   ],
   "jogos": [
     {
-      "id": 1543996,
-      "timestamp": 1787871600,
-      "inicio_utc": "2026-08-27T23:00:00Z",
+      "id": 1602998,
+      "timestamp": 1787932200,
+      "inicio_utc": "2026-08-28T15:50:00Z",
       "horario_referencia": {
         "timezone": "America/Cuiaba",
-        "data": "2026-08-27",
-        "horario": "19:00"
+        "data": "2026-08-28",
+        "horario": "11:50"
       },
       "status": {
-        "codigo": "NS",
-        "descricao": "Not Started",
-        "minuto": null
+        "codigo": "1H",
+        "descricao": "First Half",
+        "minuto": 43
       },
       "campeonato": {
-        "id": 1128,
-        "nome": "Brasileiro U17",
-        "pais": "Brazil",
-        "logo": "https://media.api-sports.io/football/leagues/1128.png",
-        "bandeira": "https://media.api-sports.io/flags/br.svg",
+        "id": 307,
+        "nome": "Pro League",
+        "pais": "Saudi-Arabia",
+        "logo": "https://media.api-sports.io/football/leagues/307.png",
+        "bandeira": "https://media.api-sports.io/flags/sa.svg",
         "temporada": 2026,
-        "rodada": "Regular Season - 13"
+        "rodada": "Regular Season - 4"
       },
       "casa": {
-        "id": 24479,
-        "nome": "Fluminense",
-        "logo": "https://media.api-sports.io/football/teams/124.png",
-        "vencedor": null,
-        "gols": null,
-        "nome_original_api": "Fluminense U17",
-        "logo_original_api": "https://media.api-sports.io/football/teams/24479.png",
-        "clube_principal_id": 124,
-        "origem_logo": "clube_principal"
-      },
-      "fora": {
-        "id": 24484,
-        "nome": "Palmeiras",
-        "logo": "https://media.api-sports.io/football/teams/121.png",
-        "vencedor": null,
-        "gols": null,
-        "nome_original_api": "Palmeiras U17",
-        "logo_original_api": "https://media.api-sports.io/football/teams/24484.png",
-        "clube_principal_id": 121,
-        "origem_logo": "clube_principal"
-      },
-      "placar": {
-        "intervalo": {
-          "home": null,
-          "away": null
-        },
-        "final": {
-          "home": null,
-          "away": null
-        },
-        "prorrogacao": {
-          "home": null,
-          "away": null
-        },
-        "penaltis": {
-          "home": null,
-          "away": null
-        }
-      },
-      "estadio": {
-        "id": null,
-        "nome": null,
-        "cidade": null
-      },
-      "transmissao": [
-        {
-          "canal": "SporTV",
-          "fonte": "DPF + Mantos"
-        },
-        {
-          "canal": "UOL PLAY",
-          "fonte": "DPF"
-        }
-      ]
-    },
-    {
-      "id": 1623070,
-      "timestamp": 1787871600,
-      "inicio_utc": "2026-08-27T23:00:00Z",
-      "horario_referencia": {
-        "timezone": "America/Cuiaba",
-        "data": "2026-08-27",
-        "horario": "19:00"
-      },
-      "status": {
-        "codigo": "2H",
-        "descricao": "Second Half",
-        "minuto": 79
-      },
-      "campeonato": {
-        "id": 73,
-        "nome": "Copa Do Brasil",
-        "pais": "Brazil",
-        "logo": "https://media.api-sports.io/football/leagues/73.png",
-        "bandeira": "https://media.api-sports.io/flags/br.svg",
-        "temporada": 2026,
-        "rodada": "Quarter-finals"
-      },
-      "casa": {
-        "id": 119,
-        "nome": "Internacional",
-        "logo": "https://media.api-sports.io/football/teams/119.png",
+        "id": 10511,
+        "nome": "Al Riyadh",
+        "logo": "https://media.api-sports.io/football/teams/10511.png",
         "vencedor": null,
         "gols": 0
       },
       "fora": {
-        "id": 130,
-        "nome": "Gremio",
-        "logo": "https://media.api-sports.io/football/teams/130.png",
+        "id": 10513,
+        "nome": "NEOM",
+        "logo": "https://media.api-sports.io/football/teams/10513.png",
         "vencedor": null,
         "gols": 0
       },
@@ -176,58 +89,239 @@
         }
       },
       "estadio": {
-        "id": null,
-        "nome": null,
-        "cidade": "Porto Alegre"
+        "id": 1374,
+        "nome": "Prince Faisal bin Fahd Stadium",
+        "cidade": "Riyadh"
       },
-      "transmissao": [
-        {
-          "canal": "Prime Video",
-          "fonte": "DPF + Mantos"
-        }
-      ]
+      "transmissao": []
     },
     {
-      "id": 1629822,
-      "timestamp": 1787875200,
-      "inicio_utc": "2026-08-28T00:00:00Z",
+      "id": 1602999,
+      "timestamp": 1787932800,
+      "inicio_utc": "2026-08-28T16:00:00Z",
       "horario_referencia": {
         "timezone": "America/Cuiaba",
-        "data": "2026-08-27",
-        "horario": "20:00"
+        "data": "2026-08-28",
+        "horario": "12:00"
       },
       "status": {
         "codigo": "1H",
         "descricao": "First Half",
-        "minuto": 39
+        "minuto": 32
       },
       "campeonato": {
-        "id": 76,
-        "nome": "Serie D",
-        "pais": "Brazil",
-        "logo": "https://media.api-sports.io/football/leagues/76.png",
-        "bandeira": "https://media.api-sports.io/flags/br.svg",
+        "id": 307,
+        "nome": "Pro League",
+        "pais": "Saudi-Arabia",
+        "logo": "https://media.api-sports.io/football/leagues/307.png",
+        "bandeira": "https://media.api-sports.io/flags/sa.svg",
         "temporada": 2026,
-        "rodada": "Final"
+        "rodada": "Regular Season - 4"
       },
       "casa": {
-        "id": 7781,
-        "nome": "Nacional AM",
-        "logo": "https://media.api-sports.io/football/teams/7781.png",
+        "id": 2944,
+        "nome": "Al-Fayha",
+        "logo": "https://media.api-sports.io/football/teams/2944.png",
         "vencedor": true,
-        "gols": 3
+        "gols": 1
       },
       "fora": {
-        "id": 150,
-        "nome": "CSA",
-        "logo": "https://media.api-sports.io/football/teams/150.png",
+        "id": 2951,
+        "nome": "Abha",
+        "logo": "https://media.api-sports.io/football/teams/2951.png",
         "vencedor": false,
-        "gols": 1
+        "gols": 0
       },
       "placar": {
         "intervalo": {
-          "home": 3,
-          "away": 1
+          "home": 1,
+          "away": 0
+        },
+        "final": {
+          "home": null,
+          "away": null
+        },
+        "prorrogacao": {
+          "home": null,
+          "away": null
+        },
+        "penaltis": {
+          "home": null,
+          "away": null
+        }
+      },
+      "estadio": {
+        "id": null,
+        "nome": "Al Majma'ah Sport City",
+        "cidade": "Al Majmaah"
+      },
+      "transmissao": []
+    },
+    {
+      "id": 1603000,
+      "timestamp": 1787940000,
+      "inicio_utc": "2026-08-28T18:00:00Z",
+      "horario_referencia": {
+        "timezone": "America/Cuiaba",
+        "data": "2026-08-28",
+        "horario": "14:00"
+      },
+      "status": {
+        "codigo": "NS",
+        "descricao": "Not Started",
+        "minuto": null
+      },
+      "campeonato": {
+        "id": 307,
+        "nome": "Pro League",
+        "pais": "Saudi-Arabia",
+        "logo": "https://media.api-sports.io/football/leagues/307.png",
+        "bandeira": "https://media.api-sports.io/flags/sa.svg",
+        "temporada": 2026,
+        "rodada": "Regular Season - 4"
+      },
+      "casa": {
+        "id": 2928,
+        "nome": "Al Khaleej Saihat",
+        "logo": "https://media.api-sports.io/football/teams/2928.png",
+        "vencedor": null,
+        "gols": null
+      },
+      "fora": {
+        "id": 2932,
+        "nome": "Al-Hilal Saudi FC",
+        "logo": "https://media.api-sports.io/football/teams/2932.png",
+        "vencedor": null,
+        "gols": null
+      },
+      "placar": {
+        "intervalo": {
+          "home": null,
+          "away": null
+        },
+        "final": {
+          "home": null,
+          "away": null
+        },
+        "prorrogacao": {
+          "home": null,
+          "away": null
+        },
+        "penaltis": {
+          "home": null,
+          "away": null
+        }
+      },
+      "estadio": {
+        "id": 1370,
+        "nome": "Prince Mohamed bin Fahd Stadium",
+        "cidade": "Dammam"
+      },
+      "transmissao": []
+    },
+    {
+      "id": 1603001,
+      "timestamp": 1787940000,
+      "inicio_utc": "2026-08-28T18:00:00Z",
+      "horario_referencia": {
+        "timezone": "America/Cuiaba",
+        "data": "2026-08-28",
+        "horario": "14:00"
+      },
+      "status": {
+        "codigo": "NS",
+        "descricao": "Not Started",
+        "minuto": null
+      },
+      "campeonato": {
+        "id": 307,
+        "nome": "Pro League",
+        "pais": "Saudi-Arabia",
+        "logo": "https://media.api-sports.io/football/leagues/307.png",
+        "bandeira": "https://media.api-sports.io/flags/sa.svg",
+        "temporada": 2026,
+        "rodada": "Regular Season - 4"
+      },
+      "casa": {
+        "id": 2939,
+        "nome": "Al-Nassr",
+        "logo": "https://media.api-sports.io/football/teams/2939.png",
+        "vencedor": null,
+        "gols": null
+      },
+      "fora": {
+        "id": 2936,
+        "nome": "Al Taawon",
+        "logo": "https://media.api-sports.io/football/teams/2936.png",
+        "vencedor": null,
+        "gols": null
+      },
+      "placar": {
+        "intervalo": {
+          "home": null,
+          "away": null
+        },
+        "final": {
+          "home": null,
+          "away": null
+        },
+        "prorrogacao": {
+          "home": null,
+          "away": null
+        },
+        "penaltis": {
+          "home": null,
+          "away": null
+        }
+      },
+      "estadio": {
+        "id": null,
+        "nome": "King Saud University Stadium",
+        "cidade": "Riyadh"
+      },
+      "transmissao": []
+    },
+    {
+      "id": 1520845,
+      "timestamp": 1787956200,
+      "inicio_utc": "2026-08-28T22:30:00Z",
+      "horario_referencia": {
+        "timezone": "America/Cuiaba",
+        "data": "2026-08-28",
+        "horario": "18:30"
+      },
+      "status": {
+        "codigo": "NS",
+        "descricao": "Not Started",
+        "minuto": null
+      },
+      "campeonato": {
+        "id": 72,
+        "nome": "Serie B",
+        "pais": "Brazil",
+        "logo": "https://media.api-sports.io/football/leagues/72.png",
+        "bandeira": "https://media.api-sports.io/flags/br.svg",
+        "temporada": 2026,
+        "rodada": "Regular Season - 25"
+      },
+      "casa": {
+        "id": 151,
+        "nome": "Goias",
+        "logo": "https://media.api-sports.io/football/teams/151.png",
+        "vencedor": null,
+        "gols": null
+      },
+      "fora": {
+        "id": 7865,
+        "nome": "São Bernardo",
+        "logo": "https://media.api-sports.io/football/teams/7865.png",
+        "vencedor": null,
+        "gols": null
+      },
+      "placar": {
+        "intervalo": {
+          "home": null,
+          "away": null
         },
         "final": {
           "home": null,
@@ -245,7 +339,131 @@
       "estadio": {
         "id": null,
         "nome": null,
-        "cidade": null
+        "cidade": "Goiania"
+      },
+      "transmissao": []
+    },
+    {
+      "id": 1520847,
+      "timestamp": 1787959800,
+      "inicio_utc": "2026-08-28T23:30:00Z",
+      "horario_referencia": {
+        "timezone": "America/Cuiaba",
+        "data": "2026-08-28",
+        "horario": "19:30"
+      },
+      "status": {
+        "codigo": "NS",
+        "descricao": "Not Started",
+        "minuto": null
+      },
+      "campeonato": {
+        "id": 72,
+        "nome": "Serie B",
+        "pais": "Brazil",
+        "logo": "https://media.api-sports.io/football/leagues/72.png",
+        "bandeira": "https://media.api-sports.io/flags/br.svg",
+        "temporada": 2026,
+        "rodada": "Regular Season - 25"
+      },
+      "casa": {
+        "id": 755,
+        "nome": "Nautico Recife",
+        "logo": "https://media.api-sports.io/football/teams/755.png",
+        "vencedor": null,
+        "gols": null
+      },
+      "fora": {
+        "id": 13975,
+        "nome": "Athletic Club",
+        "logo": "https://media.api-sports.io/football/teams/13975.png",
+        "vencedor": null,
+        "gols": null
+      },
+      "placar": {
+        "intervalo": {
+          "home": null,
+          "away": null
+        },
+        "final": {
+          "home": null,
+          "away": null
+        },
+        "prorrogacao": {
+          "home": null,
+          "away": null
+        },
+        "penaltis": {
+          "home": null,
+          "away": null
+        }
+      },
+      "estadio": {
+        "id": null,
+        "nome": null,
+        "cidade": "Recife"
+      },
+      "transmissao": []
+    },
+    {
+      "id": 1520848,
+      "timestamp": 1787959800,
+      "inicio_utc": "2026-08-28T23:30:00Z",
+      "horario_referencia": {
+        "timezone": "America/Cuiaba",
+        "data": "2026-08-28",
+        "horario": "19:30"
+      },
+      "status": {
+        "codigo": "NS",
+        "descricao": "Not Started",
+        "minuto": null
+      },
+      "campeonato": {
+        "id": 72,
+        "nome": "Serie B",
+        "pais": "Brazil",
+        "logo": "https://media.api-sports.io/football/leagues/72.png",
+        "bandeira": "https://media.api-sports.io/flags/br.svg",
+        "temporada": 2026,
+        "rodada": "Regular Season - 25"
+      },
+      "casa": {
+        "id": 7834,
+        "nome": "Novorizontino",
+        "logo": "https://media.api-sports.io/football/teams/7834.png",
+        "vencedor": null,
+        "gols": null
+      },
+      "fora": {
+        "id": 123,
+        "nome": "Sport Recife",
+        "logo": "https://media.api-sports.io/football/teams/123.png",
+        "vencedor": null,
+        "gols": null
+      },
+      "placar": {
+        "intervalo": {
+          "home": null,
+          "away": null
+        },
+        "final": {
+          "home": null,
+          "away": null
+        },
+        "prorrogacao": {
+          "home": null,
+          "away": null
+        },
+        "penaltis": {
+          "home": null,
+          "away": null
+        }
+      },
+      "estadio": {
+        "id": null,
+        "nome": "Estadio Dr. Jorge Ismael de Biasi",
+        "cidade": "Novo Horizonte"
       },
       "transmissao": []
     }
