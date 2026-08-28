@@ -1,7 +1,7 @@
 {
   "versao": 16,
   "data": "2026-08-27",
-  "gerado_em": "2026-08-27T11:08:42.548837-04:00",
+  "gerado_em": "2026-08-27T20:50:34.353972-04:00",
   "timezone_referencia": "America/Cuiaba",
   "periodo": {
     "inicio": "00:00",
@@ -130,9 +130,9 @@
         "horario": "19:00"
       },
       "status": {
-        "codigo": "NS",
-        "descricao": "Not Started",
-        "minuto": null
+        "codigo": "2H",
+        "descricao": "Second Half",
+        "minuto": 79
       },
       "campeonato": {
         "id": 73,
@@ -148,19 +148,19 @@
         "nome": "Internacional",
         "logo": "https://media.api-sports.io/football/teams/119.png",
         "vencedor": null,
-        "gols": null
+        "gols": 0
       },
       "fora": {
         "id": 130,
         "nome": "Gremio",
         "logo": "https://media.api-sports.io/football/teams/130.png",
         "vencedor": null,
-        "gols": null
+        "gols": 0
       },
       "placar": {
         "intervalo": {
-          "home": null,
-          "away": null
+          "home": 0,
+          "away": 0
         },
         "final": {
           "home": null,
@@ -197,9 +197,9 @@
         "horario": "20:00"
       },
       "status": {
-        "codigo": "NS",
-        "descricao": "Not Started",
-        "minuto": null
+        "codigo": "1H",
+        "descricao": "First Half",
+        "minuto": 39
       },
       "campeonato": {
         "id": 76,
@@ -214,20 +214,20 @@
         "id": 7781,
         "nome": "Nacional AM",
         "logo": "https://media.api-sports.io/football/teams/7781.png",
-        "vencedor": null,
-        "gols": null
+        "vencedor": true,
+        "gols": 3
       },
       "fora": {
         "id": 150,
         "nome": "CSA",
         "logo": "https://media.api-sports.io/football/teams/150.png",
-        "vencedor": null,
-        "gols": null
+        "vencedor": false,
+        "gols": 1
       },
       "placar": {
         "intervalo": {
-          "home": null,
-          "away": null
+          "home": 3,
+          "away": 1
         },
         "final": {
           "home": null,
