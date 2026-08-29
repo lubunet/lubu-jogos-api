@@ -319,7 +319,16 @@
         "nome": "Al Fateh club stadium",
         "cidade": "Al-Hofuf"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "BandSports",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "GOAT",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1632464,
@@ -567,7 +576,20 @@
         "nome": "Estadio Jonas Duarte",
         "cidade": null
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Band",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "Nordeste",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "SportyNet",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1526937,
@@ -629,7 +651,12 @@
         "nome": null,
         "cidade": null
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "SportyNet",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1526938,
@@ -691,7 +718,12 @@
         "nome": "Arena Fonte Luminosa",
         "cidade": "Araraquara"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "SportyNet",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1526939,
@@ -753,7 +785,16 @@
         "nome": null,
         "cidade": null
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "SportyNet",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "Youtube COM Canaldobenjaoficial",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1526940,
@@ -815,7 +856,12 @@
         "nome": null,
         "cidade": "Horizonte"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "SportyNet",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1526941,
@@ -1001,7 +1047,12 @@
         "nome": "Leonidas Sodre de Castro",
         "cidade": "Belem"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "SportyNet",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1526944,
@@ -1063,7 +1114,12 @@
         "nome": "Estadio Francisco Stedile",
         "cidade": "Caxias do Sul"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "SportyNet",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1633891,
@@ -1249,7 +1305,12 @@
         "nome": "MRV Arena",
         "cidade": "Belo Horizonte"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Premiere",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1520842,
@@ -1311,7 +1372,16 @@
         "nome": "Estadio Santa Cruz",
         "cidade": "Ribeirao Preto"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Disney+",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "ESPN",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1492358,
@@ -1373,7 +1443,16 @@
         "nome": "Estadio Do MorumBIS",
         "cidade": "Sao Paulo"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Premiere",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "SporTV",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1492359,
@@ -1435,7 +1514,20 @@
         "nome": null,
         "cidade": "Rio de Janeiro"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "CazéTV",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "Premiere",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "Record",
+          "fonte": "Mantos"
+        }
+      ]
     }
   ]
 }
