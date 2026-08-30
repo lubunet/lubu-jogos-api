@@ -1,7 +1,7 @@
 {
   "versao": 16,
   "data": "2026-08-30",
-  "gerado_em": "2026-08-30T05:54:04.585122-04:00",
+  "gerado_em": "2026-08-30T15:16:58.285569-04:00",
   "timezone_referencia": "America/Cuiaba",
   "periodo": {
     "inicio": "00:00",
@@ -75,9 +75,9 @@
         "horario": "10:00"
       },
       "status": {
-        "codigo": "NS",
-        "descricao": "Not Started",
-        "minuto": null
+        "codigo": "FT",
+        "descricao": "Match Finished",
+        "minuto": 90
       },
       "campeonato": {
         "id": 71,
@@ -93,23 +93,23 @@
         "nome": "Atletico Paranaense",
         "logo": "https://media.api-sports.io/football/teams/134.png",
         "vencedor": null,
-        "gols": null
+        "gols": 3
       },
       "fora": {
         "id": 124,
         "nome": "Fluminense",
         "logo": "https://media.api-sports.io/football/teams/124.png",
         "vencedor": null,
-        "gols": null
+        "gols": 3
       },
       "placar": {
         "intervalo": {
-          "home": null,
-          "away": null
+          "home": 1,
+          "away": 1
         },
         "final": {
-          "home": null,
-          "away": null
+          "home": 3,
+          "away": 3
         },
         "prorrogacao": {
           "home": null,
@@ -142,9 +142,9 @@
         "horario": "12:05"
       },
       "status": {
-        "codigo": "NS",
-        "descricao": "Not Started",
-        "minuto": null
+        "codigo": "FT",
+        "descricao": "Match Finished",
+        "minuto": 90
       },
       "campeonato": {
         "id": 307,
@@ -160,23 +160,23 @@
         "nome": "Al-Hazm",
         "logo": "https://media.api-sports.io/football/teams/2945.png",
         "vencedor": null,
-        "gols": null
+        "gols": 1
       },
       "fora": {
         "id": 2940,
         "nome": "Al Shabab",
         "logo": "https://media.api-sports.io/football/teams/2940.png",
         "vencedor": null,
-        "gols": null
+        "gols": 1
       },
       "placar": {
         "intervalo": {
-          "home": null,
-          "away": null
+          "home": 0,
+          "away": 0
         },
         "final": {
-          "home": null,
-          "away": null
+          "home": 1,
+          "away": 1
         },
         "prorrogacao": {
           "home": null,
@@ -213,9 +213,9 @@
         "horario": "14:00"
       },
       "status": {
-        "codigo": "NS",
-        "descricao": "Not Started",
-        "minuto": null
+        "codigo": "2H",
+        "descricao": "Second Half",
+        "minuto": 57
       },
       "campeonato": {
         "id": 307,
@@ -230,20 +230,20 @@
         "id": 2933,
         "nome": "Al-Qadisiyah FC",
         "logo": "https://media.api-sports.io/football/teams/2933.png",
-        "vencedor": null,
-        "gols": null
+        "vencedor": true,
+        "gols": 3
       },
       "fora": {
         "id": 2930,
         "nome": "Al-Faisaly FC",
         "logo": "https://media.api-sports.io/football/teams/2930.png",
-        "vencedor": null,
-        "gols": null
+        "vencedor": false,
+        "gols": 1
       },
       "placar": {
         "intervalo": {
-          "home": null,
-          "away": null
+          "home": 2,
+          "away": 1
         },
         "final": {
           "home": null,
@@ -259,9 +259,9 @@
         }
       },
       "estadio": {
-        "id": null,
+        "id": 1376,
         "nome": "Prince Saud bin Jalawi Stadium",
-        "cidade": "Dammam"
+        "cidade": "Khobar"
       },
       "transmissao": [
         {
@@ -342,9 +342,9 @@
         "horario": "15:00"
       },
       "status": {
-        "codigo": "NS",
-        "descricao": "Not Started",
-        "minuto": null
+        "codigo": "1H",
+        "descricao": "First Half",
+        "minuto": 16
       },
       "campeonato": {
         "id": 71,
@@ -360,19 +360,19 @@
         "nome": "Corinthians",
         "logo": "https://media.api-sports.io/football/teams/131.png",
         "vencedor": null,
-        "gols": null
+        "gols": 0
       },
       "fora": {
         "id": 128,
         "nome": "Santos",
         "logo": "https://media.api-sports.io/football/teams/128.png",
         "vencedor": null,
-        "gols": null
+        "gols": 0
       },
       "placar": {
         "intervalo": {
-          "home": null,
-          "away": null
+          "home": 0,
+          "away": 0
         },
         "final": {
           "home": null,
@@ -413,9 +413,9 @@
         "horario": "15:00"
       },
       "status": {
-        "codigo": "NS",
-        "descricao": "Not Started",
-        "minuto": null
+        "codigo": "1H",
+        "descricao": "First Half",
+        "minuto": 16
       },
       "campeonato": {
         "id": 71,
@@ -430,20 +430,20 @@
         "id": 127,
         "nome": "Flamengo",
         "logo": "https://media.api-sports.io/football/teams/127.png",
-        "vencedor": null,
-        "gols": null
+        "vencedor": true,
+        "gols": 1
       },
       "fora": {
         "id": 120,
         "nome": "Botafogo",
         "logo": "https://media.api-sports.io/football/teams/120.png",
-        "vencedor": null,
-        "gols": null
+        "vencedor": false,
+        "gols": 0
       },
       "placar": {
         "intervalo": {
-          "home": null,
-          "away": null
+          "home": 1,
+          "away": 0
         },
         "final": {
           "home": null,
@@ -488,9 +488,9 @@
         "horario": "15:00"
       },
       "status": {
-        "codigo": "NS",
-        "descricao": "Not Started",
-        "minuto": null
+        "codigo": "1H",
+        "descricao": "First Half",
+        "minuto": 17
       },
       "campeonato": {
         "id": 72,
@@ -506,19 +506,19 @@
         "nome": "America Mineiro",
         "logo": "https://media.api-sports.io/football/teams/125.png",
         "vencedor": null,
-        "gols": null
+        "gols": 0
       },
       "fora": {
         "id": 139,
         "nome": "Ponte Preta",
         "logo": "https://media.api-sports.io/football/teams/139.png",
         "vencedor": null,
-        "gols": null
+        "gols": 0
       },
       "placar": {
         "intervalo": {
-          "home": null,
-          "away": null
+          "home": 0,
+          "away": 0
         },
         "final": {
           "home": null,
@@ -563,9 +563,9 @@
         "horario": "15:00"
       },
       "status": {
-        "codigo": "NS",
-        "descricao": "Not Started",
-        "minuto": null
+        "codigo": "1H",
+        "descricao": "First Half",
+        "minuto": 13
       },
       "campeonato": {
         "id": 72,
@@ -581,19 +581,19 @@
         "nome": "Avai",
         "logo": "https://media.api-sports.io/football/teams/145.png",
         "vencedor": null,
-        "gols": null
+        "gols": 0
       },
       "fora": {
         "id": 144,
         "nome": "Atletico Goianiense",
         "logo": "https://media.api-sports.io/football/teams/144.png",
         "vencedor": null,
-        "gols": null
+        "gols": 0
       },
       "placar": {
         "intervalo": {
-          "home": null,
-          "away": null
+          "home": 0,
+          "away": 0
         },
         "final": {
           "home": null,
@@ -630,9 +630,9 @@
         "horario": "15:00"
       },
       "status": {
-        "codigo": "NS",
-        "descricao": "Not Started",
-        "minuto": null
+        "codigo": "1H",
+        "descricao": "First Half",
+        "minuto": 15
       },
       "campeonato": {
         "id": 76,
@@ -648,19 +648,19 @@
         "nome": "Gama",
         "logo": "https://media.api-sports.io/football/teams/1222.png",
         "vencedor": null,
-        "gols": null
+        "gols": 0
       },
       "fora": {
         "id": 1207,
         "nome": "ASA",
         "logo": "https://media.api-sports.io/football/teams/1207.png",
         "vencedor": null,
-        "gols": null
+        "gols": 0
       },
       "placar": {
         "intervalo": {
-          "home": null,
-          "away": null
+          "home": 0,
+          "away": 0
         },
         "final": {
           "home": null,
