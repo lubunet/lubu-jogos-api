@@ -322,15 +322,11 @@
       "transmissao": [
         {
           "canal": "BandSports",
-          "fonte": "DPF + Mantos"
+          "fonte": "DPF"
         },
         {
           "canal": "Esporte na Band",
           "fonte": "DPF"
-        },
-        {
-          "canal": "GOAT",
-          "fonte": "Mantos"
         }
       ]
     },
