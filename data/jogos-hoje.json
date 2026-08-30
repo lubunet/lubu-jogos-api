@@ -125,7 +125,12 @@
         "nome": "Arena da Baixada",
         "cidade": "Curitiba"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Premiere",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1603005,
@@ -187,7 +192,16 @@
         "nome": "Al-Hazem Club Stadium",
         "cidade": "Ar Rass"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "GOAT",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "SporTV",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1603006,
@@ -249,7 +263,12 @@
         "nome": "Prince Saud bin Jalawi Stadium",
         "cidade": "Dammam"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "GOAT",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1602083,
@@ -373,7 +392,16 @@
         "nome": "Neo Quimica Arena",
         "cidade": "Sao Paulo"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Globo",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "Premiere",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1492354,
@@ -435,7 +463,20 @@
         "nome": null,
         "cidade": "Rio de Janeiro"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "GE TV",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "Globo",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "Premiere",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1520840,
@@ -497,7 +538,20 @@
         "nome": null,
         "cidade": "Belo Horizonte"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Disney+",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "SportyNet",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "XSports",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1520841,
@@ -559,7 +613,12 @@
         "nome": "Ressacada",
         "cidade": null
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Disney+",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1628951,
@@ -621,7 +680,12 @@
         "nome": null,
         "cidade": null
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Youtube COM Metropolesesportes",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1632399,
@@ -869,7 +933,12 @@
         "nome": null,
         "cidade": "Natal"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Youtube COM Metropolesesportes",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1520843,
@@ -931,7 +1000,20 @@
         "nome": null,
         "cidade": null
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Disney+",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "GOAT",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "Redetv",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1492355,
@@ -993,7 +1075,12 @@
         "nome": null,
         "cidade": "Porto Alegre"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Premiere",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1492356,
@@ -1055,7 +1142,12 @@
         "nome": null,
         "cidade": "Mirassol"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Prime Video",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1520849,
@@ -1117,7 +1209,24 @@
         "nome": null,
         "cidade": null
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Disney+",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "ESPN",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "SportyNet",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "XSports",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1492352,
@@ -1179,7 +1288,16 @@
         "nome": "Arena Fonte Nova",
         "cidade": "Salvador"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Premiere",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "SporTV",
+          "fonte": "Mantos"
+        }
+      ]
     }
   ]
 }
