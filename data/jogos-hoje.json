@@ -117,7 +117,12 @@
         "nome": null,
         "cidade": null
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "SporTV",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1520844,
@@ -186,7 +191,7 @@
         },
         {
           "canal": "ESPN",
-          "fonte": "Mantos"
+          "fonte": "DPF + Mantos"
         }
       ]
     },
@@ -320,7 +325,7 @@
       "transmissao": [
         {
           "canal": "Premiere",
-          "fonte": "Mantos"
+          "fonte": "DPF + Mantos"
         }
       ]
     },
