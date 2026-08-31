@@ -266,7 +266,7 @@
       "transmissao": [
         {
           "canal": "GOAT",
-          "fonte": "DPF + Mantos"
+          "fonte": "DPF"
         }
       ]
     },
@@ -399,7 +399,7 @@
         },
         {
           "canal": "Globo",
-          "fonte": "DPF + Mantos"
+          "fonte": "DPF"
         },
         {
           "canal": "MS",
@@ -411,7 +411,7 @@
         },
         {
           "canal": "Premiere",
-          "fonte": "DPF + Mantos"
+          "fonte": "DPF"
         }
       ]
     },
@@ -482,11 +482,11 @@
         },
         {
           "canal": "GE TV",
-          "fonte": "DPF + Mantos"
+          "fonte": "DPF"
         },
         {
           "canal": "Globo",
-          "fonte": "DPF + Mantos"
+          "fonte": "DPF"
         },
         {
           "canal": "MS",
@@ -498,7 +498,7 @@
         },
         {
           "canal": "Premiere",
-          "fonte": "DPF + Mantos"
+          "fonte": "DPF"
         }
       ]
     },
@@ -565,15 +565,15 @@
       "transmissao": [
         {
           "canal": "Disney+",
-          "fonte": "DPF + Mantos"
+          "fonte": "DPF"
         },
         {
           "canal": "SportyNet",
-          "fonte": "DPF + Mantos"
+          "fonte": "DPF"
         },
         {
           "canal": "XSports",
-          "fonte": "DPF + Mantos"
+          "fonte": "DPF"
         }
       ]
     },
@@ -640,7 +640,7 @@
       "transmissao": [
         {
           "canal": "Disney+",
-          "fonte": "DPF + Mantos"
+          "fonte": "DPF"
         }
       ]
     },
