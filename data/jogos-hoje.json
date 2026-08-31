@@ -179,7 +179,16 @@
         "nome": null,
         "cidade": "Fortaleza"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Disney+",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "ESPN",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1632463,
@@ -241,7 +250,12 @@
         "nome": "Estadio Paulo Constantino",
         "cidade": "Presidente Prudente"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Youtube COM Metropolesesportes",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1492357,
@@ -303,7 +317,12 @@
         "nome": "Estadio Evandro Almeida",
         "cidade": "Belem"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Premiere",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1632462,
