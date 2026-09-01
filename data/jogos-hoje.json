@@ -1,7 +1,7 @@
 {
   "versao": 16,
   "data": "2026-09-01",
-  "gerado_em": "2026-09-01T05:21:26.294124-04:00",
+  "gerado_em": "2026-09-01T15:21:39.186115-04:00",
   "timezone_referencia": "America/Cuiaba",
   "periodo": {
     "inicio": "00:00",
@@ -199,9 +199,9 @@
         "horario": "14:00"
       },
       "status": {
-        "codigo": "NS",
-        "descricao": "Not Started",
-        "minuto": null
+        "codigo": "2H",
+        "descricao": "Second Half",
+        "minuto": 58
       },
       "campeonato": {
         "id": 307,
@@ -216,20 +216,20 @@
         "id": 2932,
         "nome": "Al-Hilal Saudi FC",
         "logo": "https://media.api-sports.io/football/teams/2932.png",
-        "vencedor": null,
-        "gols": null
+        "vencedor": true,
+        "gols": 2
       },
       "fora": {
         "id": 2929,
         "nome": "Al-Ahli Jeddah",
         "logo": "https://media.api-sports.io/football/teams/2929.png",
-        "vencedor": null,
-        "gols": null
+        "vencedor": false,
+        "gols": 0
       },
       "placar": {
         "intervalo": {
-          "home": null,
-          "away": null
+          "home": 2,
+          "away": 0
         },
         "final": {
           "home": null,
