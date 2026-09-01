@@ -381,7 +381,12 @@
         "nome": null,
         "cidade": "Londrina"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Disney+",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1623073,
@@ -443,7 +448,28 @@
         "nome": "MRV Arena",
         "cidade": "Belo Horizonte"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "ALO",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "E O NOVO Reforco DO Barcelona",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "MAE Gabriel Jesus Deixa O Arsenal",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "Premiere",
+          "fonte": "DPF + Mantos"
+        },
+        {
+          "canal": "SporTV",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     }
   ]
 }
