@@ -723,7 +723,12 @@
         "nome": null,
         "cidade": "Rio de Janeiro"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Premiere",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1623075,
@@ -785,7 +790,28 @@
         "nome": "Vila Belmiro",
         "cidade": null
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "GE TV",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "Globo",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "Premiere",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "Prime Video",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "SporTV",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1623076,
@@ -847,7 +873,28 @@
         "nome": "Barradao",
         "cidade": "Salvador"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "GE TV",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "Globo",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "Premiere",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "Prime Video",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "SporTV 2",
+          "fonte": "Mantos"
+        }
+      ]
     }
   ]
 }
