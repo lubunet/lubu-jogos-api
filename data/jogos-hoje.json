@@ -1,7 +1,7 @@
 {
   "versao": 16,
   "data": "2026-09-02",
-  "gerado_em": "2026-09-02T04:44:00.448257-04:00",
+  "gerado_em": "2026-09-02T15:21:33.012091-04:00",
   "timezone_referencia": "America/Cuiaba",
   "periodo": {
     "inicio": "00:00",
@@ -67,9 +67,9 @@
         "horario": "13:45"
       },
       "status": {
-        "codigo": "NS",
-        "descricao": "Not Started",
-        "minuto": 6
+        "codigo": "2H",
+        "descricao": "Second Half",
+        "minuto": 68
       },
       "campeonato": {
         "id": 1035,
@@ -85,14 +85,14 @@
         "nome": "Madureira",
         "logo": "https://media.api-sports.io/football/teams/7780.png",
         "vencedor": null,
-        "gols": null
+        "gols": 0
       },
       "fora": {
         "id": 2206,
         "nome": "Boavista SC",
         "logo": "https://media.api-sports.io/football/teams/2206.png",
         "vencedor": null,
-        "gols": null
+        "gols": 0
       },
       "placar": {
         "intervalo": {
@@ -129,9 +129,9 @@
         "horario": "13:45"
       },
       "status": {
-        "codigo": "NS",
-        "descricao": "Not Started",
-        "minuto": null
+        "codigo": "2H",
+        "descricao": "Second Half",
+        "minuto": 72
       },
       "campeonato": {
         "id": 1035,
@@ -147,19 +147,19 @@
         "nome": "Sampaio Corrêa RJ",
         "logo": "https://media.api-sports.io/football/teams/13115.png",
         "vencedor": null,
-        "gols": null
+        "gols": 1
       },
       "fora": {
         "id": 7782,
         "nome": "Nova Iguaçu",
         "logo": "https://media.api-sports.io/football/teams/7782.png",
         "vencedor": null,
-        "gols": null
+        "gols": 1
       },
       "placar": {
         "intervalo": {
-          "home": null,
-          "away": null
+          "home": 1,
+          "away": 1
         },
         "final": {
           "home": null,
