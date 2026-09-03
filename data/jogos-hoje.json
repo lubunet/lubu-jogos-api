@@ -1,7 +1,7 @@
 {
   "versao": 16,
   "data": "2026-09-03",
-  "gerado_em": "2026-09-03T04:54:06.309143-04:00",
+  "gerado_em": "2026-09-03T15:16:02.361984-04:00",
   "timezone_referencia": "America/Cuiaba",
   "periodo": {
     "inicio": "00:00",
@@ -59,9 +59,9 @@
         "horario": "11:55"
       },
       "status": {
-        "codigo": "NS",
-        "descricao": "Not Started",
-        "minuto": null
+        "codigo": "FT",
+        "descricao": "Match Finished",
+        "minuto": 90
       },
       "campeonato": {
         "id": 307,
@@ -77,23 +77,23 @@
         "nome": "Al-Fayha",
         "logo": "https://media.api-sports.io/football/teams/2944.png",
         "vencedor": null,
-        "gols": null
+        "gols": 2
       },
       "fora": {
         "id": 10509,
         "nome": "Al Kholood",
         "logo": "https://media.api-sports.io/football/teams/10509.png",
         "vencedor": null,
-        "gols": null
+        "gols": 2
       },
       "placar": {
         "intervalo": {
-          "home": null,
-          "away": null
+          "home": 1,
+          "away": 1
         },
         "final": {
-          "home": null,
-          "away": null
+          "home": 2,
+          "away": 2
         },
         "prorrogacao": {
           "home": null,
@@ -121,9 +121,9 @@
         "horario": "12:30"
       },
       "status": {
-        "codigo": "NS",
-        "descricao": "Not Started",
-        "minuto": null
+        "codigo": "FT",
+        "descricao": "Match Finished",
+        "minuto": 90
       },
       "campeonato": {
         "id": 307,
@@ -138,24 +138,24 @@
         "id": 10513,
         "nome": "NEOM",
         "logo": "https://media.api-sports.io/football/teams/10513.png",
-        "vencedor": null,
-        "gols": null
+        "vencedor": true,
+        "gols": 3
       },
       "fora": {
         "id": 2928,
         "nome": "Al Khaleej Saihat",
         "logo": "https://media.api-sports.io/football/teams/2928.png",
-        "vencedor": null,
-        "gols": null
+        "vencedor": false,
+        "gols": 0
       },
       "placar": {
         "intervalo": {
-          "home": null,
-          "away": null
+          "home": 3,
+          "away": 0
         },
         "final": {
-          "home": null,
-          "away": null
+          "home": 3,
+          "away": 0
         },
         "prorrogacao": {
           "home": null,
@@ -183,9 +183,9 @@
         "horario": "14:00"
       },
       "status": {
-        "codigo": "NS",
-        "descricao": "Not Started",
-        "minuto": null
+        "codigo": "2H",
+        "descricao": "Second Half",
+        "minuto": 56
       },
       "campeonato": {
         "id": 307,
@@ -200,20 +200,20 @@
         "id": 26738,
         "nome": "Al Diriyah",
         "logo": "https://media.api-sports.io/football/teams/26738.png",
-        "vencedor": null,
-        "gols": null
+        "vencedor": false,
+        "gols": 0
       },
       "fora": {
         "id": 2933,
         "nome": "Al-Qadisiyah FC",
         "logo": "https://media.api-sports.io/football/teams/2933.png",
-        "vencedor": null,
-        "gols": null
+        "vencedor": true,
+        "gols": 1
       },
       "placar": {
         "intervalo": {
-          "home": null,
-          "away": null
+          "home": 0,
+          "away": 0
         },
         "final": {
           "home": null,
