@@ -233,7 +233,20 @@
         "nome": "Al-Awwal Park",
         "cidade": "Riyadh"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "GOAT",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "SporTV",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "XSports",
+          "fonte": "DPF"
+        }
+      ]
     },
     {
       "id": 1520857,
@@ -357,7 +370,12 @@
         "nome": null,
         "cidade": "Porto Alegre"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Prime Video",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1629824,
@@ -419,7 +437,16 @@
         "nome": null,
         "cidade": null
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Metropoles Esportes",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "Youtube COM Metropolesesportes",
+          "fonte": "Mantos"
+        }
+      ]
     }
   ]
 }
