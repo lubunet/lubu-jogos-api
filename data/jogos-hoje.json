@@ -357,7 +357,16 @@
         "nome": "Estadio Heriberto Hülse",
         "cidade": "Chrissyuma"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Disney+",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "ESPN",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1635074,
@@ -481,7 +490,12 @@
         "nome": "Estadio Joaquim Portugal",
         "cidade": "Sao Joao del-Rei"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Disney+",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1520852,
@@ -543,7 +557,20 @@
         "nome": "Estádio Rei Pelé",
         "cidade": "Maceio"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Disney+",
+          "fonte": "DPF + Mantos"
+        },
+        {
+          "canal": "SportyNet",
+          "fonte": "DPF + Mantos"
+        },
+        {
+          "canal": "XSports",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1638069,
