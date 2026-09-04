@@ -1,7 +1,7 @@
 {
   "versao": 16,
   "data": "2026-09-04",
-  "gerado_em": "2026-09-04T04:48:27.486434-04:00",
+  "gerado_em": "2026-09-04T14:57:53.763766-04:00",
   "timezone_referencia": "America/Cuiaba",
   "periodo": {
     "inicio": "00:00",
@@ -59,9 +59,9 @@
         "horario": "12:00"
       },
       "status": {
-        "codigo": "NS",
-        "descricao": "Not Started",
-        "minuto": null
+        "codigo": "FT",
+        "descricao": "Match Finished",
+        "minuto": 90
       },
       "campeonato": {
         "id": 307,
@@ -76,24 +76,24 @@
         "id": 2951,
         "nome": "Abha",
         "logo": "https://media.api-sports.io/football/teams/2951.png",
-        "vencedor": null,
-        "gols": null
+        "vencedor": false,
+        "gols": 0
       },
       "fora": {
         "id": 2934,
         "nome": "Al-Ettifaq",
         "logo": "https://media.api-sports.io/football/teams/2934.png",
-        "vencedor": null,
-        "gols": null
+        "vencedor": true,
+        "gols": 1
       },
       "placar": {
         "intervalo": {
-          "home": null,
-          "away": null
+          "home": 0,
+          "away": 0
         },
         "final": {
-          "home": null,
-          "away": null
+          "home": 0,
+          "away": 1
         },
         "prorrogacao": {
           "home": null,
@@ -106,8 +106,8 @@
       },
       "estadio": {
         "id": null,
-        "nome": "Prince Sultan bin Abdulaziz Sports City Stadium",
-        "cidade": "Khamis Mushait"
+        "nome": "Prince Sultan bin Abdul Aziz Stadium",
+        "cidade": "Abha"
       },
       "transmissao": []
     },
@@ -121,9 +121,9 @@
         "horario": "14:00"
       },
       "status": {
-        "codigo": "NS",
-        "descricao": "Not Started",
-        "minuto": null
+        "codigo": "HT",
+        "descricao": "Halftime",
+        "minuto": 45
       },
       "campeonato": {
         "id": 307,
@@ -138,20 +138,20 @@
         "id": 2929,
         "nome": "Al-Ahli Jeddah",
         "logo": "https://media.api-sports.io/football/teams/2929.png",
-        "vencedor": null,
-        "gols": null
+        "vencedor": true,
+        "gols": 3
       },
       "fora": {
         "id": 10511,
         "nome": "Al Riyadh",
         "logo": "https://media.api-sports.io/football/teams/10511.png",
-        "vencedor": null,
-        "gols": null
+        "vencedor": false,
+        "gols": 0
       },
       "placar": {
         "intervalo": {
-          "home": null,
-          "away": null
+          "home": 3,
+          "away": 0
         },
         "final": {
           "home": null,
@@ -168,7 +168,7 @@
       },
       "estadio": {
         "id": 1364,
-        "nome": "Prince Abdullah Al-Faisal Sports City Stadium",
+        "nome": "King Abdullah Sports City",
         "cidade": "Jeddah"
       },
       "transmissao": []
@@ -183,9 +183,9 @@
         "horario": "14:00"
       },
       "status": {
-        "codigo": "NS",
-        "descricao": "Not Started",
-        "minuto": null
+        "codigo": "HT",
+        "descricao": "Halftime",
+        "minuto": 45
       },
       "campeonato": {
         "id": 307,
@@ -201,19 +201,19 @@
         "nome": "Al Shabab",
         "logo": "https://media.api-sports.io/football/teams/2940.png",
         "vencedor": null,
-        "gols": null
+        "gols": 0
       },
       "fora": {
         "id": 2932,
         "nome": "Al-Hilal Saudi FC",
         "logo": "https://media.api-sports.io/football/teams/2932.png",
         "vencedor": null,
-        "gols": null
+        "gols": 0
       },
       "placar": {
         "intervalo": {
-          "home": null,
-          "away": null
+          "home": 0,
+          "away": 0
         },
         "final": {
           "home": null,
@@ -230,7 +230,7 @@
       },
       "estadio": {
         "id": 1374,
-        "nome": "SHG Arena",
+        "nome": "Al-Shabab Club Stadium",
         "cidade": "Riyadh"
       },
       "transmissao": []
