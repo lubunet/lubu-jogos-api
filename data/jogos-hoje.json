@@ -1,7 +1,7 @@
 {
   "versao": 16,
   "data": "2026-09-05",
-  "gerado_em": "2026-09-05T04:18:50.703159-04:00",
+  "gerado_em": "2026-09-05T14:11:53.520795-04:00",
   "timezone_referencia": "America/Cuiaba",
   "periodo": {
     "inicio": "00:00",
@@ -13,7 +13,7 @@
     "observacao": "Converter usando o mesmo timezone/offset configurado para o EPG."
   },
   "quantidade_campeonatos": 10,
-  "quantidade_jogos": 30,
+  "quantidade_jogos": 31,
   "campeonatos": [
     {
       "id": 1128,
@@ -45,7 +45,7 @@
       "pais": "Brazil",
       "logo": "https://media.api-sports.io/football/leagues/1115.png",
       "bandeira": "https://media.api-sports.io/flags/br.svg",
-      "quantidade_jogos": 3
+      "quantidade_jogos": 4
     },
     {
       "id": 1037,
@@ -363,9 +363,9 @@
         "horario": "11:50"
       },
       "status": {
-        "codigo": "NS",
-        "descricao": "Not Started",
-        "minuto": null
+        "codigo": "FT",
+        "descricao": "Match Finished",
+        "minuto": 90
       },
       "campeonato": {
         "id": 307,
@@ -381,23 +381,23 @@
         "nome": "Al-Faisaly FC",
         "logo": "https://media.api-sports.io/football/teams/2930.png",
         "vencedor": null,
-        "gols": null
+        "gols": 0
       },
       "fora": {
         "id": 2945,
         "nome": "Al-Hazm",
         "logo": "https://media.api-sports.io/football/teams/2945.png",
         "vencedor": null,
-        "gols": null
+        "gols": 0
       },
       "placar": {
         "intervalo": {
-          "home": null,
-          "away": null
+          "home": 0,
+          "away": 0
         },
         "final": {
-          "home": null,
-          "away": null
+          "home": 0,
+          "away": 0
         },
         "prorrogacao": {
           "home": null,
@@ -425,9 +425,9 @@
         "horario": "11:55"
       },
       "status": {
-        "codigo": "NS",
-        "descricao": "Not Started",
-        "minuto": null
+        "codigo": "FT",
+        "descricao": "Match Finished",
+        "minuto": 90
       },
       "campeonato": {
         "id": 307,
@@ -443,23 +443,23 @@
         "nome": "Al Taawon",
         "logo": "https://media.api-sports.io/football/teams/2936.png",
         "vencedor": null,
-        "gols": null
+        "gols": 0
       },
       "fora": {
         "id": 2931,
         "nome": "Al-Fateh",
         "logo": "https://media.api-sports.io/football/teams/2931.png",
         "vencedor": null,
-        "gols": null
+        "gols": 0
       },
       "placar": {
         "intervalo": {
-          "home": null,
-          "away": null
+          "home": 0,
+          "away": 0
         },
         "final": {
-          "home": null,
-          "away": null
+          "home": 0,
+          "away": 0
         },
         "prorrogacao": {
           "home": null,
@@ -912,9 +912,9 @@
         "horario": "14:00"
       },
       "status": {
-        "codigo": "NS",
-        "descricao": "Not Started",
-        "minuto": null
+        "codigo": "1H",
+        "descricao": "First Half",
+        "minuto": 12
       },
       "campeonato": {
         "id": 307,
@@ -929,20 +929,20 @@
         "id": 2938,
         "nome": "Al-Ittihad FC",
         "logo": "https://media.api-sports.io/football/teams/2938.png",
-        "vencedor": null,
-        "gols": null
+        "vencedor": true,
+        "gols": 1
       },
       "fora": {
         "id": 2939,
         "nome": "Al-Nassr",
         "logo": "https://media.api-sports.io/football/teams/2939.png",
-        "vencedor": null,
-        "gols": null
+        "vencedor": false,
+        "gols": 0
       },
       "placar": {
         "intervalo": {
-          "home": null,
-          "away": null
+          "home": 1,
+          "away": 0
         },
         "final": {
           "home": null,
@@ -1640,6 +1640,68 @@
           "fonte": "Mantos"
         }
       ]
+    },
+    {
+      "id": 1638353,
+      "timestamp": 1788638400,
+      "inicio_utc": "2026-09-05T20:00:00Z",
+      "horario_referencia": {
+        "timezone": "America/Cuiaba",
+        "data": "2026-09-05",
+        "horario": "16:00"
+      },
+      "status": {
+        "codigo": "NS",
+        "descricao": "Not Started",
+        "minuto": null
+      },
+      "campeonato": {
+        "id": 1115,
+        "nome": "Paraense A3",
+        "pais": "Brazil",
+        "logo": "https://media.api-sports.io/football/leagues/1115.png",
+        "bandeira": "https://media.api-sports.io/flags/br.svg",
+        "temporada": 2026,
+        "rodada": "Regular Season - 1"
+      },
+      "casa": {
+        "id": 10689,
+        "nome": "Parauapebas",
+        "logo": "https://media.api-sports.io/football/teams/10689.png",
+        "vencedor": null,
+        "gols": null
+      },
+      "fora": {
+        "id": 15610,
+        "nome": "Gavião",
+        "logo": "https://media.api-sports.io/football/teams/15610.png",
+        "vencedor": null,
+        "gols": null
+      },
+      "placar": {
+        "intervalo": {
+          "home": null,
+          "away": null
+        },
+        "final": {
+          "home": null,
+          "away": null
+        },
+        "prorrogacao": {
+          "home": null,
+          "away": null
+        },
+        "penaltis": {
+          "home": null,
+          "away": null
+        }
+      },
+      "estadio": {
+        "id": null,
+        "nome": null,
+        "cidade": null
+      },
+      "transmissao": []
     },
     {
       "id": 1520855,
