@@ -475,7 +475,12 @@
         "nome": "Al Taawon Arena",
         "cidade": "Buraidah"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "GOAT",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1544011,
@@ -957,7 +962,20 @@
         "nome": "King Abdullah Sports City",
         "cidade": "Jeddah"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Band",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "BandSports",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "GOAT",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1635075,
@@ -1143,7 +1161,12 @@
         "nome": null,
         "cidade": null
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Premiere",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1520854,
@@ -1205,7 +1228,24 @@
         "nome": "Estádio da Serrinha",
         "cidade": "Goiania"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Disney+",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "ESPN",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "Redetv",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "SportyNet",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1520858,
@@ -1267,7 +1307,12 @@
         "nome": "Dr. Jorge Ismael de Biase",
         "cidade": "New Horizons"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Disney+",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1544017,
@@ -1585,7 +1630,16 @@
         "nome": null,
         "cidade": "Limeira"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "SportyNet",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "Youtube COM Canaldobenja",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1520855,
@@ -1647,7 +1701,20 @@
         "nome": "Estádio Alfredo Jaconi",
         "cidade": "Caxias Sul"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Disney+",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "GOAT",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "XSports",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1492368,
@@ -1709,7 +1776,12 @@
         "nome": "Estadio Do MorumBIS",
         "cidade": "Sao Paulo"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Premiere",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1520851,
@@ -1771,7 +1843,12 @@
         "nome": "Estadio Castelão",
         "cidade": "Fortaleza"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Disney+",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1610853,
@@ -2019,7 +2096,16 @@
         "nome": null,
         "cidade": "Rio de Janeiro"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Premiere",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "SporTV",
+          "fonte": "Mantos"
+        }
+      ]
     }
   ]
 }
