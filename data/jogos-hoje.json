@@ -195,7 +195,12 @@
         "nome": null,
         "cidade": "Curitiba"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Premiere",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1520856,
@@ -257,7 +262,16 @@
         "nome": "Estadio do Cafe",
         "cidade": "Londrina"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Disney+",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "ESPN 4",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1544016,
@@ -521,7 +535,20 @@
         "nome": null,
         "cidade": "Belo Horizonte"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Globo",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "PR",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "Premiere",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1492366,
@@ -583,7 +610,24 @@
         "nome": null,
         "cidade": "Porto Alegre"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Globo",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "Parte DA REDE",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "Premiere",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "SP",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1492367,
@@ -645,7 +689,28 @@
         "nome": "Estadio Evandro Almeida",
         "cidade": "Belem"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "GE TV",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "Globo",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "Parte DA REDE",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "Premiere",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "RJ",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1624015,
@@ -769,7 +834,16 @@
         "nome": null,
         "cidade": "Horizonte"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "SportyNet",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "Youtube COM Canaldobenjaoficial",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1636907,
@@ -831,7 +905,12 @@
         "nome": null,
         "cidade": "Arapiraca"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Youtube COM Metropolesesportes",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1492360,
@@ -893,7 +972,20 @@
         "nome": "Estadio Olimpico Nilton Santos",
         "cidade": "Rio de Janeiro"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "CazéTV",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "Premiere",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "Record",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1520859,
@@ -955,7 +1047,12 @@
         "nome": "Moisés Lucarelli",
         "cidade": "Campinas"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Disney+",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1637834,
@@ -1017,7 +1114,12 @@
         "nome": null,
         "cidade": "Recife"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "SportyNet",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1492362,
@@ -1079,7 +1181,12 @@
         "nome": "Neo Quimica Arena",
         "cidade": "Sao Paulo"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Prime Video",
+          "fonte": "Mantos"
+        }
+      ]
     }
   ]
 }
