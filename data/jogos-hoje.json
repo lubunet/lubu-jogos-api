@@ -1,7 +1,7 @@
 {
   "versao": 16,
   "data": "2026-09-06",
-  "gerado_em": "2026-09-06T04:37:25.251745-04:00",
+  "gerado_em": "2026-09-06T14:13:53.718293-04:00",
   "timezone_referencia": "America/Cuiaba",
   "periodo": {
     "inicio": "00:00",
@@ -145,9 +145,9 @@
         "horario": "10:00"
       },
       "status": {
-        "codigo": "NS",
-        "descricao": "Not Started",
-        "minuto": null
+        "codigo": "FT",
+        "descricao": "Match Finished",
+        "minuto": 90
       },
       "campeonato": {
         "id": 71,
@@ -162,24 +162,24 @@
         "id": 147,
         "nome": "Coritiba",
         "logo": "https://media.api-sports.io/football/teams/147.png",
-        "vencedor": null,
-        "gols": null
+        "vencedor": false,
+        "gols": 1
       },
       "fora": {
         "id": 7848,
         "nome": "Mirassol",
         "logo": "https://media.api-sports.io/football/teams/7848.png",
-        "vencedor": null,
-        "gols": null
+        "vencedor": true,
+        "gols": 2
       },
       "placar": {
         "intervalo": {
-          "home": null,
-          "away": null
+          "home": 0,
+          "away": 0
         },
         "final": {
-          "home": null,
-          "away": null
+          "home": 1,
+          "away": 2
         },
         "prorrogacao": {
           "home": null,
@@ -212,9 +212,9 @@
         "horario": "10:00"
       },
       "status": {
-        "codigo": "NS",
-        "descricao": "Not Started",
-        "minuto": null
+        "codigo": "FT",
+        "descricao": "Match Finished",
+        "minuto": 90
       },
       "campeonato": {
         "id": 72,
@@ -229,24 +229,24 @@
         "id": 148,
         "nome": "Londrina",
         "logo": "https://media.api-sports.io/football/teams/148.png",
-        "vencedor": null,
-        "gols": null
+        "vencedor": false,
+        "gols": 1
       },
       "fora": {
         "id": 1223,
         "nome": "Operario-PR",
         "logo": "https://media.api-sports.io/football/teams/1223.png",
-        "vencedor": null,
-        "gols": null
+        "vencedor": true,
+        "gols": 2
       },
       "placar": {
         "intervalo": {
-          "home": null,
-          "away": null
+          "home": 0,
+          "away": 1
         },
         "final": {
-          "home": null,
-          "away": null
+          "home": 1,
+          "away": 2
         },
         "prorrogacao": {
           "home": null,
@@ -283,9 +283,9 @@
         "horario": "10:00"
       },
       "status": {
-        "codigo": "NS",
-        "descricao": "Not Started",
-        "minuto": null
+        "codigo": "FT",
+        "descricao": "Match Finished",
+        "minuto": 90
       },
       "campeonato": {
         "id": 1128,
@@ -300,8 +300,8 @@
         "id": 24483,
         "nome": "Internacional",
         "logo": "https://media.api-sports.io/football/teams/119.png",
-        "vencedor": null,
-        "gols": null,
+        "vencedor": true,
+        "gols": 2,
         "nome_original_api": "Internacional U17",
         "logo_original_api": "https://media.api-sports.io/football/teams/24483.png",
         "clube_principal_id": 119,
@@ -311,8 +311,8 @@
         "id": 25797,
         "nome": "Juventude",
         "logo": "https://media.api-sports.io/football/teams/152.png",
-        "vencedor": null,
-        "gols": null,
+        "vencedor": false,
+        "gols": 0,
         "nome_original_api": "Juventude U17",
         "logo_original_api": "https://media.api-sports.io/football/teams/25797.png",
         "clube_principal_id": 152,
@@ -320,12 +320,12 @@
       },
       "placar": {
         "intervalo": {
-          "home": null,
-          "away": null
+          "home": 2,
+          "away": 0
         },
         "final": {
-          "home": null,
-          "away": null
+          "home": 2,
+          "away": 0
         },
         "prorrogacao": {
           "home": null,
