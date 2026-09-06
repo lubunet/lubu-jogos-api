@@ -538,15 +538,11 @@
         },
         {
           "canal": "Globo",
-          "fonte": "DPF + Mantos"
-        },
-        {
-          "canal": "PR",
-          "fonte": "Mantos"
+          "fonte": "DPF"
         },
         {
           "canal": "Premiere",
-          "fonte": "DPF + Mantos"
+          "fonte": "DPF"
         }
       ]
     },
@@ -617,11 +613,7 @@
         },
         {
           "canal": "Globo",
-          "fonte": "DPF + Mantos"
-        },
-        {
-          "canal": "Parte DA REDE",
-          "fonte": "Mantos"
+          "fonte": "DPF"
         },
         {
           "canal": "PB",
@@ -629,15 +621,11 @@
         },
         {
           "canal": "Premiere",
-          "fonte": "DPF + Mantos"
+          "fonte": "DPF"
         },
         {
           "canal": "RS",
           "fonte": "DPF"
-        },
-        {
-          "canal": "SP",
-          "fonte": "Mantos"
         }
       ]
     },
@@ -732,11 +720,11 @@
         },
         {
           "canal": "GE TV",
-          "fonte": "DPF + Mantos"
+          "fonte": "DPF"
         },
         {
           "canal": "Globo",
-          "fonte": "DPF + Mantos"
+          "fonte": "DPF"
         },
         {
           "canal": "GO",
@@ -763,10 +751,6 @@
           "fonte": "DPF"
         },
         {
-          "canal": "Parte DA REDE",
-          "fonte": "Mantos"
-        },
-        {
           "canal": "PE",
           "fonte": "DPF"
         },
@@ -776,11 +760,7 @@
         },
         {
           "canal": "Premiere",
-          "fonte": "DPF + Mantos"
-        },
-        {
-          "canal": "RJ",
-          "fonte": "Mantos"
+          "fonte": "DPF"
         },
         {
           "canal": "RN",
@@ -937,11 +917,7 @@
         },
         {
           "canal": "SportyNet",
-          "fonte": "DPF + Mantos"
-        },
-        {
-          "canal": "Youtube COM Canaldobenjaoficial",
-          "fonte": "Mantos"
+          "fonte": "DPF"
         }
       ]
     },
@@ -1009,10 +985,6 @@
         {
           "canal": "Metropoles Esportes",
           "fonte": "DPF"
-        },
-        {
-          "canal": "Youtube COM Metropolesesportes",
-          "fonte": "Mantos"
         }
       ]
     },
