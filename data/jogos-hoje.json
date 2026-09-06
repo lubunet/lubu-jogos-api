@@ -198,7 +198,7 @@
       "transmissao": [
         {
           "canal": "Premiere",
-          "fonte": "Mantos"
+          "fonte": "DPF"
         }
       ]
     },
@@ -264,12 +264,8 @@
       },
       "transmissao": [
         {
-          "canal": "Disney+",
-          "fonte": "Mantos"
-        },
-        {
           "canal": "ESPN 4",
-          "fonte": "Mantos"
+          "fonte": "DPF"
         }
       ]
     },
@@ -537,8 +533,12 @@
       },
       "transmissao": [
         {
+          "canal": "E PR",
+          "fonte": "DPF"
+        },
+        {
           "canal": "Globo",
-          "fonte": "Mantos"
+          "fonte": "DPF + Mantos"
         },
         {
           "canal": "PR",
@@ -546,7 +546,7 @@
         },
         {
           "canal": "Premiere",
-          "fonte": "Mantos"
+          "fonte": "DPF + Mantos"
         }
       ]
     },
@@ -612,16 +612,28 @@
       },
       "transmissao": [
         {
+          "canal": "CE",
+          "fonte": "DPF"
+        },
+        {
           "canal": "Globo",
-          "fonte": "Mantos"
+          "fonte": "DPF + Mantos"
         },
         {
           "canal": "Parte DA REDE",
           "fonte": "Mantos"
         },
         {
+          "canal": "PB",
+          "fonte": "DPF"
+        },
+        {
           "canal": "Premiere",
-          "fonte": "Mantos"
+          "fonte": "DPF + Mantos"
+        },
+        {
+          "canal": "RS",
+          "fonte": "DPF"
         },
         {
           "canal": "SP",
@@ -691,24 +703,108 @@
       },
       "transmissao": [
         {
+          "canal": "AC",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "AL",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "AM",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "AP",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "BA",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "DF",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "ES",
+          "fonte": "DPF"
+        },
+        {
           "canal": "GE TV",
-          "fonte": "Mantos"
+          "fonte": "DPF + Mantos"
         },
         {
           "canal": "Globo",
-          "fonte": "Mantos"
+          "fonte": "DPF + Mantos"
+        },
+        {
+          "canal": "GO",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "JUIZ DE FORA",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "MA",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "MS",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "MT",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "PA",
+          "fonte": "DPF"
         },
         {
           "canal": "Parte DA REDE",
           "fonte": "Mantos"
         },
         {
+          "canal": "PE",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "PI",
+          "fonte": "DPF"
+        },
+        {
           "canal": "Premiere",
-          "fonte": "Mantos"
+          "fonte": "DPF + Mantos"
         },
         {
           "canal": "RJ",
           "fonte": "Mantos"
+        },
+        {
+          "canal": "RN",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "RO",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "RR",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "SC",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "SE",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "TO",
+          "fonte": "DPF"
         }
       ]
     },
@@ -836,8 +932,12 @@
       },
       "transmissao": [
         {
+          "canal": "Canal DO Benja",
+          "fonte": "DPF"
+        },
+        {
           "canal": "SportyNet",
-          "fonte": "Mantos"
+          "fonte": "DPF + Mantos"
         },
         {
           "canal": "Youtube COM Canaldobenjaoficial",
@@ -907,6 +1007,10 @@
       },
       "transmissao": [
         {
+          "canal": "Metropoles Esportes",
+          "fonte": "DPF"
+        },
+        {
           "canal": "Youtube COM Metropolesesportes",
           "fonte": "Mantos"
         }
@@ -975,15 +1079,15 @@
       "transmissao": [
         {
           "canal": "CazéTV",
-          "fonte": "Mantos"
+          "fonte": "DPF + Mantos"
         },
         {
           "canal": "Premiere",
-          "fonte": "Mantos"
+          "fonte": "DPF + Mantos"
         },
         {
           "canal": "Record",
-          "fonte": "Mantos"
+          "fonte": "DPF + Mantos"
         }
       ]
     },
@@ -1050,7 +1154,7 @@
       "transmissao": [
         {
           "canal": "Disney+",
-          "fonte": "Mantos"
+          "fonte": "DPF + Mantos"
         }
       ]
     },
@@ -1117,7 +1221,7 @@
       "transmissao": [
         {
           "canal": "SportyNet",
-          "fonte": "Mantos"
+          "fonte": "DPF + Mantos"
         }
       ]
     },
@@ -1184,7 +1288,7 @@
       "transmissao": [
         {
           "canal": "Prime Video",
-          "fonte": "Mantos"
+          "fonte": "DPF + Mantos"
         }
       ]
     }
