@@ -1,7 +1,7 @@
 {
   "versao": 16,
   "data": "2026-09-07",
-  "gerado_em": "2026-09-07T05:16:16.345201-04:00",
+  "gerado_em": "2026-09-07T15:53:08.167751-04:00",
   "timezone_referencia": "America/Cuiaba",
   "periodo": {
     "inicio": "00:00",
@@ -59,9 +59,9 @@
         "horario": "11:30"
       },
       "status": {
-        "codigo": "NS",
-        "descricao": "Not Started",
-        "minuto": null
+        "codigo": "FT",
+        "descricao": "Match Finished",
+        "minuto": 90
       },
       "campeonato": {
         "id": 307,
@@ -77,23 +77,23 @@
         "nome": "Al Khaleej Saihat",
         "logo": "https://media.api-sports.io/football/teams/2928.png",
         "vencedor": null,
-        "gols": null
+        "gols": 0
       },
       "fora": {
         "id": 10511,
         "nome": "Al Riyadh",
         "logo": "https://media.api-sports.io/football/teams/10511.png",
         "vencedor": null,
-        "gols": null
+        "gols": 0
       },
       "placar": {
         "intervalo": {
-          "home": null,
-          "away": null
+          "home": 0,
+          "away": 0
         },
         "final": {
-          "home": null,
-          "away": null
+          "home": 0,
+          "away": 0
         },
         "prorrogacao": {
           "home": null,
@@ -121,9 +121,9 @@
         "horario": "14:00"
       },
       "status": {
-        "codigo": "NS",
-        "descricao": "Not Started",
-        "minuto": null
+        "codigo": "2H",
+        "descricao": "Second Half",
+        "minuto": 90
       },
       "campeonato": {
         "id": 307,
@@ -138,20 +138,20 @@
         "id": 2932,
         "nome": "Al-Hilal Saudi FC",
         "logo": "https://media.api-sports.io/football/teams/2932.png",
-        "vencedor": null,
-        "gols": null
+        "vencedor": false,
+        "gols": 0
       },
       "fora": {
         "id": 10513,
         "nome": "NEOM",
         "logo": "https://media.api-sports.io/football/teams/10513.png",
-        "vencedor": null,
-        "gols": null
+        "vencedor": true,
+        "gols": 2
       },
       "placar": {
         "intervalo": {
-          "home": null,
-          "away": null
+          "home": 0,
+          "away": 2
         },
         "final": {
           "home": null,
@@ -183,9 +183,9 @@
         "horario": "14:00"
       },
       "status": {
-        "codigo": "NS",
-        "descricao": "Not Started",
-        "minuto": null
+        "codigo": "2H",
+        "descricao": "Second Half",
+        "minuto": 90
       },
       "campeonato": {
         "id": 742,
@@ -200,20 +200,20 @@
         "id": 10038,
         "nome": "Paulista",
         "logo": "https://media.api-sports.io/football/teams/10038.png",
-        "vencedor": null,
-        "gols": null
+        "vencedor": false,
+        "gols": 2
       },
       "fora": {
         "id": 20713,
         "nome": "Grêmio Prudente",
         "logo": "https://media.api-sports.io/football/teams/20713.png",
-        "vencedor": null,
-        "gols": null
+        "vencedor": true,
+        "gols": 3
       },
       "placar": {
         "intervalo": {
-          "home": null,
-          "away": null
+          "home": 1,
+          "away": 0
         },
         "final": {
           "home": null,
