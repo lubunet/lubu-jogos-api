@@ -307,7 +307,7 @@
       "transmissao": [
         {
           "canal": "SportyNet",
-          "fonte": "Mantos"
+          "fonte": "DPF + Mantos"
         }
       ]
     },
@@ -374,11 +374,11 @@
       "transmissao": [
         {
           "canal": "Premiere",
-          "fonte": "Mantos"
+          "fonte": "DPF + Mantos"
         },
         {
           "canal": "SporTV",
-          "fonte": "Mantos"
+          "fonte": "DPF + Mantos"
         }
       ]
     }
