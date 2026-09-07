@@ -233,7 +233,16 @@
         "nome": "Estadio Dr. Jayme Cintra",
         "cidade": "Sao Paulo"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Youtube COM Metropolesesportes",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "Youtube COM Ulissescostatv",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1637835,
@@ -295,7 +304,12 @@
         "nome": null,
         "cidade": "Belem"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "SportyNet",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1492369,
@@ -357,7 +371,16 @@
         "nome": "Barradao",
         "cidade": "Salvador"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Premiere",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "SporTV",
+          "fonte": "Mantos"
+        }
+      ]
     }
   ]
 }
