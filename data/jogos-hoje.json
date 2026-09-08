@@ -257,7 +257,20 @@
         "nome": "King Abdullah Sports City",
         "cidade": "Jeddah"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "GOAT",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "SporTV",
+          "fonte": "DPF + Mantos"
+        },
+        {
+          "canal": "XSports",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1603022,
@@ -513,7 +526,16 @@
         "nome": null,
         "cidade": "Buenos Aires"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Disney+",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "ESPN",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1635576,
@@ -575,7 +597,12 @@
         "nome": null,
         "cidade": null
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Paramount+",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1520864,
@@ -637,7 +664,12 @@
         "nome": "Arena Pantanal",
         "cidade": "Cuiaba"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Disney+",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1520863,
@@ -699,7 +731,28 @@
         "nome": "Estadio Heriberto Hülse",
         "cidade": "Chrissyuma"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Corinthians EM Busca DO Oitavo Titulo",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "Disney+",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "ESPN 4",
+          "fonte": "DPF + Mantos"
+        },
+        {
+          "canal": "GOAT",
+          "fonte": "DPF + Mantos"
+        },
+        {
+          "canal": "XSports",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1638458,
@@ -823,7 +876,24 @@
         "nome": "Estadio Alberto J. Armando",
         "cidade": "Buenos Aires"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Disney+",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "ESPN",
+          "fonte": "DPF + Mantos"
+        },
+        {
+          "canal": "SBT",
+          "fonte": "DPF + Mantos"
+        },
+        {
+          "canal": "Youtube COM Sbtsports",
+          "fonte": "Mantos"
+        }
+      ]
     }
   ]
 }
