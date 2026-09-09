@@ -125,7 +125,20 @@
         "nome": "Al-Hazem Club Stadium",
         "cidade": "Ar Rass"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "BandSports",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "Esporte na Band",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "GOAT",
+          "fonte": "DPF"
+        }
+      ]
     },
     {
       "id": 1544021,
@@ -809,7 +822,20 @@
         "nome": "King Saud University Stadium",
         "cidade": "Riyadh"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "GOAT",
+          "fonte": "DPF + Mantos"
+        },
+        {
+          "canal": "SporTV",
+          "fonte": "DPF + Mantos"
+        },
+        {
+          "canal": "XSports",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1624017,
@@ -995,7 +1021,16 @@
         "nome": "MRV Arena",
         "cidade": "Belo Horizonte"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Disney+",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "ESPN",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1520862,
@@ -1057,7 +1092,12 @@
         "nome": "Estadio Santa Cruz",
         "cidade": "Ribeirao Preto"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Disney+",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1520865,
@@ -1119,7 +1159,16 @@
         "nome": null,
         "cidade": "Fortaleza"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Disney+",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "ESPN 4",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1520860,
@@ -1243,7 +1292,12 @@
         "nome": null,
         "cidade": "Ponta Grossa"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Disney+",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1520861,
@@ -1305,7 +1359,24 @@
         "nome": null,
         "cidade": null
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Disney+",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "ESPN",
+          "fonte": "DPF + Mantos"
+        },
+        {
+          "canal": "SportyNet",
+          "fonte": "DPF + Mantos"
+        },
+        {
+          "canal": "XSports",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1631506,
