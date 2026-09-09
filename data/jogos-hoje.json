@@ -259,16 +259,12 @@
       },
       "transmissao": [
         {
-          "canal": "GOAT",
-          "fonte": "Mantos"
-        },
-        {
           "canal": "SporTV",
-          "fonte": "DPF + Mantos"
+          "fonte": "DPF"
         },
         {
           "canal": "XSports",
-          "fonte": "DPF + Mantos"
+          "fonte": "DPF"
         }
       ]
     },
