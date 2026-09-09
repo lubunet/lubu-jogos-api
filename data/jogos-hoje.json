@@ -1,7 +1,7 @@
 {
   "versao": 16,
-  "data": "2026-09-08",
-  "gerado_em": "2026-09-08T15:24:22.544142-04:00",
+  "data": "2026-09-09",
+  "gerado_em": "2026-09-09T04:55:35.306287-04:00",
   "timezone_referencia": "America/Cuiaba",
   "periodo": {
     "inicio": "00:00",
@@ -12,24 +12,16 @@
     "formato": "Unix timestamp",
     "observacao": "Converter usando o mesmo timezone/offset configurado para o EPG."
   },
-  "quantidade_campeonatos": 7,
-  "quantidade_jogos": 12,
+  "quantidade_campeonatos": 6,
+  "quantidade_jogos": 20,
   "campeonatos": [
-    {
-      "id": 1134,
-      "nome": "Amazonense - 2",
-      "pais": "Brazil",
-      "logo": "https://media.api-sports.io/football/leagues/1134.png",
-      "bandeira": "https://media.api-sports.io/flags/br.svg",
-      "quantidade_jogos": 1
-    },
     {
       "id": 1128,
       "nome": "Brasileiro U17",
       "pais": "Brazil",
       "logo": "https://media.api-sports.io/football/leagues/1128.png",
       "bandeira": "https://media.api-sports.io/flags/br.svg",
-      "quantidade_jogos": 1
+      "quantidade_jogos": 8
     },
     {
       "id": 1203,
@@ -45,7 +37,7 @@
       "pais": "Brazil",
       "logo": "https://media.api-sports.io/football/leagues/72.png",
       "bandeira": "https://media.api-sports.io/flags/br.svg",
-      "quantidade_jogos": 2
+      "quantidade_jogos": 5
     },
     {
       "id": 307,
@@ -53,7 +45,7 @@
       "pais": "Saudi-Arabia",
       "logo": "https://media.api-sports.io/football/leagues/307.png",
       "bandeira": "https://media.api-sports.io/flags/sa.svg",
-      "quantidade_jogos": 4
+      "quantidade_jogos": 3
     },
     {
       "id": 13,
@@ -61,7 +53,7 @@
       "pais": "World",
       "logo": "https://media.api-sports.io/football/leagues/13.png",
       "bandeira": null,
-      "quantidade_jogos": 1
+      "quantidade_jogos": 2
     },
     {
       "id": 11,
@@ -69,85 +61,23 @@
       "pais": "World",
       "logo": "https://media.api-sports.io/football/leagues/11.png",
       "bandeira": null,
-      "quantidade_jogos": 2
+      "quantidade_jogos": 1
     }
   ],
   "jogos": [
     {
-      "id": 1603019,
-      "timestamp": 1788881400,
-      "inicio_utc": "2026-09-08T15:30:00Z",
+      "id": 1603023,
+      "timestamp": 1788969300,
+      "inicio_utc": "2026-09-09T15:55:00Z",
       "horario_referencia": {
         "timezone": "America/Cuiaba",
-        "data": "2026-09-08",
-        "horario": "11:30"
-      },
-      "status": {
-        "codigo": "FT",
-        "descricao": "Match Finished",
-        "minuto": 90
-      },
-      "campeonato": {
-        "id": 307,
-        "nome": "Pro League",
-        "pais": "Saudi-Arabia",
-        "logo": "https://media.api-sports.io/football/leagues/307.png",
-        "bandeira": "https://media.api-sports.io/flags/sa.svg",
-        "temporada": 2026,
-        "rodada": "Regular Season - 6"
-      },
-      "casa": {
-        "id": 2934,
-        "nome": "Al-Ettifaq",
-        "logo": "https://media.api-sports.io/football/teams/2934.png",
-        "vencedor": null,
-        "gols": 0
-      },
-      "fora": {
-        "id": 2930,
-        "nome": "Al-Faisaly FC",
-        "logo": "https://media.api-sports.io/football/teams/2930.png",
-        "vencedor": null,
-        "gols": 0
-      },
-      "placar": {
-        "intervalo": {
-          "home": 0,
-          "away": 0
-        },
-        "final": {
-          "home": 0,
-          "away": 0
-        },
-        "prorrogacao": {
-          "home": null,
-          "away": null
-        },
-        "penaltis": {
-          "home": null,
-          "away": null
-        }
-      },
-      "estadio": {
-        "id": null,
-        "nome": "Abdullah Al Dabil Stadium",
-        "cidade": "Daman"
-      },
-      "transmissao": []
-    },
-    {
-      "id": 1603020,
-      "timestamp": 1788882900,
-      "inicio_utc": "2026-09-08T15:55:00Z",
-      "horario_referencia": {
-        "timezone": "America/Cuiaba",
-        "data": "2026-09-08",
+        "data": "2026-09-09",
         "horario": "11:55"
       },
       "status": {
-        "codigo": "FT",
-        "descricao": "Match Finished",
-        "minuto": 90
+        "codigo": "NS",
+        "descricao": "Not Started",
+        "minuto": null
       },
       "campeonato": {
         "id": 307,
@@ -159,27 +89,27 @@
         "rodada": "Regular Season - 6"
       },
       "casa": {
-        "id": 2945,
-        "nome": "Al-Hazm",
-        "logo": "https://media.api-sports.io/football/teams/2945.png",
-        "vencedor": true,
-        "gols": 1
+        "id": 10509,
+        "nome": "Al Kholood",
+        "logo": "https://media.api-sports.io/football/teams/10509.png",
+        "vencedor": null,
+        "gols": null
       },
       "fora": {
-        "id": 2936,
-        "nome": "Al Taawon",
-        "logo": "https://media.api-sports.io/football/teams/2936.png",
-        "vencedor": false,
-        "gols": 0
+        "id": 2940,
+        "nome": "Al Shabab",
+        "logo": "https://media.api-sports.io/football/teams/2940.png",
+        "vencedor": null,
+        "gols": null
       },
       "placar": {
         "intervalo": {
-          "home": 1,
-          "away": 0
+          "home": null,
+          "away": null
         },
         "final": {
-          "home": 1,
-          "away": 0
+          "home": null,
+          "away": null
         },
         "prorrogacao": {
           "home": null,
@@ -198,146 +128,13 @@
       "transmissao": []
     },
     {
-      "id": 1603021,
-      "timestamp": 1788890400,
-      "inicio_utc": "2026-09-08T18:00:00Z",
+      "id": 1544021,
+      "timestamp": 1788976800,
+      "inicio_utc": "2026-09-09T18:00:00Z",
       "horario_referencia": {
         "timezone": "America/Cuiaba",
-        "data": "2026-09-08",
+        "data": "2026-09-09",
         "horario": "14:00"
-      },
-      "status": {
-        "codigo": "2H",
-        "descricao": "Second Half",
-        "minuto": 63
-      },
-      "campeonato": {
-        "id": 307,
-        "nome": "Pro League",
-        "pais": "Saudi-Arabia",
-        "logo": "https://media.api-sports.io/football/leagues/307.png",
-        "bandeira": "https://media.api-sports.io/flags/sa.svg",
-        "temporada": 2026,
-        "rodada": "Regular Season - 6"
-      },
-      "casa": {
-        "id": 2938,
-        "nome": "Al-Ittihad FC",
-        "logo": "https://media.api-sports.io/football/teams/2938.png",
-        "vencedor": null,
-        "gols": 1
-      },
-      "fora": {
-        "id": 2944,
-        "nome": "Al-Fayha",
-        "logo": "https://media.api-sports.io/football/teams/2944.png",
-        "vencedor": null,
-        "gols": 1
-      },
-      "placar": {
-        "intervalo": {
-          "home": 1,
-          "away": 1
-        },
-        "final": {
-          "home": null,
-          "away": null
-        },
-        "prorrogacao": {
-          "home": null,
-          "away": null
-        },
-        "penaltis": {
-          "home": null,
-          "away": null
-        }
-      },
-      "estadio": {
-        "id": 1364,
-        "nome": "King Abdullah Sports City",
-        "cidade": "Jeddah"
-      },
-      "transmissao": [
-        {
-          "canal": "SporTV",
-          "fonte": "DPF"
-        },
-        {
-          "canal": "XSports",
-          "fonte": "DPF"
-        }
-      ]
-    },
-    {
-      "id": 1603022,
-      "timestamp": 1788890400,
-      "inicio_utc": "2026-09-08T18:00:00Z",
-      "horario_referencia": {
-        "timezone": "America/Cuiaba",
-        "data": "2026-09-08",
-        "horario": "14:00"
-      },
-      "status": {
-        "codigo": "2H",
-        "descricao": "Second Half",
-        "minuto": 61
-      },
-      "campeonato": {
-        "id": 307,
-        "nome": "Pro League",
-        "pais": "Saudi-Arabia",
-        "logo": "https://media.api-sports.io/football/leagues/307.png",
-        "bandeira": "https://media.api-sports.io/flags/sa.svg",
-        "temporada": 2026,
-        "rodada": "Regular Season - 6"
-      },
-      "casa": {
-        "id": 2933,
-        "nome": "Al-Qadisiyah FC",
-        "logo": "https://media.api-sports.io/football/teams/2933.png",
-        "vencedor": true,
-        "gols": 3
-      },
-      "fora": {
-        "id": 2929,
-        "nome": "Al-Ahli Jeddah",
-        "logo": "https://media.api-sports.io/football/teams/2929.png",
-        "vencedor": false,
-        "gols": 0
-      },
-      "placar": {
-        "intervalo": {
-          "home": 3,
-          "away": 0
-        },
-        "final": {
-          "home": null,
-          "away": null
-        },
-        "prorrogacao": {
-          "home": null,
-          "away": null
-        },
-        "penaltis": {
-          "home": null,
-          "away": null
-        }
-      },
-      "estadio": {
-        "id": null,
-        "nome": "Prince Saud bin Jalawi Stadium",
-        "cidade": "Dammam"
-      },
-      "transmissao": []
-    },
-    {
-      "id": 1544026,
-      "timestamp": 1788899400,
-      "inicio_utc": "2026-09-08T20:30:00Z",
-      "horario_referencia": {
-        "timezone": "America/Cuiaba",
-        "data": "2026-09-08",
-        "horario": "16:30"
       },
       "status": {
         "codigo": "NS",
@@ -354,25 +151,25 @@
         "rodada": "Regular Season - 16"
       },
       "casa": {
-        "id": 24473,
-        "nome": "Botafogo",
-        "logo": "https://media.api-sports.io/football/teams/120.png",
+        "id": 24468,
+        "nome": "América-MG",
+        "logo": "https://media.api-sports.io/football/teams/125.png",
         "vencedor": null,
         "gols": null,
-        "nome_original_api": "Botafogo U17",
-        "logo_original_api": "https://media.api-sports.io/football/teams/24473.png",
-        "clube_principal_id": 120,
+        "nome_original_api": "America MG U17",
+        "logo_original_api": "https://media.api-sports.io/football/teams/24468.png",
+        "clube_principal_id": 125,
         "origem_logo": "clube_principal"
       },
       "fora": {
-        "id": 25807,
-        "nome": "Vasco",
-        "logo": "https://media.api-sports.io/football/teams/133.png",
+        "id": 24479,
+        "nome": "Fluminense",
+        "logo": "https://media.api-sports.io/football/teams/124.png",
         "vencedor": null,
         "gols": null,
-        "nome_original_api": "Vasco U17",
-        "logo_original_api": "https://media.api-sports.io/football/teams/25807.png",
-        "clube_principal_id": 133,
+        "nome_original_api": "Fluminense U17",
+        "logo_original_api": "https://media.api-sports.io/football/teams/24479.png",
+        "clube_principal_id": 124,
         "origem_logo": "clube_principal"
       },
       "placar": {
@@ -401,12 +198,626 @@
       "transmissao": []
     },
     {
-      "id": 1624016,
-      "timestamp": 1788904800,
-      "inicio_utc": "2026-09-08T22:00:00Z",
+      "id": 1544022,
+      "timestamp": 1788976800,
+      "inicio_utc": "2026-09-09T18:00:00Z",
       "horario_referencia": {
         "timezone": "America/Cuiaba",
-        "data": "2026-09-08",
+        "data": "2026-09-09",
+        "horario": "14:00"
+      },
+      "status": {
+        "codigo": "NS",
+        "descricao": "Not Started",
+        "minuto": null
+      },
+      "campeonato": {
+        "id": 1128,
+        "nome": "Brasileiro U17",
+        "pais": "Brazil",
+        "logo": "https://media.api-sports.io/football/leagues/1128.png",
+        "bandeira": "https://media.api-sports.io/flags/br.svg",
+        "temporada": 2026,
+        "rodada": "Regular Season - 16"
+      },
+      "casa": {
+        "id": 24469,
+        "nome": "Athletico-PR",
+        "logo": "https://media.api-sports.io/football/teams/134.png",
+        "vencedor": null,
+        "gols": null,
+        "nome_original_api": "Athletico PR U17",
+        "logo_original_api": "https://media.api-sports.io/football/teams/24469.png",
+        "clube_principal_id": 134,
+        "origem_logo": "clube_principal"
+      },
+      "fora": {
+        "id": 24486,
+        "nome": "Santos",
+        "logo": "https://media.api-sports.io/football/teams/128.png",
+        "vencedor": null,
+        "gols": null,
+        "nome_original_api": "Santos U17",
+        "logo_original_api": "https://media.api-sports.io/football/teams/24486.png",
+        "clube_principal_id": 128,
+        "origem_logo": "clube_principal"
+      },
+      "placar": {
+        "intervalo": {
+          "home": null,
+          "away": null
+        },
+        "final": {
+          "home": null,
+          "away": null
+        },
+        "prorrogacao": {
+          "home": null,
+          "away": null
+        },
+        "penaltis": {
+          "home": null,
+          "away": null
+        }
+      },
+      "estadio": {
+        "id": null,
+        "nome": null,
+        "cidade": null
+      },
+      "transmissao": []
+    },
+    {
+      "id": 1544023,
+      "timestamp": 1788976800,
+      "inicio_utc": "2026-09-09T18:00:00Z",
+      "horario_referencia": {
+        "timezone": "America/Cuiaba",
+        "data": "2026-09-09",
+        "horario": "14:00"
+      },
+      "status": {
+        "codigo": "NS",
+        "descricao": "Not Started",
+        "minuto": null
+      },
+      "campeonato": {
+        "id": 1128,
+        "nome": "Brasileiro U17",
+        "pais": "Brazil",
+        "logo": "https://media.api-sports.io/football/leagues/1128.png",
+        "bandeira": "https://media.api-sports.io/flags/br.svg",
+        "temporada": 2026,
+        "rodada": "Regular Season - 16"
+      },
+      "casa": {
+        "id": 24470,
+        "nome": "Atlético-GO",
+        "logo": "https://media.api-sports.io/football/teams/144.png",
+        "vencedor": null,
+        "gols": null,
+        "nome_original_api": "Atletico GO U17",
+        "logo_original_api": "https://media.api-sports.io/football/teams/24470.png",
+        "clube_principal_id": 144,
+        "origem_logo": "clube_principal"
+      },
+      "fora": {
+        "id": 24483,
+        "nome": "Internacional",
+        "logo": "https://media.api-sports.io/football/teams/119.png",
+        "vencedor": null,
+        "gols": null,
+        "nome_original_api": "Internacional U17",
+        "logo_original_api": "https://media.api-sports.io/football/teams/24483.png",
+        "clube_principal_id": 119,
+        "origem_logo": "clube_principal"
+      },
+      "placar": {
+        "intervalo": {
+          "home": null,
+          "away": null
+        },
+        "final": {
+          "home": null,
+          "away": null
+        },
+        "prorrogacao": {
+          "home": null,
+          "away": null
+        },
+        "penaltis": {
+          "home": null,
+          "away": null
+        }
+      },
+      "estadio": {
+        "id": null,
+        "nome": null,
+        "cidade": null
+      },
+      "transmissao": []
+    },
+    {
+      "id": 1544024,
+      "timestamp": 1788976800,
+      "inicio_utc": "2026-09-09T18:00:00Z",
+      "horario_referencia": {
+        "timezone": "America/Cuiaba",
+        "data": "2026-09-09",
+        "horario": "14:00"
+      },
+      "status": {
+        "codigo": "NS",
+        "descricao": "Not Started",
+        "minuto": null
+      },
+      "campeonato": {
+        "id": 1128,
+        "nome": "Brasileiro U17",
+        "pais": "Brazil",
+        "logo": "https://media.api-sports.io/football/leagues/1128.png",
+        "bandeira": "https://media.api-sports.io/flags/br.svg",
+        "temporada": 2026,
+        "rodada": "Regular Season - 16"
+      },
+      "casa": {
+        "id": 24471,
+        "nome": "Atlético-MG",
+        "logo": "https://upload.wikimedia.org/wikipedia/commons/a/a2/Atletico_Mineiro_logo.png",
+        "vencedor": null,
+        "gols": null,
+        "nome_original_api": "Atlético Mineiro U17",
+        "logo_original_api": "https://media.api-sports.io/football/teams/24471.png",
+        "origem_logo": "fallback_manual",
+        "clube_principal_id": 117
+      },
+      "fora": {
+        "id": 27733,
+        "nome": "Vitória",
+        "logo": "https://media.api-sports.io/football/teams/136.png",
+        "vencedor": null,
+        "gols": null,
+        "nome_original_api": "Vitoria U17",
+        "logo_original_api": "https://media.api-sports.io/football/teams/27733.png",
+        "clube_principal_id": 136,
+        "origem_logo": "clube_principal"
+      },
+      "placar": {
+        "intervalo": {
+          "home": null,
+          "away": null
+        },
+        "final": {
+          "home": null,
+          "away": null
+        },
+        "prorrogacao": {
+          "home": null,
+          "away": null
+        },
+        "penaltis": {
+          "home": null,
+          "away": null
+        }
+      },
+      "estadio": {
+        "id": null,
+        "nome": null,
+        "cidade": null
+      },
+      "transmissao": []
+    },
+    {
+      "id": 1544025,
+      "timestamp": 1788976800,
+      "inicio_utc": "2026-09-09T18:00:00Z",
+      "horario_referencia": {
+        "timezone": "America/Cuiaba",
+        "data": "2026-09-09",
+        "horario": "14:00"
+      },
+      "status": {
+        "codigo": "NS",
+        "descricao": "Not Started",
+        "minuto": null
+      },
+      "campeonato": {
+        "id": 1128,
+        "nome": "Brasileiro U17",
+        "pais": "Brazil",
+        "logo": "https://media.api-sports.io/football/leagues/1128.png",
+        "bandeira": "https://media.api-sports.io/flags/br.svg",
+        "temporada": 2026,
+        "rodada": "Regular Season - 16"
+      },
+      "casa": {
+        "id": 24472,
+        "nome": "Bahia",
+        "logo": "https://media.api-sports.io/football/teams/118.png",
+        "vencedor": null,
+        "gols": null,
+        "nome_original_api": "Bahia U17",
+        "logo_original_api": "https://media.api-sports.io/football/teams/24472.png",
+        "clube_principal_id": 118,
+        "origem_logo": "clube_principal"
+      },
+      "fora": {
+        "id": 24478,
+        "nome": "Flamengo RJ",
+        "logo": "https://media.api-sports.io/football/teams/127.png",
+        "vencedor": null,
+        "gols": null,
+        "nome_original_api": "Flamengo RJ U17",
+        "logo_original_api": "https://media.api-sports.io/football/teams/24478.png",
+        "clube_principal_id": 127,
+        "origem_logo": "clube_principal"
+      },
+      "placar": {
+        "intervalo": {
+          "home": null,
+          "away": null
+        },
+        "final": {
+          "home": null,
+          "away": null
+        },
+        "prorrogacao": {
+          "home": null,
+          "away": null
+        },
+        "penaltis": {
+          "home": null,
+          "away": null
+        }
+      },
+      "estadio": {
+        "id": null,
+        "nome": null,
+        "cidade": null
+      },
+      "transmissao": []
+    },
+    {
+      "id": 1544027,
+      "timestamp": 1788976800,
+      "inicio_utc": "2026-09-09T18:00:00Z",
+      "horario_referencia": {
+        "timezone": "America/Cuiaba",
+        "data": "2026-09-09",
+        "horario": "14:00"
+      },
+      "status": {
+        "codigo": "NS",
+        "descricao": "Not Started",
+        "minuto": null
+      },
+      "campeonato": {
+        "id": 1128,
+        "nome": "Brasileiro U17",
+        "pais": "Brazil",
+        "logo": "https://media.api-sports.io/football/leagues/1128.png",
+        "bandeira": "https://media.api-sports.io/flags/br.svg",
+        "temporada": 2026,
+        "rodada": "Regular Season - 16"
+      },
+      "casa": {
+        "id": 24485,
+        "nome": "Bragantino",
+        "logo": "https://media.api-sports.io/football/teams/794.png",
+        "vencedor": null,
+        "gols": null,
+        "nome_original_api": "RB Bragantino U17",
+        "logo_original_api": "https://media.api-sports.io/football/teams/24485.png",
+        "clube_principal_id": 794,
+        "origem_logo": "clube_principal"
+      },
+      "fora": {
+        "id": 24476,
+        "nome": "Cruzeiro",
+        "logo": "https://media.api-sports.io/football/teams/135.png",
+        "vencedor": null,
+        "gols": null,
+        "nome_original_api": "Cruzeiro U17",
+        "logo_original_api": "https://media.api-sports.io/football/teams/24476.png",
+        "clube_principal_id": 135,
+        "origem_logo": "clube_principal"
+      },
+      "placar": {
+        "intervalo": {
+          "home": null,
+          "away": null
+        },
+        "final": {
+          "home": null,
+          "away": null
+        },
+        "prorrogacao": {
+          "home": null,
+          "away": null
+        },
+        "penaltis": {
+          "home": null,
+          "away": null
+        }
+      },
+      "estadio": {
+        "id": null,
+        "nome": null,
+        "cidade": null
+      },
+      "transmissao": []
+    },
+    {
+      "id": 1544029,
+      "timestamp": 1788976800,
+      "inicio_utc": "2026-09-09T18:00:00Z",
+      "horario_referencia": {
+        "timezone": "America/Cuiaba",
+        "data": "2026-09-09",
+        "horario": "14:00"
+      },
+      "status": {
+        "codigo": "NS",
+        "descricao": "Not Started",
+        "minuto": null
+      },
+      "campeonato": {
+        "id": 1128,
+        "nome": "Brasileiro U17",
+        "pais": "Brazil",
+        "logo": "https://media.api-sports.io/football/leagues/1128.png",
+        "bandeira": "https://media.api-sports.io/flags/br.svg",
+        "temporada": 2026,
+        "rodada": "Regular Season - 16"
+      },
+      "casa": {
+        "id": 24482,
+        "nome": "Grêmio",
+        "logo": "https://media.api-sports.io/football/teams/130.png",
+        "vencedor": null,
+        "gols": null,
+        "nome_original_api": "Gremio U17",
+        "logo_original_api": "https://media.api-sports.io/football/teams/24482.png",
+        "clube_principal_id": 130,
+        "origem_logo": "clube_principal"
+      },
+      "fora": {
+        "id": 24484,
+        "nome": "Palmeiras",
+        "logo": "https://media.api-sports.io/football/teams/121.png",
+        "vencedor": null,
+        "gols": null,
+        "nome_original_api": "Palmeiras U17",
+        "logo_original_api": "https://media.api-sports.io/football/teams/24484.png",
+        "clube_principal_id": 121,
+        "origem_logo": "clube_principal"
+      },
+      "placar": {
+        "intervalo": {
+          "home": null,
+          "away": null
+        },
+        "final": {
+          "home": null,
+          "away": null
+        },
+        "prorrogacao": {
+          "home": null,
+          "away": null
+        },
+        "penaltis": {
+          "home": null,
+          "away": null
+        }
+      },
+      "estadio": {
+        "id": null,
+        "nome": null,
+        "cidade": null
+      },
+      "transmissao": []
+    },
+    {
+      "id": 1544030,
+      "timestamp": 1788976800,
+      "inicio_utc": "2026-09-09T18:00:00Z",
+      "horario_referencia": {
+        "timezone": "America/Cuiaba",
+        "data": "2026-09-09",
+        "horario": "14:00"
+      },
+      "status": {
+        "codigo": "NS",
+        "descricao": "Not Started",
+        "minuto": null
+      },
+      "campeonato": {
+        "id": 1128,
+        "nome": "Brasileiro U17",
+        "pais": "Brazil",
+        "logo": "https://media.api-sports.io/football/leagues/1128.png",
+        "bandeira": "https://media.api-sports.io/flags/br.svg",
+        "temporada": 2026,
+        "rodada": "Regular Season - 16"
+      },
+      "casa": {
+        "id": 24487,
+        "nome": "São Paulo",
+        "logo": "https://media.api-sports.io/football/teams/126.png",
+        "vencedor": null,
+        "gols": null,
+        "nome_original_api": "Sao Paulo U17",
+        "logo_original_api": "https://media.api-sports.io/football/teams/24487.png",
+        "clube_principal_id": 126,
+        "origem_logo": "clube_principal"
+      },
+      "fora": {
+        "id": 25797,
+        "nome": "Juventude",
+        "logo": "https://media.api-sports.io/football/teams/152.png",
+        "vencedor": null,
+        "gols": null,
+        "nome_original_api": "Juventude U17",
+        "logo_original_api": "https://media.api-sports.io/football/teams/25797.png",
+        "clube_principal_id": 152,
+        "origem_logo": "clube_principal"
+      },
+      "placar": {
+        "intervalo": {
+          "home": null,
+          "away": null
+        },
+        "final": {
+          "home": null,
+          "away": null
+        },
+        "prorrogacao": {
+          "home": null,
+          "away": null
+        },
+        "penaltis": {
+          "home": null,
+          "away": null
+        }
+      },
+      "estadio": {
+        "id": null,
+        "nome": null,
+        "cidade": null
+      },
+      "transmissao": []
+    },
+    {
+      "id": 1603024,
+      "timestamp": 1788976800,
+      "inicio_utc": "2026-09-09T18:00:00Z",
+      "horario_referencia": {
+        "timezone": "America/Cuiaba",
+        "data": "2026-09-09",
+        "horario": "14:00"
+      },
+      "status": {
+        "codigo": "NS",
+        "descricao": "Not Started",
+        "minuto": null
+      },
+      "campeonato": {
+        "id": 307,
+        "nome": "Pro League",
+        "pais": "Saudi-Arabia",
+        "logo": "https://media.api-sports.io/football/leagues/307.png",
+        "bandeira": "https://media.api-sports.io/flags/sa.svg",
+        "temporada": 2026,
+        "rodada": "Regular Season - 6"
+      },
+      "casa": {
+        "id": 2931,
+        "nome": "Al-Fateh",
+        "logo": "https://media.api-sports.io/football/teams/2931.png",
+        "vencedor": null,
+        "gols": null
+      },
+      "fora": {
+        "id": 26738,
+        "nome": "Al Diriyah",
+        "logo": "https://media.api-sports.io/football/teams/26738.png",
+        "vencedor": null,
+        "gols": null
+      },
+      "placar": {
+        "intervalo": {
+          "home": null,
+          "away": null
+        },
+        "final": {
+          "home": null,
+          "away": null
+        },
+        "prorrogacao": {
+          "home": null,
+          "away": null
+        },
+        "penaltis": {
+          "home": null,
+          "away": null
+        }
+      },
+      "estadio": {
+        "id": null,
+        "nome": "Al Fateh club stadium",
+        "cidade": "Al-Hofuf"
+      },
+      "transmissao": []
+    },
+    {
+      "id": 1603025,
+      "timestamp": 1788976800,
+      "inicio_utc": "2026-09-09T18:00:00Z",
+      "horario_referencia": {
+        "timezone": "America/Cuiaba",
+        "data": "2026-09-09",
+        "horario": "14:00"
+      },
+      "status": {
+        "codigo": "NS",
+        "descricao": "Not Started",
+        "minuto": null
+      },
+      "campeonato": {
+        "id": 307,
+        "nome": "Pro League",
+        "pais": "Saudi-Arabia",
+        "logo": "https://media.api-sports.io/football/leagues/307.png",
+        "bandeira": "https://media.api-sports.io/flags/sa.svg",
+        "temporada": 2026,
+        "rodada": "Regular Season - 6"
+      },
+      "casa": {
+        "id": 2939,
+        "nome": "Al-Nassr",
+        "logo": "https://media.api-sports.io/football/teams/2939.png",
+        "vencedor": null,
+        "gols": null
+      },
+      "fora": {
+        "id": 2951,
+        "nome": "Abha",
+        "logo": "https://media.api-sports.io/football/teams/2951.png",
+        "vencedor": null,
+        "gols": null
+      },
+      "placar": {
+        "intervalo": {
+          "home": null,
+          "away": null
+        },
+        "final": {
+          "home": null,
+          "away": null
+        },
+        "prorrogacao": {
+          "home": null,
+          "away": null
+        },
+        "penaltis": {
+          "home": null,
+          "away": null
+        }
+      },
+      "estadio": {
+        "id": null,
+        "nome": "King Saud University Stadium",
+        "cidade": "Riyadh"
+      },
+      "transmissao": []
+    },
+    {
+      "id": 1624017,
+      "timestamp": 1788991200,
+      "inicio_utc": "2026-09-09T22:00:00Z",
+      "horario_referencia": {
+        "timezone": "America/Cuiaba",
+        "data": "2026-09-09",
         "horario": "18:00"
       },
       "status": {
@@ -424,16 +835,16 @@
         "rodada": "Regular Season - 2"
       },
       "casa": {
-        "id": 26859,
-        "nome": "Caicara",
-        "logo": "https://media.api-sports.io/football/teams/26859.png",
+        "id": 13093,
+        "nome": "Flamengo PI",
+        "logo": "https://media.api-sports.io/football/teams/13093.png",
         "vencedor": null,
         "gols": null
       },
       "fora": {
-        "id": 2221,
-        "nome": "River AC",
-        "logo": "https://media.api-sports.io/football/teams/2221.png",
+        "id": 7838,
+        "nome": "4 de Julho",
+        "logo": "https://media.api-sports.io/football/teams/7838.png",
         "vencedor": null,
         "gols": null
       },
@@ -463,12 +874,12 @@
       "transmissao": []
     },
     {
-      "id": 1630777,
-      "timestamp": 1788904800,
-      "inicio_utc": "2026-09-08T22:00:00Z",
+      "id": 1631507,
+      "timestamp": 1788991200,
+      "inicio_utc": "2026-09-09T22:00:00Z",
       "horario_referencia": {
         "timezone": "America/Cuiaba",
-        "data": "2026-09-08",
+        "data": "2026-09-09",
         "horario": "18:00"
       },
       "status": {
@@ -486,16 +897,16 @@
         "rodada": "Quarter-finals"
       },
       "casa": {
-        "id": 124,
-        "nome": "Fluminense",
-        "logo": "https://media.api-sports.io/football/teams/124.png",
+        "id": 121,
+        "nome": "Palmeiras",
+        "logo": "https://media.api-sports.io/football/teams/121.png",
         "vencedor": null,
         "gols": null
       },
       "fora": {
-        "id": 1064,
-        "nome": "Platense",
-        "logo": "https://media.api-sports.io/football/teams/1064.png",
+        "id": 1158,
+        "nome": "LDU de Quito",
+        "logo": "https://media.api-sports.io/football/teams/1158.png",
         "vencedor": null,
         "gols": null
       },
@@ -519,27 +930,18 @@
       },
       "estadio": {
         "id": null,
-        "nome": null,
-        "cidade": "Buenos Aires"
+        "nome": "Estadio Rodrigo Paz Delgado",
+        "cidade": "Quito"
       },
-      "transmissao": [
-        {
-          "canal": "Disney+",
-          "fonte": "Mantos"
-        },
-        {
-          "canal": "ESPN",
-          "fonte": "DPF + Mantos"
-        }
-      ]
+      "transmissao": []
     },
     {
-      "id": 1635576,
-      "timestamp": 1788904800,
-      "inicio_utc": "2026-09-08T22:00:00Z",
+      "id": 1631510,
+      "timestamp": 1788991200,
+      "inicio_utc": "2026-09-09T22:00:00Z",
       "horario_referencia": {
         "timezone": "America/Cuiaba",
-        "data": "2026-09-08",
+        "data": "2026-09-09",
         "horario": "18:00"
       },
       "status": {
@@ -557,16 +959,140 @@
         "rodada": "Quarter-finals"
       },
       "casa": {
-        "id": 1139,
-        "nome": "Santa Fe",
-        "logo": "https://media.api-sports.io/football/teams/1139.png",
+        "id": 128,
+        "nome": "Santos",
+        "logo": "https://media.api-sports.io/football/teams/128.png",
         "vencedor": null,
         "gols": null
       },
       "fora": {
-        "id": 133,
-        "nome": "Vasco DA Gama",
-        "logo": "https://media.api-sports.io/football/teams/133.png",
+        "id": 1062,
+        "nome": "Atletico-MG",
+        "logo": "https://media.api-sports.io/football/teams/1062.png",
+        "vencedor": null,
+        "gols": null
+      },
+      "placar": {
+        "intervalo": {
+          "home": null,
+          "away": null
+        },
+        "final": {
+          "home": null,
+          "away": null
+        },
+        "prorrogacao": {
+          "home": null,
+          "away": null
+        },
+        "penaltis": {
+          "home": null,
+          "away": null
+        }
+      },
+      "estadio": {
+        "id": null,
+        "nome": "MRV Arena",
+        "cidade": "Belo Horizonte"
+      },
+      "transmissao": []
+    },
+    {
+      "id": 1520862,
+      "timestamp": 1788993000,
+      "inicio_utc": "2026-09-09T22:30:00Z",
+      "horario_referencia": {
+        "timezone": "America/Cuiaba",
+        "data": "2026-09-09",
+        "horario": "18:30"
+      },
+      "status": {
+        "codigo": "NS",
+        "descricao": "Not Started",
+        "minuto": null
+      },
+      "campeonato": {
+        "id": 72,
+        "nome": "Serie B",
+        "pais": "Brazil",
+        "logo": "https://media.api-sports.io/football/leagues/72.png",
+        "bandeira": "https://media.api-sports.io/flags/br.svg",
+        "temporada": 2026,
+        "rodada": "Regular Season - 27"
+      },
+      "casa": {
+        "id": 2618,
+        "nome": "Botafogo SP",
+        "logo": "https://media.api-sports.io/football/teams/2618.png",
+        "vencedor": null,
+        "gols": null
+      },
+      "fora": {
+        "id": 7834,
+        "nome": "Novorizontino",
+        "logo": "https://media.api-sports.io/football/teams/7834.png",
+        "vencedor": null,
+        "gols": null
+      },
+      "placar": {
+        "intervalo": {
+          "home": null,
+          "away": null
+        },
+        "final": {
+          "home": null,
+          "away": null
+        },
+        "prorrogacao": {
+          "home": null,
+          "away": null
+        },
+        "penaltis": {
+          "home": null,
+          "away": null
+        }
+      },
+      "estadio": {
+        "id": null,
+        "nome": "Estadio Santa Cruz",
+        "cidade": "Ribeirao Preto"
+      },
+      "transmissao": []
+    },
+    {
+      "id": 1520865,
+      "timestamp": 1788993000,
+      "inicio_utc": "2026-09-09T22:30:00Z",
+      "horario_referencia": {
+        "timezone": "America/Cuiaba",
+        "data": "2026-09-09",
+        "horario": "18:30"
+      },
+      "status": {
+        "codigo": "NS",
+        "descricao": "Not Started",
+        "minuto": null
+      },
+      "campeonato": {
+        "id": 72,
+        "nome": "Serie B",
+        "pais": "Brazil",
+        "logo": "https://media.api-sports.io/football/leagues/72.png",
+        "bandeira": "https://media.api-sports.io/flags/br.svg",
+        "temporada": 2026,
+        "rodada": "Regular Season - 27"
+      },
+      "casa": {
+        "id": 154,
+        "nome": "Fortaleza EC",
+        "logo": "https://media.api-sports.io/football/teams/154.png",
+        "vencedor": null,
+        "gols": null
+      },
+      "fora": {
+        "id": 145,
+        "nome": "Avai",
+        "logo": "https://media.api-sports.io/football/teams/145.png",
         "vencedor": null,
         "gols": null
       },
@@ -591,22 +1117,17 @@
       "estadio": {
         "id": null,
         "nome": null,
-        "cidade": null
+        "cidade": "Fortaleza"
       },
-      "transmissao": [
-        {
-          "canal": "Paramount+",
-          "fonte": "DPF + Mantos"
-        }
-      ]
+      "transmissao": []
     },
     {
-      "id": 1520864,
-      "timestamp": 1788910200,
-      "inicio_utc": "2026-09-08T23:30:00Z",
+      "id": 1520860,
+      "timestamp": 1788996600,
+      "inicio_utc": "2026-09-09T23:30:00Z",
       "horario_referencia": {
         "timezone": "America/Cuiaba",
-        "data": "2026-09-08",
+        "data": "2026-09-09",
         "horario": "19:30"
       },
       "status": {
@@ -624,16 +1145,16 @@
         "rodada": "Regular Season - 27"
       },
       "casa": {
-        "id": 1193,
-        "nome": "Cuiaba",
-        "logo": "https://media.api-sports.io/football/teams/1193.png",
+        "id": 125,
+        "nome": "America Mineiro",
+        "logo": "https://media.api-sports.io/football/teams/125.png",
         "vencedor": null,
         "gols": null
       },
       "fora": {
-        "id": 13975,
-        "nome": "Athletic Club",
-        "logo": "https://media.api-sports.io/football/teams/13975.png",
+        "id": 755,
+        "nome": "Nautico Recife",
+        "logo": "https://media.api-sports.io/football/teams/755.png",
         "vencedor": null,
         "gols": null
       },
@@ -657,24 +1178,19 @@
       },
       "estadio": {
         "id": null,
-        "nome": "Arena Pantanal",
-        "cidade": "Cuiaba"
+        "nome": null,
+        "cidade": "Belo Horizonte"
       },
-      "transmissao": [
-        {
-          "canal": "Disney+",
-          "fonte": "DPF + Mantos"
-        }
-      ]
+      "transmissao": []
     },
     {
-      "id": 1520863,
-      "timestamp": 1788912000,
-      "inicio_utc": "2026-09-09T00:00:00Z",
+      "id": 1520866,
+      "timestamp": 1788996600,
+      "inicio_utc": "2026-09-09T23:30:00Z",
       "horario_referencia": {
         "timezone": "America/Cuiaba",
-        "data": "2026-09-08",
-        "horario": "20:00"
+        "data": "2026-09-09",
+        "horario": "19:30"
       },
       "status": {
         "codigo": "NS",
@@ -691,16 +1207,16 @@
         "rodada": "Regular Season - 27"
       },
       "casa": {
-        "id": 140,
-        "nome": "Criciuma",
-        "logo": "https://media.api-sports.io/football/teams/140.png",
+        "id": 1223,
+        "nome": "Operario-PR",
+        "logo": "https://media.api-sports.io/football/teams/1223.png",
         "vencedor": null,
         "gols": null
       },
       "fora": {
-        "id": 152,
-        "nome": "Juventude",
-        "logo": "https://media.api-sports.io/football/teams/152.png",
+        "id": 146,
+        "nome": "CRB",
+        "logo": "https://media.api-sports.io/football/teams/146.png",
         "vencedor": null,
         "gols": null
       },
@@ -724,36 +1240,19 @@
       },
       "estadio": {
         "id": null,
-        "nome": "Estadio Heriberto Hülse",
-        "cidade": "Chrissyuma"
+        "nome": null,
+        "cidade": "Ponta Grossa"
       },
-      "transmissao": [
-        {
-          "canal": "Disney+",
-          "fonte": "Mantos"
-        },
-        {
-          "canal": "ESPN 4",
-          "fonte": "DPF + Mantos"
-        },
-        {
-          "canal": "GOAT",
-          "fonte": "DPF + Mantos"
-        },
-        {
-          "canal": "XSports",
-          "fonte": "DPF + Mantos"
-        }
-      ]
+      "transmissao": []
     },
     {
-      "id": 1638458,
-      "timestamp": 1788912000,
-      "inicio_utc": "2026-09-09T00:00:00Z",
+      "id": 1520861,
+      "timestamp": 1789000200,
+      "inicio_utc": "2026-09-10T00:30:00Z",
       "horario_referencia": {
         "timezone": "America/Cuiaba",
-        "data": "2026-09-08",
-        "horario": "20:00"
+        "data": "2026-09-09",
+        "horario": "20:30"
       },
       "status": {
         "codigo": "NS",
@@ -761,25 +1260,25 @@
         "minuto": null
       },
       "campeonato": {
-        "id": 1134,
-        "nome": "Amazonense - 2",
+        "id": 72,
+        "nome": "Serie B",
         "pais": "Brazil",
-        "logo": "https://media.api-sports.io/football/leagues/1134.png",
+        "logo": "https://media.api-sports.io/football/leagues/72.png",
         "bandeira": "https://media.api-sports.io/flags/br.svg",
         "temporada": 2026,
-        "rodada": "Final"
+        "rodada": "Regular Season - 27"
       },
       "casa": {
-        "id": 24793,
-        "nome": "RB do Norte",
-        "logo": "https://media.api-sports.io/football/teams/24793.png",
+        "id": 144,
+        "nome": "Atletico Goianiense",
+        "logo": "https://media.api-sports.io/football/teams/144.png",
         "vencedor": null,
         "gols": null
       },
       "fora": {
-        "id": 2211,
-        "nome": "Fast Clube-Am",
-        "logo": "https://media.api-sports.io/football/teams/2211.png",
+        "id": 129,
+        "nome": "Ceara",
+        "logo": "https://media.api-sports.io/football/teams/129.png",
         "vencedor": null,
         "gols": null
       },
@@ -809,12 +1308,12 @@
       "transmissao": []
     },
     {
-      "id": 1629830,
-      "timestamp": 1788913800,
-      "inicio_utc": "2026-09-09T00:30:00Z",
+      "id": 1631506,
+      "timestamp": 1789000200,
+      "inicio_utc": "2026-09-10T00:30:00Z",
       "horario_referencia": {
         "timezone": "America/Cuiaba",
-        "data": "2026-09-08",
+        "data": "2026-09-09",
         "horario": "20:30"
       },
       "status": {
@@ -823,25 +1322,25 @@
         "minuto": null
       },
       "campeonato": {
-        "id": 11,
-        "nome": "CONMEBOL Sudamericana",
+        "id": 13,
+        "nome": "CONMEBOL Libertadores",
         "pais": "World",
-        "logo": "https://media.api-sports.io/football/leagues/11.png",
+        "logo": "https://media.api-sports.io/football/leagues/13.png",
         "bandeira": null,
         "temporada": 2026,
         "rodada": "Quarter-finals"
       },
       "casa": {
-        "id": 451,
-        "nome": "Boca Juniors",
-        "logo": "https://media.api-sports.io/football/teams/451.png",
+        "id": 450,
+        "nome": "Estudiantes L.P.",
+        "logo": "https://media.api-sports.io/football/teams/450.png",
         "vencedor": null,
         "gols": null
       },
       "fora": {
-        "id": 126,
-        "nome": "Sao Paulo",
-        "logo": "https://media.api-sports.io/football/teams/126.png",
+        "id": 131,
+        "nome": "Corinthians",
+        "logo": "https://media.api-sports.io/football/teams/131.png",
         "vencedor": null,
         "gols": null
       },
@@ -865,27 +1364,10 @@
       },
       "estadio": {
         "id": null,
-        "nome": "Estadio Alberto J. Armando",
-        "cidade": "Buenos Aires"
+        "nome": "Estadio Jorge Luis Hirschi",
+        "cidade": "La Plata"
       },
-      "transmissao": [
-        {
-          "canal": "Disney+",
-          "fonte": "Mantos"
-        },
-        {
-          "canal": "ESPN",
-          "fonte": "DPF + Mantos"
-        },
-        {
-          "canal": "SBT",
-          "fonte": "DPF + Mantos"
-        },
-        {
-          "canal": "Youtube COM Sbtsports",
-          "fonte": "Mantos"
-        }
-      ]
+      "transmissao": []
     }
   ]
 }
