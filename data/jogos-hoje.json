@@ -825,15 +825,15 @@
       "transmissao": [
         {
           "canal": "GOAT",
-          "fonte": "DPF + Mantos"
+          "fonte": "DPF"
         },
         {
           "canal": "SporTV",
-          "fonte": "DPF + Mantos"
+          "fonte": "DPF"
         },
         {
           "canal": "XSports",
-          "fonte": "DPF + Mantos"
+          "fonte": "DPF"
         }
       ]
     },
