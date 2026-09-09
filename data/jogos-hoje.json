@@ -1,7 +1,7 @@
 {
   "versao": 16,
   "data": "2026-09-09",
-  "gerado_em": "2026-09-09T04:55:35.306287-04:00",
+  "gerado_em": "2026-09-09T15:14:25.675426-04:00",
   "timezone_referencia": "America/Cuiaba",
   "periodo": {
     "inicio": "00:00",
@@ -75,9 +75,9 @@
         "horario": "11:55"
       },
       "status": {
-        "codigo": "NS",
-        "descricao": "Not Started",
-        "minuto": null
+        "codigo": "FT",
+        "descricao": "Match Finished",
+        "minuto": 90
       },
       "campeonato": {
         "id": 307,
@@ -92,24 +92,24 @@
         "id": 10509,
         "nome": "Al Kholood",
         "logo": "https://media.api-sports.io/football/teams/10509.png",
-        "vencedor": null,
-        "gols": null
+        "vencedor": true,
+        "gols": 2
       },
       "fora": {
         "id": 2940,
         "nome": "Al Shabab",
         "logo": "https://media.api-sports.io/football/teams/2940.png",
-        "vencedor": null,
-        "gols": null
+        "vencedor": false,
+        "gols": 1
       },
       "placar": {
         "intervalo": {
-          "home": null,
-          "away": null
+          "home": 1,
+          "away": 1
         },
         "final": {
-          "home": null,
-          "away": null
+          "home": 2,
+          "away": 1
         },
         "prorrogacao": {
           "home": null,
@@ -710,9 +710,9 @@
         "horario": "14:00"
       },
       "status": {
-        "codigo": "NS",
-        "descricao": "Not Started",
-        "minuto": null
+        "codigo": "2H",
+        "descricao": "Second Half",
+        "minuto": 51
       },
       "campeonato": {
         "id": 307,
@@ -727,20 +727,20 @@
         "id": 2931,
         "nome": "Al-Fateh",
         "logo": "https://media.api-sports.io/football/teams/2931.png",
-        "vencedor": null,
-        "gols": null
+        "vencedor": false,
+        "gols": 1
       },
       "fora": {
         "id": 26738,
         "nome": "Al Diriyah",
         "logo": "https://media.api-sports.io/football/teams/26738.png",
-        "vencedor": null,
-        "gols": null
+        "vencedor": true,
+        "gols": 2
       },
       "placar": {
         "intervalo": {
-          "home": null,
-          "away": null
+          "home": 1,
+          "away": 2
         },
         "final": {
           "home": null,
@@ -772,9 +772,9 @@
         "horario": "14:00"
       },
       "status": {
-        "codigo": "NS",
-        "descricao": "Not Started",
-        "minuto": null
+        "codigo": "2H",
+        "descricao": "Second Half",
+        "minuto": 56
       },
       "campeonato": {
         "id": 307,
@@ -789,20 +789,20 @@
         "id": 2939,
         "nome": "Al-Nassr",
         "logo": "https://media.api-sports.io/football/teams/2939.png",
-        "vencedor": null,
-        "gols": null
+        "vencedor": true,
+        "gols": 1
       },
       "fora": {
         "id": 2951,
         "nome": "Abha",
         "logo": "https://media.api-sports.io/football/teams/2951.png",
-        "vencedor": null,
-        "gols": null
+        "vencedor": false,
+        "gols": 0
       },
       "placar": {
         "intervalo": {
-          "home": null,
-          "away": null
+          "home": 1,
+          "away": 0
         },
         "final": {
           "home": null,
