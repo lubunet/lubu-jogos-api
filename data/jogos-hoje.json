@@ -179,7 +179,16 @@
         "nome": "Estadio Primeiro de Maio",
         "cidade": "Sao Bernardo"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Premiere",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "SporTV",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1520869,
@@ -241,7 +250,12 @@
         "nome": null,
         "cidade": null
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Disney+",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1520868,
@@ -303,7 +317,24 @@
         "nome": "Ilha do Retiro",
         "cidade": "Recife"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Disney+",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "ESPN 4",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "SportyNet",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "XSports",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1631511,
@@ -365,7 +396,12 @@
         "nome": "Estadio Inca Garcilaso de la Vega",
         "cidade": "Cusco"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Paramount+",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1635386,
@@ -427,7 +463,16 @@
         "nome": "Estadio Banco Guayaquil",
         "cidade": "Quito"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Disney+",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "ESPN",
+          "fonte": "Mantos"
+        }
+      ]
     }
   ]
 }
