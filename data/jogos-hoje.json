@@ -1,7 +1,7 @@
 {
   "versao": 16,
   "data": "2026-09-10",
-  "gerado_em": "2026-09-10T04:54:34.921708-04:00",
+  "gerado_em": "2026-09-10T15:05:51.644681-04:00",
   "timezone_referencia": "America/Cuiaba",
   "periodo": {
     "inicio": "00:00",
@@ -314,7 +314,7 @@
       },
       "estadio": {
         "id": null,
-        "nome": "Ilha do Retiro",
+        "nome": "Estadio Adelmar da Costa Carvalho",
         "cidade": "Recife"
       },
       "transmissao": [
