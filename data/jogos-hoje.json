@@ -182,11 +182,11 @@
       "transmissao": [
         {
           "canal": "Premiere",
-          "fonte": "Mantos"
+          "fonte": "DPF + Mantos"
         },
         {
           "canal": "SporTV",
-          "fonte": "Mantos"
+          "fonte": "DPF + Mantos"
         }
       ]
     },
@@ -253,7 +253,7 @@
       "transmissao": [
         {
           "canal": "Disney+",
-          "fonte": "Mantos"
+          "fonte": "DPF + Mantos"
         }
       ]
     },
@@ -324,15 +324,15 @@
         },
         {
           "canal": "ESPN 4",
-          "fonte": "Mantos"
+          "fonte": "DPF + Mantos"
         },
         {
           "canal": "SportyNet",
-          "fonte": "Mantos"
+          "fonte": "DPF + Mantos"
         },
         {
           "canal": "XSports",
-          "fonte": "Mantos"
+          "fonte": "DPF + Mantos"
         }
       ]
     },
@@ -470,7 +470,7 @@
         },
         {
           "canal": "ESPN",
-          "fonte": "Mantos"
+          "fonte": "DPF + Mantos"
         }
       ]
     }
