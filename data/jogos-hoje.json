@@ -560,11 +560,11 @@
       "transmissao": [
         {
           "canal": "Premiere",
-          "fonte": "DPF"
+          "fonte": "DPF + Mantos"
         },
         {
           "canal": "SporTV",
-          "fonte": "DPF"
+          "fonte": "DPF + Mantos"
         }
       ]
     }
