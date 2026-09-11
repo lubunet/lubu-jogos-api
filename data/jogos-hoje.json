@@ -349,7 +349,16 @@
         "nome": "Prince Saud bin Jalawi Stadium",
         "cidade": "Dammam"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "GOAT",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "SporTV 2",
+          "fonte": "DPF"
+        }
+      ]
     },
     {
       "id": 1603028,
@@ -411,7 +420,20 @@
         "nome": "Al Majma’a Sport City",
         "cidade": "Madimaa"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "BandSports",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "Esporte na Band",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "GOAT",
+          "fonte": "DPF"
+        }
+      ]
     },
     {
       "id": 1603026,
@@ -535,7 +557,16 @@
         "nome": null,
         "cidade": "Curitiba"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Premiere",
+          "fonte": "DPF"
+        },
+        {
+          "canal": "SporTV",
+          "fonte": "DPF"
+        }
+      ]
     }
   ]
 }
