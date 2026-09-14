@@ -109,7 +109,12 @@
         "nome": null,
         "cidade": null
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "SporTV",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1520870,
@@ -171,7 +176,12 @@
         "nome": "Arena Independência",
         "cidade": "Belo Horizonte"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Disney+",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1520873,
@@ -233,7 +243,16 @@
         "nome": "Estadio Santa Cruz",
         "cidade": "Ribeirao Preto"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Disney+",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "ESPN 4",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1492371,
@@ -295,7 +314,16 @@
         "nome": "Arena Fonte Nova",
         "cidade": "El Salvador"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Premiere",
+          "fonte": "DPF + Mantos"
+        },
+        {
+          "canal": "SporTV",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1520872,
@@ -357,7 +385,24 @@
         "nome": "Estádio da Ressacada",
         "cidade": "Florianopolis"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Disney+",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "ESPN 4",
+          "fonte": "DPF + Mantos"
+        },
+        {
+          "canal": "SportyNet",
+          "fonte": "DPF + Mantos"
+        },
+        {
+          "canal": "XSports",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     }
   ]
 }
