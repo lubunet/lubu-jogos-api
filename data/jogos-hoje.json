@@ -747,7 +747,16 @@
         "nome": null,
         "cidade": "Buenos Aires"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Disney+",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "ESPN",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1635577,
@@ -809,7 +818,12 @@
         "nome": null,
         "cidade": "Rio de Janeiro"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Paramount+",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1520877,
@@ -871,7 +885,12 @@
         "nome": "Estadio do Cafe",
         "cidade": "Londrina"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Disney+",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1520878,
@@ -995,7 +1014,12 @@
         "nome": "Estadio Paulo Constantino",
         "cidade": "Presidente Prudente"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Youtube COM Metropolesesportes",
+          "fonte": "Mantos"
+        }
+      ]
     },
     {
       "id": 1520874,
@@ -1057,7 +1081,24 @@
         "nome": "Estádio Rei Pelé",
         "cidade": "Maceio"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Disney+",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "ESPN 4",
+          "fonte": "DPF + Mantos"
+        },
+        {
+          "canal": "GOAT",
+          "fonte": "DPF + Mantos"
+        },
+        {
+          "canal": "XSports",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1629831,
@@ -1119,7 +1160,24 @@
         "nome": null,
         "cidade": null
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Disney+",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "ESPN",
+          "fonte": "DPF + Mantos"
+        },
+        {
+          "canal": "SBT",
+          "fonte": "DPF + Mantos"
+        },
+        {
+          "canal": "Youtube COM Sbtsports",
+          "fonte": "Mantos"
+        }
+      ]
     }
   ]
 }
