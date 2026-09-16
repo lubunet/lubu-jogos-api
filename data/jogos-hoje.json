@@ -211,7 +211,12 @@
         "nome": null,
         "cidade": null
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "SporTV",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1610830,
@@ -521,7 +526,16 @@
         "nome": "MRV Arena",
         "cidade": "Belo Horizonte"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Disney+",
+          "fonte": "Mantos"
+        },
+        {
+          "canal": "ESPN",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1492311,
@@ -583,7 +597,12 @@
         "nome": "Estádio Nilton Santos",
         "cidade": "Rio de Janeiro"
       },
-      "transmissao": []
+      "transmissao": [
+        {
+          "canal": "Premiere",
+          "fonte": "DPF + Mantos"
+        }
+      ]
     },
     {
       "id": 1610828,
