@@ -528,12 +528,8 @@
       },
       "transmissao": [
         {
-          "canal": "Disney+",
-          "fonte": "Mantos"
-        },
-        {
           "canal": "ESPN",
-          "fonte": "DPF + Mantos"
+          "fonte": "DPF"
         }
       ]
     },
@@ -600,7 +596,7 @@
       "transmissao": [
         {
           "canal": "Premiere",
-          "fonte": "DPF + Mantos"
+          "fonte": "DPF"
         }
       ]
     },
